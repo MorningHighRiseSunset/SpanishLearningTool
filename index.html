@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spanish Verb Learning Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Spanish Verb Learning Tool</h1>
+    <div id="modeSelect">
+      <button id="practiceModeBtn">Practice</button>
+      <button id="quizModeBtn">Quiz</button>
+    </div>
+    <div id="practiceSection" style="display:none;">
+    <h2>Practice</h2>
+    <div style="max-width:400px;margin:0 auto;">
+        <form id="practiceFormEn" style="display:flex;flex-direction:row;align-items:center;margin-bottom:16px;">
+        <input type="text" id="practiceInputEn" placeholder="Type an English phrase" required style="flex:1;">
+        <button type="submit" style="margin-left:8px;">Show Spanish</button>
+        </form>
+        <form id="practiceFormEs" style="display:flex;flex-direction:row;align-items:center;">
+        <input type="text" id="practiceInputEs" placeholder="Escribe en español" required style="flex:1;">
+        <button type="submit" style="margin-left:8px;">Show English</button>
+        </form>
+    </div>
+    <div id="practiceResults"></div>
+    </div>
+    <div id="quizSection" style="display:none;">
+      <h2>Quiz</h2>
+      <div id="quizPrompt"></div>
+      <form id="quizForm">
+        <input type="text" id="quizInput" placeholder="Type the Spanish translation" required>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="quizFeedback"></div>
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
