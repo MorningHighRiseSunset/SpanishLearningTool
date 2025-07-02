@@ -65,9 +65,11 @@ practiceFormEn.onsubmit = e => {
     practiceResults.innerHTML = `<span style="color:red;">Could not find a matching verb or tense in the local database.</span>`;
     return;
   }
-  const {verb, pronounIdx} = result;
+  const {verb, pronounIdx, tense: detectedTense} = result;
 
-  let html = `<h3>Spanish conjugations for <b>${verb.english}</b> (${pronouns[pronounIdx]})</h3>`;
+  let html = `<h3>Spanish conjugations for <b>${verb.english}</b> (${pronouns[pronounIdx]})`;
+  if (detectedTense) html += ` <span style="font-size:0.9em;color:#666;">[${detectedTense}]</span>`;
+  html += `</h3>`;
   html += `<table border="1" style="width:100%;text-align:center;">
     <tr>
       <th>Tense</th>
@@ -77,7 +79,8 @@ practiceFormEn.onsubmit = e => {
   tenses.forEach(t => {
     let conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
     let english = buildEnglishPhrase(verb, t, pronounIdx);
-    html += `<tr>
+    let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
+    html += `<tr${highlight}>
       <td>
         ${t}
         <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
@@ -249,6 +252,8 @@ function showTensePopup(tense, def, anchor) {
 // --- Helper: Parse English phrase to verb/tense/pronoun ---
 function parseEnglishPhrase(phrase) {
   phrase = phrase.trim().toLowerCase();
+
+  // Try to match exact phrase first
   for (let verb of verbs) {
     for (let t of tenses) {
       if (!verb.conjugations[t]) continue;
@@ -260,6 +265,59 @@ function parseEnglishPhrase(phrase) {
       }
     }
   }
+
+  // Try to match common English tense patterns
+  for (let verb of verbs) {
+    let base = verb.english.replace(/^to /, '').split(',')[0].trim();
+    for (let i = 0; i < pronouns.length; ++i) {
+      const pronoun = pronouns[i].toLowerCase();
+
+      // Present Continuous: "You are speaking"
+      if (phrase === `${pronoun} are ${base}ing` || phrase === `${pronoun} is ${base}ing` || phrase === `${pronoun} am ${base}ing`) {
+        return {verb, tense: "Present", pronounIdx: i};
+      }
+      // Future: "We will eat"
+      if (phrase === `${pronoun} will ${base}`) {
+        return {verb, tense: "Future", pronounIdx: i};
+      }
+      // Conditional: "They would eat"
+      if (phrase === `${pronoun} would ${base}`) {
+        return {verb, tense: "Conditional", pronounIdx: i};
+      }
+      // Present Perfect: "You have eaten"
+      if (phrase === `${pronoun} have ${base}ed` || phrase === `${pronoun} has ${base}ed`) {
+        return {verb, tense: "Present Perfect", pronounIdx: i};
+      }
+      // Past Perfect: "We had eaten"
+      if (phrase === `${pronoun} had ${base}ed`) {
+        return {verb, tense: "Past Perfect", pronounIdx: i};
+      }
+      // Future Perfect: "They will have eaten"
+      if (phrase === `${pronoun} will have ${base}ed`) {
+        return {verb, tense: "Future Perfect", pronounIdx: i};
+      }
+      // Conditional Perfect: "You would have eaten"
+      if (phrase === `${pronoun} would have ${base}ed`) {
+        return {verb, tense: "Conditional Perfect", pronounIdx: i};
+      }
+      // Imperfect: "We used to eat"
+      if (phrase === `${pronoun} used to ${base}`) {
+        return {verb, tense: "Imperfect", pronounIdx: i};
+      }
+      // Simple Present: "You speak"
+      if (phrase === `${pronoun} ${base}`) {
+        return {verb, tense: "Present", pronounIdx: i};
+      }
+      // Simple Past: "You spoke"
+      // Try to match preterite form
+      const preterite = buildEnglishPhrase(verb, "Preterite", i).toLowerCase().replace(pronoun + " ", "");
+      if (phrase === `${pronoun} ${preterite}`) {
+        return {verb, tense: "Preterite", pronounIdx: i};
+      }
+    }
+  }
+
+  // Fallback: try to match verb and pronoun
   for (let verb of verbs) {
     if (phrase.includes(verb.english.replace(/^to /, '').toLowerCase())) {
       for (let i = 0; i < pronouns.length; ++i) {
