@@ -333,39 +333,10 @@ function parseEnglishPhrase(phrase) {
 
 // --- Helper: Build English phrase for a verb/tense/pronoun ---
 function buildEnglishPhrase(verb, tense, pronounIdx) {
-  if (verb.examples && verb.examples.length > 0) {
-    for (let ex of verb.examples) {
-      const pronoun = pronouns[pronounIdx];
-      if (ex.toLowerCase().startsWith(pronoun.toLowerCase())) {
-        return ex.split('(')[0].trim();
-      }
-    }
-  }
-
   const pronoun = pronouns[pronounIdx];
   let base = verb.english.replace(/^to /, '').split(',')[0].trim();
-  let pastPart = null, preterite = null;
-  if (verb.examples) {
-    for (let ex of verb.examples) {
-      if (/has|have|had/.test(ex)) {
-        let m = ex.match(/has|have|had\s+([a-zA-Z]+)/);
-        if (m) pastPart = m[1];
-      }
-      if (/He |She |I |You |We |They /.test(ex) && /(ed|ew|ought|ade|oke|en|id|wn|elt|pt|nt|t|d|ght|ld|st|rt|lt|ss|ught|ed)\b/.test(ex)) {
-        let m = ex.match(/^\w+\s+([a-zA-Z]+)/);
-        if (m) preterite = m[1];
-      }
-    }
-  }
-  if (!pastPart) {
-    if (base.endsWith('e')) pastPart = base + 'd';
-    else pastPart = base + 'ed';
-  }
-  if (!preterite) {
-    if (base.endsWith('e')) preterite = base + 'd';
-    else preterite = base + 'ed';
-  }
 
+  // Irregulars lookup
   const irregulars = {
     "to go": { preterite: "went", pastPart: "gone" },
     "to eat": { preterite: "ate", pastPart: "eaten" },
@@ -419,11 +390,16 @@ function buildEnglishPhrase(verb, tense, pronounIdx) {
     "to begin": { preterite: "began", pastPart: "begun" },
     // Add more as needed
   };
+
+  // Get irregular forms if available
+  let preterite = base + (base.endsWith('e') ? 'd' : 'ed');
+  let pastPart = preterite;
   if (irregulars[verb.english]) {
     preterite = irregulars[verb.english].preterite;
     pastPart = irregulars[verb.english].pastPart;
   }
 
+  // Present 3rd person singular
   let present = base;
   if (pronoun === "He") {
     if (base.endsWith('y')) present = base.slice(0, -1) + "ies";
