@@ -444,6 +444,78 @@ function buildEnglishPhrase(verb, tense, pronounIdx) {
   }
 }
 
+document.getElementById('checkSpanishBtn').onclick = function() {
+  const notes = document.getElementById('notesArea').value.trim();
+  const feedbackBox = document.getElementById('notesFeedback');
+  if (!notes) {
+    feedbackBox.textContent = "Please type a Spanish sentence or phrase to check.";
+    feedbackBox.style.background = "#fee2e2";
+    feedbackBox.style.color = "#ef4444";
+    feedbackBox.style.borderLeft = "4px solid #ef4444";
+    return;
+  }
+
+  // Basic checks for Spanish-ness
+  const commonSpanishWords = [
+    "el", "la", "de", "que", "y", "en", "a", "los", "se", "no", "por", "con", "su", "para", "es", "una", "yo", "tú", "él", "ella", "nosotros", "vosotros", "ellos", "ellas", "usted", "ustedes", "mi", "me", "te", "le", "lo", "la", "nos", "os", "les", "las"
+  ];
+  const accents = /[áéíóúñü]/i;
+  let feedback = "";
+  let suggestions = [];
+
+  // Encourage if it looks Spanish
+  let spanishScore = 0;
+  for (let word of commonSpanishWords) {
+    if (notes.toLowerCase().includes(word)) spanishScore++;
+  }
+  if (accents.test(notes)) spanishScore++;
+
+  // Very basic grammar checks
+  if (notes.endsWith(".")) {
+    feedback += "¡Bien! Your sentence ends with a period.<br>";
+  } else {
+    suggestions.push("Try ending your sentence with a period.");
+  }
+
+  if (notes[0] && notes[0] === notes[0].toLowerCase()) {
+    suggestions.push("Start your sentence with a capital letter.");
+  }
+
+  // Detect some common mistakes
+  if (notes.toLowerCase().includes("yo es")) {
+    suggestions.push("Remember: 'yo soy' or 'yo estoy', not 'yo es'.");
+  }
+  if (notes.toLowerCase().includes("tu eres") && !notes.includes("tú eres")) {
+    suggestions.push("Did you mean 'tú eres'? Don't forget the accent on 'tú' for 'you'.");
+  }
+
+  // Feedback based on score
+  if (spanishScore > 2) {
+    feedback += "👍 That looks like a good Spanish sentence!";
+  } else if (spanishScore > 0) {
+    feedback += "It looks like you're trying Spanish. Keep practicing!";
+  } else {
+    feedback += "This doesn't look like Spanish. Try writing a Spanish sentence!";
+  }
+
+  // Add suggestions if any
+  if (suggestions.length > 0) {
+    feedback += "<br><b>Suggestions:</b><ul style='margin:0 0 0 18px;'>";
+    for (let s of suggestions) feedback += `<li>${s}</li>`;
+    feedback += "</ul>";
+    feedbackBox.style.background = "#fef9c3";
+    feedbackBox.style.color = "#b45309";
+    feedbackBox.style.borderLeft = "4px solid #fde68a";
+  } else {
+    feedbackBox.style.background = "#e0f2fe";
+    feedbackBox.style.color = "#2563eb";
+    feedbackBox.style.borderLeft = "4px solid #38bdf8";
+  }
+
+  feedbackBox.innerHTML = feedback;
+  feedbackBox.style.animation = "fadeIn 0.7s";
+};
+
 // Make startQuiz available for inline onclick
 window.startQuiz = startQuiz;
 
