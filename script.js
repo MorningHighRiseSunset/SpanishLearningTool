@@ -122,10 +122,15 @@ practiceFormEs.onsubmit = e => {
     if (found) break;
   }
 
+  const englishBox = document.getElementById('practiceInputEsEnglish');
   if (!found) {
+    englishBox.value = '';
     practiceResults.innerHTML = `<span style="color:red;">Could not find a matching Spanish phrase in the local database.</span>`;
     return;
   }
+
+  // Set the English translation in the output field
+  englishBox.value = `${pronouns[found.pronounIdx]} ${buildEnglishPhrase(found.verb, found.tense, found.pronounIdx).replace(pronouns[found.pronounIdx] + ' ', '')}`;
 
   let html = `<h3>English equivalents for <b>${found.verb.spanish}</b> (${spanishPronouns[found.pronounIdx]})</h3>`;
   html += `<table border="1" style="width:100%;text-align:center;">
