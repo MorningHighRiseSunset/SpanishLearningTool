@@ -409,3 +409,54 @@ table th, table td {
   font-size: 1.1rem;
   overflow-x: auto;
 }
+
+/* Notebook style for notes box - blue & white theme */
+.notebook-notes {
+  background: #f0f9ff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(60,99,246,0.10);
+  border: 1.5px solid #38bdf8;
+  padding: 24px 18px 18px 38px;
+  position: relative;
+  margin: 40px auto 0 auto;
+  max-width: 500px;
+}
+
+.notebook-notes::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  bottom: 18px;
+  width: 6px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #38bdf8 0 6px,
+    transparent 6px 12px
+  );
+  opacity: 0.25;
+}
+
+.notebook-area {
+  width: 100%;
+  height: 180px;
+  resize: vertical;
+  border-radius: 8px;
+  border: 1.5px solid #38bdf8;
+  padding: 8px 12px;
+  font-size: 1em;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #fff 0px,
+      #fff 27px,
+      #bae6fd 28px,
+      #fff 29px
+    );
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  line-height: 28px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(56,189,248,0.07);
+  color: #2563eb;
+}

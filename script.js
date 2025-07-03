@@ -446,3 +446,15 @@ function buildEnglishPhrase(verb, tense, pronounIdx) {
 
 // Make startQuiz available for inline onclick
 window.startQuiz = startQuiz;
+
+// --- Notes Print Logic ---
+document.getElementById('printNotesBtn').onclick = function() {
+  const notes = document.getElementById('notesArea').value;
+  const win = window.open('', '', 'width=600,height=600');
+  win.document.write('<html><head><title>My Notes</title></head><body>');
+  win.document.write('<h2>My Notes</h2>');
+  win.document.write('<pre style="font-size:1.1em;">' + notes.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</pre>');
+  win.document.write('</body></html>');
+  win.document.close();
+  win.print();
+};
