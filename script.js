@@ -61,11 +61,18 @@ practiceFormEn.onsubmit = e => {
   if (!input) return;
 
   const result = parseEnglishPhrase(input);
+  const spanishBox = document.getElementById('practiceInputEnSpanish');
   if (!result) {
+    spanishBox.value = '';
     practiceResults.innerHTML = `<span style="color:red;">Could not find a matching verb or tense in the local database.</span>`;
     return;
   }
   const {verb, pronounIdx, tense: detectedTense} = result;
+
+  // Find the Spanish phrase for the detected tense (or Present if not detected)
+  let tenseToShow = detectedTense || "Present";
+  let spanish = verb.conjugations[tenseToShow] ? verb.conjugations[tenseToShow][pronounIdx] : "(not available)";
+  spanishBox.value = `${spanishPronouns[pronounIdx]} ${spanish}`;
 
   let html = `<h3>Spanish conjugations for <b>${verb.english}</b> (${pronouns[pronounIdx]})`;
   if (detectedTense) html += ` <span style="font-size:0.9em;color:#666;">[${detectedTense}]</span>`;

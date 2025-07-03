@@ -18,6 +18,8 @@ body {
   position: relative;
   z-index: 2;
   animation: pop-in 1s cubic-bezier(.68,-0.55,.27,1.55);
+  padding-left: 24px;
+  padding-right: 32px; 
 }
 
 @keyframes pop-in {
@@ -48,7 +50,7 @@ body {
 form {
   display: flex;
   gap: 12px;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 24px;
 }
 
