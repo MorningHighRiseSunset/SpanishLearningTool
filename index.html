@@ -10,46 +10,44 @@
   <div class="container">
     <h1>
       Spanish Verb Learning Tool<br>
-      <span style="font-size:1.1rem;color:#888;">(Herramienta para aprender verbos en español)</span>
+      <span class="subtitle">(Herramienta para aprender verbos en español)</span>
     </h1>
     <div id="modeSelect">
       <button id="practiceModeBtn">
         Practice<br>
-        <span style="font-size:0.95em;color:#888;">(Práctica)</span>
+        <span class="btn-sub">(Práctica)</span>
       </button>
       <button id="quizModeBtn">
         Quiz<br>
-        <span style="font-size:0.95em;color:#888;">(Cuestionario)</span>
+        <span class="btn-sub">(Cuestionario)</span>
       </button>
     </div>
     <div id="practiceSection" style="display:none;">
       <h2>
         Practice<br>
-        <span style="font-size:1rem;color:#888;">(Práctica)</span>
+        <span class="subtitle">(Práctica)</span>
       </h2>
-      <div style="max-width:800px;">
-        <form id="practiceFormEn" style="display:flex;flex-direction:row;align-items:flex-start;margin-bottom:16px;">
-          <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;">
-            <input type="text" id="practiceInputEn" placeholder="Type an English phrase" required style="flex:1;text-align:left;">
-            <span style="font-size:0.95em;color:#888;margin-top:2px;text-align:left;">(Escribe una frase en inglés)</span>
+      <div class="practice-forms">
+        <form id="practiceFormEn">
+          <div class="input-col">
+            <input type="text" id="practiceInputEn" placeholder="Type an English phrase" required>
+            <span class="input-hint">(Escribe una frase en inglés)</span>
           </div>
-          <input type="text" id="practiceInputEnSpanish" readonly tabindex="-1"
-            style="margin-left:16px;min-width:120px;width:100%;color:#2563eb;font-weight:bold;align-self:flex-start;background:#f0f9ff;border:2px solid #38bdf8;border-radius:8px;padding:12px 16px;font-size:1.1rem;flex:2;" />
-          <button type="submit" style="margin-left:8px;">
+          <input type="text" id="practiceInputEnSpanish" readonly tabindex="-1" class="output-input" />
+          <button type="submit">
             Show Spanish<br>
-            <span style="font-size:0.95em;color:#888;">(Mostrar en español)</span>
+            <span class="btn-sub">(Mostrar en español)</span>
           </button>
         </form>
-        <form id="practiceFormEs" style="display:flex;flex-direction:row;align-items:flex-start;">
-          <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;">
-            <input type="text" id="practiceInputEs" placeholder="Escribe en español" required style="flex:1;text-align:left;">
-            <span style="font-size:0.95em;color:#888;margin-top:2px;text-align:left;">(Type a phrase in Spanish)</span>
+        <form id="practiceFormEs">
+          <div class="input-col">
+            <input type="text" id="practiceInputEs" placeholder="Escribe en español" required>
+            <span class="input-hint">(Type a phrase in Spanish)</span>
           </div>
-          <input type="text" id="practiceInputEsEnglish" readonly tabindex="-1"
-            style="margin-left:16px;min-width:120px;width:100%;color:#2563eb;font-weight:bold;align-self:flex-start;background:#f0f9ff;border:2px solid #38bdf8;border-radius:8px;padding:12px 16px;font-size:1.1rem;flex:2;" />
-          <button type="submit" style="margin-left:8px;">
+          <input type="text" id="practiceInputEsEnglish" readonly tabindex="-1" class="output-input" />
+          <button type="submit">
             Show English<br>
-            <span style="font-size:0.95em;color:#888;">(Mostrar en inglés)</span>
+            <span class="btn-sub">(Mostrar en inglés)</span>
           </button>
         </form>
       </div>
@@ -58,14 +56,14 @@
     <div id="quizSection" style="display:none;">
       <h2>
         Quiz<br>
-        <span style="font-size:1rem;color:#888;">(Cuestionario)</span>
+        <span class="subtitle">(Cuestionario)</span>
       </h2>
       <div id="quizPrompt"></div>
       <form id="quizForm">
         <input type="text" id="quizInput" placeholder="Type the Spanish translation" required>
         <button type="submit">
           Submit<br>
-          <span style="font-size:0.95em;color:#888;">(Enviar)</span>
+          <span class="btn-sub">(Enviar)</span>
         </button>
       </form>
       <div id="quizFeedback"></div>
@@ -77,10 +75,10 @@
     <h3 style="margin-top:0;">📝 Notes</h3>
     <textarea id="notesArea" class="notebook-area"></textarea>
     <div id="notesFeedback" class="notes-feedback"></div>
-    <div style="margin-top:10px; text-align:right; display:flex; gap:8px; justify-content:flex-end;">
-      <button id="printNotesBtn" style="background:#6366f1;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;">Print Notes</button>
-      <button id="checkSpanishBtn" style="background:#38bdf8;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;">Check Spanish</button>
-      <button id="checkEnglishBtn" style="background:#f59e42;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;">Check English</button>
+    <div class="notes-btn-row">
+      <button id="printNotesBtn" class="notes-btn notes-btn-print">Print Notes</button>
+      <button id="checkSpanishBtn" class="notes-btn notes-btn-spanish">Check Spanish</button>
+      <button id="checkEnglishBtn" class="notes-btn notes-btn-english">Check English</button>
     </div>
   </div>
 
