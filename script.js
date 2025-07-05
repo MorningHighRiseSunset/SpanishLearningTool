@@ -216,7 +216,37 @@ quizForm.onsubmit = e => {
     quizInput.style.display = 'none';
     quizForm.querySelector('button[type="submit"]').style.display = 'none';
   } else {
-    quizFeedback.innerHTML = `<span style="color:red;">Incorrect. Try again!</span>`;
+    quizFeedback.innerHTML = `<span style="color:red;">Incorrect. Try again!</span>
+      <br>
+      <button id="showAnswerBtn" style="margin-top:0.7em;">Show Answer</button>`;
+    // Add event listener for Show Answer button
+    document.getElementById('showAnswerBtn').onclick = function() {
+      let html = `<div style="color:#2563eb;font-weight:bold;">Answer: ${quizState.english}</div>`;
+      html += `<h4>All tenses for <b>${quizState.verb.english}</b> (${pronouns[quizState.pronounIdx]})</h4>`;
+      html += `<table border="1" style="width:100%;text-align:center;">
+        <tr>
+          <th>Tense</th>
+          <th>Spanish</th>
+          <th>English</th>
+        </tr>`;
+      tenses.forEach(t => {
+        const sp = quizState.verb.conjugations[t] ? quizState.verb.conjugations[t][quizState.pronounIdx] : "(not available)";
+        const en = buildEnglishPhrase(quizState.verb, t, quizState.pronounIdx);
+        html += `<tr>
+          <td>
+            ${t}
+            <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+          </td>
+          <td>${sp}</td>
+          <td>${en}</td>
+        </tr>`;
+      });
+      html += `</table>`;
+      html += `<button onclick="startQuiz()" style="margin-top:1em;">Next</button>`;
+      quizFeedback.innerHTML = html;
+      quizInput.style.display = 'none';
+      quizForm.querySelector('button[type="submit"]').style.display = 'none';
+    };
   }
 };
 
@@ -455,13 +485,13 @@ document.getElementById('checkSpanishBtn').onclick = function() {
     return;
   }
 
-  // Basic checks for Spanish-ness
   const commonSpanishWords = [
     "el", "la", "de", "que", "y", "en", "a", "los", "se", "no", "por", "con", "su", "para", "es", "una", "yo", "tú", "él", "ella", "nosotros", "vosotros", "ellos", "ellas", "usted", "ustedes", "mi", "me", "te", "le", "lo", "la", "nos", "os", "les", "las"
   ];
   const accents = /[áéíóúñü]/i;
   let feedback = "";
   let suggestions = [];
+  let score = 0;
 
   // Encourage if it looks Spanish
   let spanishScore = 0;
@@ -470,15 +500,37 @@ document.getElementById('checkSpanishBtn').onclick = function() {
   }
   if (accents.test(notes)) spanishScore++;
 
-  // Very basic grammar checks
+  // Check for punctuation
   if (notes.endsWith(".")) {
     feedback += "¡Bien! Your sentence ends with a period.<br>";
+    score += 1;
+  } else if (notes.endsWith("!")) {
+    feedback += "¡Buen énfasis! Your sentence ends with an exclamation mark.<br>";
+    score += 1;
+  } else if (notes.endsWith("?")) {
+    feedback += "¡Pregunta! Your sentence ends with a question mark.<br>";
+    score += 1;
   } else {
-    suggestions.push("Try ending your sentence with a period.");
+    suggestions.push("Try ending your sentence with a period, exclamation, or question mark.");
   }
 
+  // Capitalization
   if (notes[0] && notes[0] === notes[0].toLowerCase()) {
     suggestions.push("Start your sentence with a capital letter.");
+  } else {
+    score += 1;
+  }
+
+  // Inverted punctuation
+  if (notes.includes("?") && !notes.includes("¿")) {
+    suggestions.push("Spanish questions should start with '¿'.");
+  } else if (notes.includes("¿")) {
+    score += 1;
+  }
+  if (notes.includes("!") && !notes.includes("¡")) {
+    suggestions.push("Spanish exclamations should start with '¡'.");
+  } else if (notes.includes("¡")) {
+    score += 1;
   }
 
   // Detect some common mistakes
@@ -488,15 +540,142 @@ document.getElementById('checkSpanishBtn').onclick = function() {
   if (notes.toLowerCase().includes("tu eres") && !notes.includes("tú eres")) {
     suggestions.push("Did you mean 'tú eres'? Don't forget the accent on 'tú' for 'you'.");
   }
+  if (notes.toLowerCase().includes("si ") && !notes.includes("sí")) {
+    suggestions.push("Did you mean 'sí' (yes) with an accent?");
+  }
+  if (notes.toLowerCase().includes("el ") && !notes.includes("él")) {
+    suggestions.push("Did you mean 'él' (he) with an accent?");
+  }
+
+  // Subject-verb agreement (very basic)
+  if (notes.match(/\byo eres\b/i)) {
+    suggestions.push("It should be 'yo soy' or 'yo estoy', not 'yo eres'.");
+  }
+  if (notes.match(/\btú soy\b/i)) {
+    suggestions.push("It should be 'tú eres' or 'tú estás', not 'tú soy'.");
+  }
+
+  // Encourage advanced grammar
+  if (notes.includes("hubiera") || notes.includes("hubiese")) {
+    feedback += "👏 You're using the past subjunctive! Advanced!";
+    score += 1;
+  }
+  if (notes.match(/\b(me|te|se|nos|os)\s+[a-z]+/i)) {
+    feedback += " Reflexive verbs detected, nice!";
+    score += 1;
+  }
+
+  // Warn about very short sentences
+  if (notes.split(" ").length < 3) {
+    suggestions.push("Try writing a longer sentence for more practice.");
+  } else {
+    score += 1;
+  }
 
   // Feedback based on score
   if (spanishScore > 2) {
     feedback += "👍 That looks like a good Spanish sentence!";
+    score += 2;
   } else if (spanishScore > 0) {
     feedback += "It looks like you're trying Spanish. Keep practicing!";
+    score += 1;
   } else {
     feedback += "This doesn't look like Spanish. Try writing a Spanish sentence!";
   }
+
+  // Clamp score and show stars
+  let maxScore = 7;
+  let starScore = Math.max(1, Math.min(5, Math.round((score / maxScore) * 5)));
+  let stars = "★".repeat(starScore) + "☆".repeat(5 - starScore);
+  feedback = `<div style="font-size:1.3em;color:#f59e42;margin-bottom:4px;">${stars}</div>` + feedback;
+
+  // Add suggestions if any
+  if (suggestions.length > 0) {
+    feedback += "<br><b>Suggestions:</b><ul style='margin:0 0 0 18px;'>";
+    for (let s of suggestions) feedback += `<li>${s}</li>`;
+    feedback += "</ul>";
+    feedbackBox.style.background = "#fef9c3";
+    feedbackBox.style.color = "#b45309";
+    feedbackBox.style.borderLeft = "4px solid #fde68a";
+  } else {
+    feedbackBox.style.background = "#e0f2fe";
+    feedbackBox.style.color = "#2563eb";
+    feedbackBox.style.borderLeft = "4px solid #38bdf8";
+  }
+
+  feedbackBox.innerHTML = feedback;
+  feedbackBox.style.animation = "fadeIn 0.7s";
+};
+
+// --- Check English Button Logic ---
+document.getElementById('checkEnglishBtn').onclick = function() {
+  const notes = document.getElementById('notesArea').value.trim();
+  const feedbackBox = document.getElementById('notesFeedback');
+  if (!notes) {
+    feedbackBox.textContent = "Please type an English sentence or phrase to check.";
+    feedbackBox.style.background = "#fee2e2";
+    feedbackBox.style.color = "#ef4444";
+    feedbackBox.style.borderLeft = "4px solid #ef4444";
+    return;
+  }
+
+  let feedback = "";
+  let suggestions = [];
+  let score = 0;
+
+  // Capitalization
+  if (notes[0] && notes[0] === notes[0].toLowerCase()) {
+    suggestions.push("Start your sentence with a capital letter.");
+  } else {
+    score += 1;
+  }
+
+  // Punctuation
+  if (notes.endsWith(".") || notes.endsWith("!") || notes.endsWith("?")) {
+    score += 1;
+  } else {
+    suggestions.push("End your sentence with a period, exclamation, or question mark.");
+  }
+
+  // Length
+  if (notes.split(" ").length < 3) {
+    suggestions.push("Try writing a longer sentence for more practice.");
+  } else {
+    score += 1;
+  }
+
+  // Common mistakes
+  if (notes.match(/\bi amn't\b/i)) {
+    suggestions.push("In English, use 'I'm not' instead of 'I amn't'.");
+  }
+  if (notes.match(/\bhe don't\b/i)) {
+    suggestions.push("Use 'he doesn't' instead of 'he don't'.");
+  }
+  if (notes.match(/\byou was\b/i)) {
+    suggestions.push("Use 'you were' instead of 'you was'.");
+  }
+
+  // Looks like English?
+  let englishWords = ["the", "is", "are", "was", "were", "have", "has", "will", "would", "can", "could", "should", "I", "you", "he", "she", "it", "we", "they"];
+  let englishScore = 0;
+  for (let word of englishWords) {
+    if (notes.toLowerCase().includes(word.toLowerCase())) englishScore++;
+  }
+  if (englishScore > 2) {
+    feedback += "👍 That looks like a good English sentence!";
+    score += 2;
+  } else if (englishScore > 0) {
+    feedback += "It looks like you're trying English. Keep practicing!";
+    score += 1;
+  } else {
+    feedback += "This doesn't look like English. Try writing an English sentence!";
+  }
+
+  // Clamp score and show stars
+  let maxScore = 5;
+  let starScore = Math.max(1, Math.min(5, Math.round((score / maxScore) * 5)));
+  let stars = "★".repeat(starScore) + "☆".repeat(5 - starScore);
+  feedback = `<div style="font-size:1.3em;color:#f59e42;margin-bottom:4px;">${stars}</div>` + feedback;
 
   // Add suggestions if any
   if (suggestions.length > 0) {
