@@ -36,6 +36,12 @@ const quizFeedback = document.getElementById('quizFeedback');
 
 let quizState = null;
 
+function speakSpanish(text) {
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'es-ES';
+  window.speechSynthesis.speak(utter);
+}
+
 // --- Mode switching ---
 practiceModeBtn.onclick = () => {
   modeSelect.style.display = 'none';
@@ -92,7 +98,10 @@ practiceFormEn.onsubmit = e => {
         ${t}
         <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
       </td>
-      <td>${conjugation}</td>
+      <td>
+        ${conjugation}
+        <button type="button" class="speak-btn" data-text="${spanishPronouns[pronounIdx]} ${conjugation}" title="Hear pronunciation">🔊</button>
+      </td>
       <td>${english}</td>
     </tr>`;
   });
@@ -148,7 +157,10 @@ practiceFormEs.onsubmit = e => {
         <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
       </td>
       <td>${eng}</td>
-      <td>${sp}</td>
+      <td>
+        ${sp}
+        <button type="button" class="speak-btn" data-text="${spanishPronouns[found.pronounIdx]} ${sp}" title="Hear pronunciation">🔊</button>
+      </td>
     </tr>`;
   });
   html += `</table>`;
@@ -709,3 +721,9 @@ document.getElementById('printNotesBtn').onclick = function() {
   win.document.close();
   win.print();
 };
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('speak-btn')) {
+    speakSpanish(e.target.getAttribute('data-text'));
+  }
+});
