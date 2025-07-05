@@ -401,6 +401,81 @@ function parseEnglishPhrase(phrase) {
     }
   }
 
+  // Poder (can, to be able to)
+  if (/can|could|be able to/.test(phrase)) {
+    for (let verb of verbs) {
+      if (verb.spanish === "poder") {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  }
+
+  // Querer (to want)
+  if (/want(s)? to/.test(phrase)) {
+    for (let verb of verbs) {
+      if (verb.spanish === "querer") {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  }
+
+  // Deber (should, ought to, must)
+  if (/should|ought to|must/.test(phrase)) {
+    for (let verb of verbs) {
+      if (verb.spanish === "deber") {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  }
+
+  // Ir (to go)
+  if (/go(es)?|went|going/.test(phrase)) {
+    for (let verb of verbs) {
+      if (verb.spanish === "ir") {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  }
+
+  // Reflexive verbs (basic detection)
+  if (/get (up|dressed|married|bored|tired|angry|sick|ready|lost|hurt|upset|divorced)/.test(phrase)) {
+    for (let verb of verbs) {
+      if (verb.english.includes("(reflexive)")) {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  }
+
   // --- Original matching logic ---
 
   // Try to match exact phrase first
