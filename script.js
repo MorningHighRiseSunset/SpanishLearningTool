@@ -134,7 +134,7 @@ practiceFormEs.onsubmit = e => {
   const englishBox = document.getElementById('practiceInputEsEnglish');
   if (!found) {
     englishBox.value = '';
-    practiceResults.innerHTML = `<span style="color:red;">Could not find a matching Spanish phrase in the local database.</span>`;
+    practiceResults.innerHTML = `<span style="color:red;">Could not find a matching Spanish verb in the local database.</span>`;
     return;
   }
 
@@ -306,6 +306,102 @@ function showTensePopup(tense, def, anchor) {
 // --- Helper: Parse English phrase to verb/tense/pronoun ---
 function parseEnglishPhrase(phrase) {
   phrase = phrase.trim().toLowerCase();
+
+  // --- Context-aware handling for ambiguous verbs ---
+
+  // Tener vs. Haber (to have)
+  if (/have\s+\w+ed|\bhave\s+\w+en\b/.test(phrase)) {
+    // Likely auxiliary "have" (haber)
+    for (let verb of verbs) {
+      if (verb.spanish === "haber") {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  } else if (/have\s+(a|an|the|my|your|his|her|our|their|[0-9]+|some|many|few|no|any|[a-z]+)\b/.test(phrase)) {
+    // Likely possession "have" (tener)
+    for (let verb of verbs) {
+      if (verb.spanish === "tener") {
+        for (let t of tenses) {
+          if (!verb.conjugations[t]) continue;
+          for (let i = 0; i < pronouns.length; ++i) {
+            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+          }
+        }
+      }
+    }
+  }
+
+  // Ser vs. Estar (to be)
+  if (/am|is|are|was|were|will be|would be/.test(phrase)) {
+    // Try to guess context: "happy", "in Madrid", "a doctor", etc.
+    if (/(in|at|on|here|there|sick|happy|sad|tired|ready|open|closed|alive|dead)/.test(phrase)) {
+      // Temporary state/location: estar
+      for (let verb of verbs) {
+        if (verb.spanish === "estar") {
+          for (let t of tenses) {
+            if (!verb.conjugations[t]) continue;
+            for (let i = 0; i < pronouns.length; ++i) {
+              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+            }
+          }
+        }
+      }
+    } else if (/(doctor|student|teacher|man|woman|from|tall|short|smart|rich|poor|mexican|spanish|young|old)/.test(phrase)) {
+      // Permanent/identity: ser
+      for (let verb of verbs) {
+        if (verb.spanish === "ser") {
+          for (let t of tenses) {
+            if (!verb.conjugations[t]) continue;
+            for (let i = 0; i < pronouns.length; ++i) {
+              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Saber vs. Conocer (to know)
+  if (/know/.test(phrase)) {
+    if (/(how|that|if|when|where|why|what|the answer|the fact|the truth|the time)/.test(phrase)) {
+      // saber
+      for (let verb of verbs) {
+        if (verb.spanish === "saber") {
+          for (let t of tenses) {
+            if (!verb.conjugations[t]) continue;
+            for (let i = 0; i < pronouns.length; ++i) {
+              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+            }
+          }
+        }
+      }
+    } else if (/(person|people|place|city|country|him|her|them|you)/.test(phrase)) {
+      // conocer
+      for (let verb of verbs) {
+        if (verb.spanish === "conocer") {
+          for (let t of tenses) {
+            if (!verb.conjugations[t]) continue;
+            for (let i = 0; i < pronouns.length; ++i) {
+              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
+              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // --- Original matching logic ---
 
   // Try to match exact phrase first
   for (let verb of verbs) {
