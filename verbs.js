@@ -1144,5 +1144,159 @@ export const verbs = [
       "We will begin (Nosotros empezaremos)"
     ]
   },
+{
+    english: "to learn",
+    spanish: "aprender",
+    type: "regular",
+    memoryTip: "Apprender is like 'apprehend'—to learn or grasp.",
+    conjugations: {
+      "Present": ["aprendo", "aprendes", "aprende", "aprendemos", "aprendéis", "aprenden"],
+      "Preterite": ["aprendí", "aprendiste", "aprendió", "aprendimos", "aprendisteis", "aprendieron"],
+      "Imperfect": ["aprendía", "aprendías", "aprendía", "aprendíamos", "aprendíais", "aprendían"],
+      "Future": ["aprenderé", "aprenderás", "aprenderá", "aprenderemos", "aprenderéis", "aprenderán"],
+      "Conditional": ["aprendería", "aprenderías", "aprendería", "aprenderíamos", "aprenderíais", "aprenderían"],
+      "Present Perfect": ["he aprendido", "has aprendido", "ha aprendido", "hemos aprendido", "habéis aprendido", "han aprendido"],
+      "Past Perfect": ["había aprendido", "habías aprendido", "había aprendido", "habíamos aprendido", "habíais aprendido", "habían aprendido"],
+      "Future Perfect": ["habré aprendido", "habrás aprendido", "habrá aprendido", "habremos aprendido", "habréis aprendido", "habrán aprendido"],
+      "Conditional Perfect": ["habría aprendido", "habrías aprendido", "habría aprendido", "habríamos aprendido", "habríais aprendido", "habrían aprendido"]
+    },
+    examples: [
+      "I learn (Yo aprendo)",
+      "She learned (Ella aprendió)",
+      "We will learn (Nosotros aprenderemos)"
+    ]
+  },
+  {
+    english: "to need",
+    spanish: "necesitar",
+    type: "regular",
+    memoryTip: "Necesitar means 'to need'.",
+    conjugations: {
+      "Present": ["necesito", "necesitas", "necesita", "necesitamos", "necesitáis", "necesitan"],
+      "Preterite": ["necesité", "necesitaste", "necesitó", "necesitamos", "necesitasteis", "necesitaron"],
+      "Imperfect": ["necesitaba", "necesitabas", "necesitaba", "necesitábamos", "necesitabais", "necesitaban"],
+      "Future": ["necesitaré", "necesitarás", "necesitará", "necesitaremos", "necesitaréis", "necesitarán"],
+      "Conditional": ["necesitaría", "necesitarías", "necesitaría", "necesitaríamos", "necesitaríais", "necesitarían"],
+      "Present Perfect": ["he necesitado", "has necesitado", "ha necesitado", "hemos necesitado", "habéis necesitado", "han necesitado"],
+      "Past Perfect": ["había necesitado", "habías necesitado", "había necesitado", "habíamos necesitado", "habíais necesitado", "habían necesitado"],
+      "Future Perfect": ["habré necesitado", "habrás necesitado", "habrá necesitado", "habremos necesitado", "habréis necesitado", "habrán necesitado"],
+      "Conditional Perfect": ["habría necesitado", "habrías necesitado", "habría necesitado", "habríamos necesitado", "habríais necesitado", "habrían necesitado"]
+    },
+    examples: [
+      "I need (Yo necesito)",
+      "They needed (Ellos necesitaron)",
+      "We will need (Nosotros necesitaremos)"
+    ]
+  },
+  {
+    english: "to work",
+    spanish: "trabajar",
+    type: "regular",
+    memoryTip: "Trabajar means 'to work'.",
+    conjugations: {
+      "Present": ["trabajo", "trabajas", "trabaja", "trabajamos", "trabajáis", "trabajan"],
+      "Preterite": ["trabajé", "trabajaste", "trabajó", "trabajamos", "trabajasteis", "trabajaron"],
+      "Imperfect": ["trabajaba", "trabajabas", "trabajaba", "trabajábamos", "trabajabais", "trabajaban"],
+      "Future": ["trabajaré", "trabajarás", "trabajará", "trabajaremos", "trabajaréis", "trabajarán"],
+      "Conditional": ["trabajaría", "trabajarías", "trabajaría", "trabajaríamos", "trabajaríais", "trabajarían"],
+      "Present Perfect": ["he trabajado", "has trabajado", "ha trabajado", "hemos trabajado", "habéis trabajado", "han trabajado"],
+      "Past Perfect": ["había trabajado", "habías trabajado", "había trabajado", "habíamos trabajado", "habíais trabajado", "habían trabajado"],
+      "Future Perfect": ["habré trabajado", "habrás trabajado", "habrá trabajado", "habremos trabajado", "habréis trabajado", "habrán trabajado"],
+      "Conditional Perfect": ["habría trabajado", "habrías trabajado", "habría trabajado", "habríamos trabajado", "habríais trabajado", "habrían trabajado"]
+    },
+    examples: [
+      "I work (Yo trabajo)",
+      "She worked (Ella trabajó)",
+      "We will work (Nosotros trabajaremos)"
+    ]
+  },
+  {
+    english: "to help",
+    spanish: "ayudar",
+    type: "regular",
+    memoryTip: "Ayudar means 'to help'.",
+    conjugations: {
+      "Present": ["ayudo", "ayudas", "ayuda", "ayudamos", "ayudáis", "ayudan"],
+      "Preterite": ["ayudé", "ayudaste", "ayudó", "ayudamos", "ayudasteis", "ayudaron"],
+      "Imperfect": ["ayudaba", "ayudabas", "ayudaba", "ayudábamos", "ayudabais", "ayudaban"],
+      "Future": ["ayudaré", "ayudarás", "ayudará", "ayudaremos", "ayudaréis", "ayudarán"],
+      "Conditional": ["ayudaría", "ayudarías", "ayudaría", "ayudaríamos", "ayudaríais", "ayudarían"],
+      "Present Perfect": ["he ayudado", "has ayudado", "ha ayudado", "hemos ayudado", "habéis ayudado", "han ayudado"],
+      "Past Perfect": ["había ayudado", "habías ayudado", "había ayudado", "habíamos ayudado", "habíais ayudado", "habían ayudado"],
+      "Future Perfect": ["habré ayudado", "habrás ayudado", "habrá ayudado", "habremos ayudado", "habréis ayudado", "habrán ayudado"],
+      "Conditional Perfect": ["habría ayudado", "habrías ayudado", "habría ayudado", "habríamos ayudado", "habríais ayudado", "habrían ayudado"]
+    },
+    examples: [
+      "I help (Yo ayudo)",
+      "They helped (Ellos ayudaron)",
+      "We will help (Nosotros ayudaremos)"
+    ]
+  },
+  {
+    english: "to buy",
+    spanish: "comprar",
+    type: "regular",
+    memoryTip: "Comprar means 'to buy'.",
+    conjugations: {
+      "Present": ["compro", "compras", "compra", "compramos", "compráis", "compran"],
+      "Preterite": ["compré", "compraste", "compró", "compramos", "comprasteis", "compraron"],
+      "Imperfect": ["compraba", "comprabas", "compraba", "comprábamos", "comprabais", "compraban"],
+      "Future": ["compraré", "comprarás", "comprará", "compraremos", "compraréis", "comprarán"],
+      "Conditional": ["compraría", "comprarías", "compraría", "compraríamos", "compraríais", "comprarían"],
+      "Present Perfect": ["he comprado", "has comprado", "ha comprado", "hemos comprado", "habéis comprado", "han comprado"],
+      "Past Perfect": ["había comprado", "habías comprado", "había comprado", "habíamos comprado", "habíais comprado", "habían comprado"],
+      "Future Perfect": ["habré comprado", "habrás comprado", "habrá comprado", "habremos comprado", "habréis comprado", "habrán comprado"],
+      "Conditional Perfect": ["habría comprado", "habrías comprado", "habría comprado", "habríamos comprado", "habríais comprado", "habrían comprado"]
+    },
+    examples: [
+      "I buy (Yo compro)",
+      "They bought (Ellos compraron)",
+      "We will buy (Nosotros compraremos)"
+    ]
+  },
+  {
+    english: "to sell",
+    spanish: "vender",
+    type: "regular",
+    memoryTip: "Vender means 'to sell'.",
+    conjugations: {
+      "Present": ["vendo", "vendes", "vende", "vendemos", "vendéis", "venden"],
+      "Preterite": ["vendí", "vendiste", "vendió", "vendimos", "vendisteis", "vendieron"],
+      "Imperfect": ["vendía", "vendías", "vendía", "vendíamos", "vendíais", "vendían"],
+      "Future": ["venderé", "venderás", "venderá", "venderemos", "venderéis", "venderán"],
+      "Conditional": ["vendería", "venderías", "vendería", "venderíamos", "venderíais", "venderían"],
+      "Present Perfect": ["he vendido", "has vendido", "ha vendido", "hemos vendido", "habéis vendido", "han vendido"],
+      "Past Perfect": ["había vendido", "habías vendido", "había vendido", "habíamos vendido", "habíais vendido", "habían vendido"],
+      "Future Perfect": ["habré vendido", "habrás vendido", "habrá vendido", "habremos vendido", "habréis vendido", "habrán vendido"],
+      "Conditional Perfect": ["habría vendido", "habrías vendido", "habría vendido", "habríamos vendido", "habríais vendido", "habrían vendido"]
+    },
+    examples: [
+      "I sell (Yo vendo)",
+      "He sold (Él vendió)",
+      "We will sell (Nosotros venderemos)"
+    ]
+  },
+  {
+    english: "to wait, to hope",
+    spanish: "esperar",
+    type: "regular",
+    memoryTip: "Esperar means 'to wait' or 'to hope'.",
+    conjugations: {
+      "Present": ["espero", "esperas", "espera", "esperamos", "esperáis", "esperan"],
+      "Preterite": ["esperé", "esperaste", "esperó", "esperamos", "esperasteis", "esperaron"],
+      "Imperfect": ["esperaba", "esperabas", "esperaba", "esperábamos", "esperabais", "esperaban"],
+      "Future": ["esperaré", "esperarás", "esperará", "esperaremos", "esperaréis", "esperarán"],
+      "Conditional": ["esperaría", "esperarías", "esperaría", "esperaríamos", "esperaríais", "esperarían"],
+      "Present Perfect": ["he esperado", "has esperado", "ha esperado", "hemos esperado", "habéis esperado", "han esperado"],
+      "Past Perfect": ["había esperado", "habías esperado", "había esperado", "habíamos esperado", "habíais esperado", "habían esperado"],
+      "Future Perfect": ["habré esperado", "habrás esperado", "habrá esperado", "habremos esperado", "habréis esperado", "habrán esperado"],
+      "Conditional Perfect": ["habría esperado", "habrías esperado", "habría esperado", "habríamos esperado", "habríais esperado", "habrían esperado"]
+    },
+    examples: [
+      "I wait (Yo espero)",
+      "She waited (Ella esperó)",
+      "We will wait (Nosotros esperaremos)"
+    ]
+  }
 // --- More verbs can be added below this line ---
 ];
