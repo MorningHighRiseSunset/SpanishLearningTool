@@ -406,19 +406,6 @@ export const verbs = [
   }
 },
 {
-  english: "to know (people, places)",
-  spanish: "conocer",
-  type: "irregular",
-  memoryTip: "Used for knowing people or places.",
-  conjugations: {
-    "Present": ["conozco", "conoces", "conoce", "conocemos", "conocéis", "conocen"],
-    "Preterite": ["conocí", "conociste", "conoció", "conocimos", "conocisteis", "conocieron"],
-    "Imperfect": ["conocía", "conocías", "conocía", "conocíamos", "conocíais", "conocían"],
-    "Future": ["conoceré", "conocerás", "conocerá", "conoceremos", "conoceréis", "conocerán"],
-    "Conditional": ["conocería", "conocerías", "conocería", "conoceríamos", "conoceríais", "conocerían"]
-  }
-},
-{
   english: "to win, to earn",
   spanish: "ganar",
   type: "regular",
