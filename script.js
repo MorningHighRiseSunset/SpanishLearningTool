@@ -131,7 +131,7 @@ practiceFormEn.onsubmit = function(e) {
     ];
   }
 
-  // Tab UI for multiple meanings
+  // Tab UI for multiple meanings 
   let tabHtml = '';
   if (allCandidates.length > 1) {
     tabHtml = `<div id="meaningTabs" style="display:flex;gap:8px;margin-bottom:8px;">` +
@@ -286,7 +286,10 @@ practiceFormEs.onsubmit = function(e) {
             ${sp}
             <button type="button" class="speak-btn" data-text="${spanishPronouns[i]} ${sp}" title="Hear pronunciation">🔊</button>
           </td>
-          <td>${eng}</td>
+          <td>
+            ${eng}
+            <button type="button" class="speak-btn-en" data-text="${eng}" title="Hear English pronunciation">🔊</button>
+          </td>
         </tr>`;
       }
     }
@@ -300,8 +303,11 @@ practiceFormEs.onsubmit = function(e) {
           let idx = parseInt(btn.getAttribute('data-meaning-idx'));
           englishBox.value = meanings[idx];
           // Re-render table for selected meaning
-          let html = tabHtml.replace('active', '') // Remove all actives
-            .replace(`meaning-tab-es${idx === 0 ? '' : ' active'}`, `meaning-tab-es active`);
+          let html = `<div id="meaningTabsEs" style="display:flex;gap:8px;margin-bottom:8px;">` +
+            meanings.map((m, j) =>
+              `<button class="meaning-tab-es${j === idx ? ' active' : ''}" data-meaning-idx="${j}">${m}</button>`
+            ).join('') +
+            `</div>`;
           html += `<h3>English equivalents for <b>${found.verb.spanish}</b> (all pronouns)</h3>`;
           html += `<table border="1" style="width:100%;text-align:center;">
             <tr>
@@ -324,7 +330,10 @@ practiceFormEs.onsubmit = function(e) {
                   ${sp}
                   <button type="button" class="speak-btn" data-text="${spanishPronouns[i]} ${sp}" title="Hear pronunciation">🔊</button>
                 </td>
-                <td>${eng}</td>
+                <td>
+                  ${eng}
+                  <button type="button" class="speak-btn-en" data-text="${eng}" title="Hear English pronunciation">🔊</button>
+                </td>
               </tr>`;
             }
           }
@@ -367,147 +376,10 @@ practiceFormEs.onsubmit = function(e) {
         ${t}
         <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
       </td>
-      <td>${eng}</td>
       <td>
-        ${sp}
-        <button type="button" class="speak-btn" data-text="${spanishPronouns[found.pronounIdx]} ${sp}" title="Hear pronunciation">🔊</button>
+        ${eng}
+        <button type="button" class="speak-btn-en" data-text="${eng}" title="Hear English pronunciation">🔊</button>
       </td>
-    </tr>`;
-  });
-  html += `</table>`;
-  practiceResults.innerHTML = html;
-
-  // Tab click handler for Spanish→English
-  if (meanings.length > 1) {
-    document.querySelectorAll('.meaning-tab-es').forEach(btn => {
-      btn.onclick = () => {
-        let idx = parseInt(btn.getAttribute('data-meaning-idx'));
-        englishBox.value = `${pronouns[found.pronounIdx]} ${buildEnglishPhrase(found.verb, found.tense, found.pronounIdx, idx).replace(pronouns[found.pronounIdx] + ' ', '')}`;
-        // Re-render table for selected meaning
-        let html = tabHtml.replace('active', '') // Remove all actives
-          .replace(`meaning-tab-es${idx === 0 ? '' : ' active'}`, `meaning-tab-es active`);
-        html += `<h3>English equivalents for <b>${found.verb.spanish}</b> (${spanishPronouns[found.pronounIdx]})</h3>`;
-        html += `<table border="1" style="width:100%;text-align:center;">
-          <tr>
-            <th>Tense</th>
-            <th>English</th>
-            <th>Spanish</th>
-          </tr>`;
-        tenses.forEach(t => {
-          let eng = buildEnglishPhrase(found.verb, t, found.pronounIdx, idx);
-          let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][found.pronounIdx] : "(not available)";
-          html += `<tr>
-            <td>
-              ${t}
-              <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
-            </td>
-            <td>${eng}</td>
-            <td>
-              ${sp}
-              <button type="button" class="speak-btn" data-text="${spanishPronouns[found.pronounIdx]} ${sp}" title="Hear pronunciation">🔊</button>
-            </td>
-          </tr>`;
-        });
-        html += `</table>`;
-        practiceResults.innerHTML = html;
-      };
-    });
-  }
-};
-
-// --- Practice Mode: Spanish → English ---
-practiceFormEs.onsubmit = e => {
-  e.preventDefault();
-  const input = practiceInputEs.value.trim().toLowerCase();
-  if (!input) return;
-
-  let found = null;
-  // 1. Try to match full conjugated forms (existing logic)
-  for (let verb of verbs) {
-    for (let t of tenses) {
-      if (!verb.conjugations[t]) continue;
-      for (let i = 0; i < spanishPronouns.length; ++i) {
-        const sp = verb.conjugations[t][i];
-        if (sp && (`${spanishPronouns[i]} ${sp}`.toLowerCase() === input || sp.toLowerCase() === input)) {
-          found = {verb, tense: t, pronounIdx: i};
-          break;
-        }
-      }
-      if (found) break;
-    }
-    if (found) break;
-  }
-
-  // 2. If not found, try to match infinitive (e.g., "aprender")
-  if (!found) {
-    for (let verb of verbs) {
-      if (verb.spanish.toLowerCase() === input) {
-        found = {verb, tense: null, pronounIdx: null, isInfinitive: true};
-        break;
-      }
-    }
-  }
-
-  const englishBox = document.getElementById('practiceInputEsEnglish');
-  if (!found) {
-    englishBox.value = '';
-    practiceResults.innerHTML = `<span style="color:red;">Could not find a matching Spanish verb in the local database.</span>`;
-    return;
-  }
-
-  // 3. If infinitive, show all tenses for all pronouns
-  if (found.isInfinitive) {
-    englishBox.value = found.verb.english;
-    let html = `<h3>English equivalents for <b>${found.verb.spanish}</b> (all pronouns)</h3>`;
-    html += `<table border="1" style="width:100%;text-align:center;">
-      <tr>
-        <th>Pronoun</th>
-        <th>Tense</th>
-        <th>Spanish</th>
-        <th>English</th>
-      </tr>`;
-    for (let i = 0; i < spanishPronouns.length; ++i) {
-      for (let t of tenses) {
-        let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][i] : "(not available)";
-        let eng = buildEnglishPhrase(found.verb, t, i);
-        html += `<tr>
-          <td>${spanishPronouns[i]}</td>
-          <td>
-            ${t}
-            <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
-          </td>
-          <td>
-            ${sp}
-            <button type="button" class="speak-btn" data-text="${spanishPronouns[i]} ${sp}" title="Hear pronunciation">🔊</button>
-          </td>
-          <td>${eng}</td>
-        </tr>`;
-      }
-    }
-    html += `</table>`;
-    practiceResults.innerHTML = html;
-    return;
-  }
-
-  // Set the English translation in the output field
-  englishBox.value = `${pronouns[found.pronounIdx]} ${buildEnglishPhrase(found.verb, found.tense, found.pronounIdx).replace(pronouns[found.pronounIdx] + ' ', '')}`;
-
-  let html = `<h3>English equivalents for <b>${found.verb.spanish}</b> (${spanishPronouns[found.pronounIdx]})</h3>`;
-  html += `<table border="1" style="width:100%;text-align:center;">
-    <tr>
-      <th>Tense</th>
-      <th>English</th>
-      <th>Spanish</th>
-    </tr>`;
-  tenses.forEach(t => {
-    let eng = buildEnglishPhrase(found.verb, t, found.pronounIdx);
-    let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][found.pronounIdx] : "(not available)";
-    html += `<tr>
-      <td>
-        ${t}
-        <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
-      </td>
-      <td>${eng}</td>
       <td>
         ${sp}
         <button type="button" class="speak-btn" data-text="${spanishPronouns[found.pronounIdx]} ${sp}" title="Hear pronunciation">🔊</button>
@@ -751,7 +623,18 @@ function buildEnglishPhrase(verb, tense, pronounIdx, meaningIdx = 0) {
 
   // Present 3rd person singular
   let present = base;
-  if (pronoun === "He") {
+  // Special case for "to have (possession)" present tense
+  if (
+    meanings[meaningIdx] === "to have (possession)" &&
+    tense === "Present"
+  ) {
+    if (["He", "She", "It"].includes(pronoun)) {
+      present = "has";
+    } else {
+      present = "have";
+    }
+    return `${pronoun} ${present}`;
+  } else if (pronoun === "He") {
     if (base.endsWith('y')) present = base.slice(0, -1) + "ies";
     else if (base.endsWith('o') || base.endsWith('ch') || base.endsWith('s') || base.endsWith('sh') || base.endsWith('x') || base.endsWith('z'))
       present = base + "es";
