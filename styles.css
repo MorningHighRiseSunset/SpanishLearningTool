@@ -433,3 +433,25 @@ body.dark-mode .notebook-area {
     background: linear-gradient(90deg, #312e81, #06b6d4);
   }
 }
+
+.speak-btn, .speak-btn-en {
+  font-size: 1em;
+  padding: 2px 6px;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  min-width: unset;
+  min-height: unset;
+  background: #e0e7ff;
+  color: #312e81;
+  margin-left: 4px;
+  vertical-align: middle;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.speak-btn:hover, .speak-btn-en:hover {
+  background: #818cf8;
+  color: #fff;
+}

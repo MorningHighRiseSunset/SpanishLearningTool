@@ -37,10 +37,40 @@ const quizFeedback = document.getElementById('quizFeedback');
 let quizState = null;
 
 function speakSpanish(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'es-ES';
-  window.speechSynthesis.speak(utter);
+  speakWithVoice(text, 'es');
 }
+
+function speakEnglish(text) {
+  speakWithVoice(text, 'en');
+}
+
+function speakWithVoice(text, langPrefix) {
+  function doSpeak() {
+    const synth = window.speechSynthesis;
+    let voices = synth.getVoices();
+    let voice = voices.find(v => v.lang && v.lang.startsWith(langPrefix));
+    const utter = new SpeechSynthesisUtterance(text);
+    if (voice) utter.voice = voice;
+    utter.lang = voice ? voice.lang : (langPrefix === 'es' ? 'es-ES' : 'en-US');
+    utter.rate = 0.6;    // Slower than normal (1.0 is default)
+    utter.volume = 1.0;  // Max volume
+    utter.pitch = 1.1;   // Slightly higher pitch for clarity
+    synth.speak(utter);
+  }
+
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = doSpeak;
+    setTimeout(doSpeak, 200);
+  } else {
+    doSpeak();
+  }
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('speak-btn-en')) {
+    speakEnglish(e.target.getAttribute('data-text'));
+  }
+});
 
 // --- Mode switching ---
 practiceModeBtn.onclick = () => {
@@ -89,22 +119,25 @@ practiceFormEn.onsubmit = e => {
       <th>Spanish</th>
       <th>English</th>
     </tr>`;
-  tenses.forEach(t => {
-    let conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
-    let english = buildEnglishPhrase(verb, t, pronounIdx);
-    let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
-    html += `<tr${highlight}>
-      <td>
-        ${t}
-        <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
-      </td>
-      <td>
-        ${conjugation}
-        <button type="button" class="speak-btn" data-text="${spanishPronouns[pronounIdx]} ${conjugation}" title="Hear pronunciation">🔊</button>
-      </td>
-      <td>${english}</td>
-    </tr>`;
-  });
+    tenses.forEach(t => {
+      let conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
+      let english = buildEnglishPhrase(verb, t, pronounIdx);
+      let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
+      html += `<tr${highlight}>
+        <td>
+          ${t}
+          <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+        </td>
+        <td>
+          ${conjugation}
+          <button type="button" class="speak-btn" data-text="${spanishPronouns[pronounIdx]} ${conjugation}" title="Hear pronunciation">🔊</button>
+        </td>
+        <td>
+          ${english}
+          <button type="button" class="speak-btn-en" data-text="${english}" title="Hear English pronunciation">🔊</button>
+        </td>
+      </tr>`;
+    });
   html += `</table>`;
   practiceResults.innerHTML = html;
 };
