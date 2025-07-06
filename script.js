@@ -116,6 +116,7 @@ practiceFormEs.onsubmit = e => {
   if (!input) return;
 
   let found = null;
+  // 1. Try to match full conjugated forms (existing logic)
   for (let verb of verbs) {
     for (let t of tenses) {
       if (!verb.conjugations[t]) continue;
@@ -131,10 +132,54 @@ practiceFormEs.onsubmit = e => {
     if (found) break;
   }
 
+  // 2. If not found, try to match infinitive (e.g., "aprender")
+  if (!found) {
+    for (let verb of verbs) {
+      if (verb.spanish.toLowerCase() === input) {
+        found = {verb, tense: null, pronounIdx: null, isInfinitive: true};
+        break;
+      }
+    }
+  }
+
   const englishBox = document.getElementById('practiceInputEsEnglish');
   if (!found) {
     englishBox.value = '';
     practiceResults.innerHTML = `<span style="color:red;">Could not find a matching Spanish verb in the local database.</span>`;
+    return;
+  }
+
+  // 3. If infinitive, show all tenses for all pronouns
+  if (found.isInfinitive) {
+    englishBox.value = verb.english;
+    let html = `<h3>English equivalents for <b>${found.verb.spanish}</b> (all pronouns)</h3>`;
+    html += `<table border="1" style="width:100%;text-align:center;">
+      <tr>
+        <th>Pronoun</th>
+        <th>Tense</th>
+        <th>Spanish</th>
+        <th>English</th>
+      </tr>`;
+    for (let i = 0; i < spanishPronouns.length; ++i) {
+      for (let t of tenses) {
+        let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][i] : "(not available)";
+        let eng = buildEnglishPhrase(found.verb, t, i);
+        html += `<tr>
+          <td>${spanishPronouns[i]}</td>
+          <td>
+            ${t}
+            <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+          </td>
+          <td>
+            ${sp}
+            <button type="button" class="speak-btn" data-text="${spanishPronouns[i]} ${sp}" title="Hear pronunciation">🔊</button>
+          </td>
+          <td>${eng}</td>
+        </tr>`;
+      }
+    }
+    html += `</table>`;
+    practiceResults.innerHTML = html;
     return;
   }
 
