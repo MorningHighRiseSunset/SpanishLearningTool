@@ -91,26 +91,71 @@ quizModeBtn.onclick = () => {
 };
 
 // --- Practice Mode: English → Spanish ---
-practiceFormEn.onsubmit = e => {
+practiceFormEn.onsubmit = function(e) {
   e.preventDefault();
   const input = practiceInputEn.value.trim();
   if (!input) return;
 
-  const result = parseEnglishPhrase(input);
+  // If this is a tab click, meaningIdx is passed in the event
+  let meaningIdx = (e && typeof e.meaningIdx === "number") ? e.meaningIdx : 0;
+
+  // Always use parseEnglishPhrase to get the correct meaningIdx for the input
+  const result = parseEnglishPhrase(input, meaningIdx);
   const spanishBox = document.getElementById('practiceInputEnSpanish');
   if (!result) {
     spanishBox.value = '';
     practiceResults.innerHTML = `<span style="color:red;">Could not find a matching verb or tense in the local database.</span>`;
     return;
   }
-  const {verb, pronounIdx, tense: detectedTense} = result;
 
-  // Find the Spanish phrase for the detected tense (or Present if not detected)
+  // Use allCandidates if present, otherwise just the single result
+  let allCandidates = result.allCandidates || [result];
+  let currentIdx = meaningIdx;
+  let candidate = allCandidates[currentIdx] || allCandidates[0];
+
+  let verb = candidate.verb;
+  meaningIdx = candidate.meaningIdx || 0;
+  let filteredTenses = tenses;
+  const pronounIdx = (typeof candidate.pronounIdx === "number") ? candidate.pronounIdx : 0;
+  const detectedTense = candidate.tense || "Present";
+
+  // Special filtering for "to have (auxiliary)" and "to have (possession)"
+  const englishMeaning = Array.isArray(verb.english) ? verb.english[meaningIdx] : verb.english;
+  if (englishMeaning === "to have (auxiliary)") {
+    filteredTenses = [
+      "Present Perfect", "Past Perfect", "Future Perfect", "Conditional Perfect"
+    ];
+  } else if (englishMeaning === "to have (possession)") {
+    filteredTenses = [
+      "Present", "Preterite", "Imperfect", "Future", "Conditional"
+    ];
+  }
+
+  // Tab UI for multiple meanings
+  let tabHtml = '';
+  if (allCandidates.length > 1) {
+    tabHtml = `<div id="meaningTabs" style="display:flex;gap:8px;margin-bottom:8px;">` +
+      allCandidates.map((c, idx) => {
+        let label;
+        if (Array.isArray(c.verb.english)) {
+          const meaning = c.verb.english[c.meaningIdx];
+          if (meaning === "to have (auxiliary)") label = "haber (auxiliary) / to have (auxiliary)";
+          else if (meaning === "to have (possession)") label = "tener (possession) / to have (possession)";
+          else label = `${c.verb.spanish} / ${meaning.replace(/^to /, '')}`;
+        } else {
+          label = `${c.verb.spanish} / ${c.verb.english.replace(/^to /, '')}`;
+        }
+        return `<button class="meaning-tab${idx === currentIdx ? ' active' : ''}" data-meaning-idx="${idx}">${label}</button>`;
+      }).join('') +
+      `</div>`;
+  }
+
   let tenseToShow = detectedTense || "Present";
   let spanish = verb.conjugations[tenseToShow] ? verb.conjugations[tenseToShow][pronounIdx] : "(not available)";
   spanishBox.value = `${spanishPronouns[pronounIdx]} ${spanish}`;
 
-  let html = `<h3>Spanish conjugations for <b>${verb.english}</b> (${pronouns[pronounIdx]})`;
+  let html = tabHtml;
+  html += `<h3>Spanish conjugations for <b>${englishMeaning}</b> (${pronouns[pronounIdx]})`;
   if (detectedTense) html += ` <span style="font-size:0.9em;color:#666;">[${detectedTense}]</span>`;
   html += `</h3>`;
   html += `<table border="1" style="width:100%;text-align:center;">
@@ -119,9 +164,19 @@ practiceFormEn.onsubmit = e => {
       <th>Spanish</th>
       <th>English</th>
     </tr>`;
-    tenses.forEach(t => {
-      let conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
-      let english = buildEnglishPhrase(verb, t, pronounIdx);
+    filteredTenses.forEach(t => {
+      // For "to have (auxiliary)", map perfect tenses to simple tenses for haber
+      let conjugation;
+      if (englishMeaning === "to have (auxiliary)") {
+        if (t === "Present Perfect") conjugation = verb.conjugations["Present"] ? verb.conjugations["Present"][pronounIdx] : "(not available)";
+        else if (t === "Past Perfect") conjugation = verb.conjugations["Imperfect"] ? verb.conjugations["Imperfect"][pronounIdx] : "(not available)";
+        else if (t === "Future Perfect") conjugation = verb.conjugations["Future"] ? verb.conjugations["Future"][pronounIdx] : "(not available)";
+        else if (t === "Conditional Perfect") conjugation = verb.conjugations["Conditional"] ? verb.conjugations["Conditional"][pronounIdx] : "(not available)";
+        else conjugation = "(not available)";
+      } else {
+        conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
+      }
+      let english = buildEnglishPhrase(verb, t, pronounIdx, meaningIdx);
       let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
       html += `<tr${highlight}>
         <td>
@@ -140,6 +195,224 @@ practiceFormEn.onsubmit = e => {
     });
   html += `</table>`;
   practiceResults.innerHTML = html;
+
+  // Tab click handler
+  if (allCandidates.length > 1) {
+    document.querySelectorAll('.meaning-tab').forEach(btn => {
+      btn.onclick = () => {
+        practiceFormEn.onsubmit({
+          preventDefault: () => {},
+          target: practiceFormEn,
+          meaningIdx: parseInt(btn.getAttribute('data-meaning-idx'))
+        });
+      };
+    });
+  }
+};
+
+// --- Practice Mode: Spanish → English ---
+practiceFormEs.onsubmit = function(e) {
+  e.preventDefault();
+  const input = practiceInputEs.value.trim().toLowerCase();
+  if (!input) return;
+
+  let found = null;
+  // 1. Try to match full conjugated forms (existing logic)
+  for (let verb of verbs) {
+    for (let t of tenses) {
+      if (!verb.conjugations[t]) continue;
+      for (let i = 0; i < spanishPronouns.length; ++i) {
+        const sp = verb.conjugations[t][i];
+        if (sp && (`${spanishPronouns[i]} ${sp}`.toLowerCase() === input || sp.toLowerCase() === input)) {
+          found = {verb, tense: t, pronounIdx: i};
+          break;
+        }
+      }
+      if (found) break;
+    }
+    if (found) break;
+  }
+
+  // 2. If not found, try to match infinitive (e.g., "aprender")
+  if (!found) {
+    for (let verb of verbs) {
+      if (verb.spanish.toLowerCase() === input) {
+        found = {verb, tense: null, pronounIdx: null, isInfinitive: true};
+        break;
+      }
+    }
+  }
+
+  const englishBox = document.getElementById('practiceInputEsEnglish');
+  if (!found) {
+    englishBox.value = '';
+    practiceResults.innerHTML = `<span style="color:red;">Could not find a matching Spanish verb in the local database.</span>`;
+    return;
+  }
+
+  // 3. If infinitive, show all tenses for all pronouns
+  if (found.isInfinitive) {
+    // Tab UI for multiple meanings
+    let tabHtml = '';
+    let meanings = Array.isArray(found.verb.english) ? found.verb.english : [found.verb.english];
+    let meaningIdx = 0;
+    tabHtml = `<div id="meaningTabsEs" style="display:flex;gap:8px;margin-bottom:8px;">` +
+      meanings.map((m, idx) =>
+        `<button class="meaning-tab-es${idx === meaningIdx ? ' active' : ''}" data-meaning-idx="${idx}">${m}</button>`
+      ).join('') +
+      `</div>`;
+
+    englishBox.value = meanings[meaningIdx];
+    let html = tabHtml;
+    html += `<h3>English equivalents for <b>${found.verb.spanish}</b> (all pronouns)</h3>`;
+    html += `<table border="1" style="width:100%;text-align:center;">
+      <tr>
+        <th>Pronoun</th>
+        <th>Tense</th>
+        <th>Spanish</th>
+        <th>English</th>
+      </tr>`;
+    for (let i = 0; i < spanishPronouns.length; ++i) {
+      for (let t of tenses) {
+        let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][i] : "(not available)";
+        let eng = buildEnglishPhrase(found.verb, t, i, meaningIdx);
+        html += `<tr>
+          <td>${spanishPronouns[i]}</td>
+          <td>
+            ${t}
+            <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+          </td>
+          <td>
+            ${sp}
+            <button type="button" class="speak-btn" data-text="${spanishPronouns[i]} ${sp}" title="Hear pronunciation">🔊</button>
+          </td>
+          <td>${eng}</td>
+        </tr>`;
+      }
+    }
+    html += `</table>`;
+    practiceResults.innerHTML = html;
+
+    // Tab click handler for Spanish→English
+    if (meanings.length > 1) {
+      document.querySelectorAll('.meaning-tab-es').forEach(btn => {
+        btn.onclick = () => {
+          let idx = parseInt(btn.getAttribute('data-meaning-idx'));
+          englishBox.value = meanings[idx];
+          // Re-render table for selected meaning
+          let html = tabHtml.replace('active', '') // Remove all actives
+            .replace(`meaning-tab-es${idx === 0 ? '' : ' active'}`, `meaning-tab-es active`);
+          html += `<h3>English equivalents for <b>${found.verb.spanish}</b> (all pronouns)</h3>`;
+          html += `<table border="1" style="width:100%;text-align:center;">
+            <tr>
+              <th>Pronoun</th>
+              <th>Tense</th>
+              <th>Spanish</th>
+              <th>English</th>
+            </tr>`;
+          for (let i = 0; i < spanishPronouns.length; ++i) {
+            for (let t of tenses) {
+              let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][i] : "(not available)";
+              let eng = buildEnglishPhrase(found.verb, t, i, idx);
+              html += `<tr>
+                <td>${spanishPronouns[i]}</td>
+                <td>
+                  ${t}
+                  <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+                </td>
+                <td>
+                  ${sp}
+                  <button type="button" class="speak-btn" data-text="${spanishPronouns[i]} ${sp}" title="Hear pronunciation">🔊</button>
+                </td>
+                <td>${eng}</td>
+              </tr>`;
+            }
+          }
+          html += `</table>`;
+          practiceResults.innerHTML = html;
+        };
+      });
+    }
+    return;
+  }
+
+  // Set the English translation in the output field
+  let meanings = Array.isArray(found.verb.english) ? found.verb.english : [found.verb.english];
+  let meaningIdx = 0;
+  englishBox.value = `${pronouns[found.pronounIdx]} ${buildEnglishPhrase(found.verb, found.tense, found.pronounIdx, meaningIdx).replace(pronouns[found.pronounIdx] + ' ', '')}`;
+
+  // Tab UI for multiple meanings
+  let tabHtml = '';
+  if (meanings.length > 1) {
+    tabHtml = `<div id="meaningTabsEs" style="display:flex;gap:8px;margin-bottom:8px;">` +
+      meanings.map((m, idx) =>
+        `<button class="meaning-tab-es${idx === meaningIdx ? ' active' : ''}" data-meaning-idx="${idx}">${m}</button>`
+      ).join('') +
+      `</div>`;
+  }
+
+  let html = tabHtml;
+  html += `<h3>English equivalents for <b>${found.verb.spanish}</b> (${spanishPronouns[found.pronounIdx]})</h3>`;
+  html += `<table border="1" style="width:100%;text-align:center;">
+    <tr>
+      <th>Tense</th>
+      <th>English</th>
+      <th>Spanish</th>
+    </tr>`;
+  tenses.forEach(t => {
+    let eng = buildEnglishPhrase(found.verb, t, found.pronounIdx, meaningIdx);
+    let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][found.pronounIdx] : "(not available)";
+    html += `<tr>
+      <td>
+        ${t}
+        <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+      </td>
+      <td>${eng}</td>
+      <td>
+        ${sp}
+        <button type="button" class="speak-btn" data-text="${spanishPronouns[found.pronounIdx]} ${sp}" title="Hear pronunciation">🔊</button>
+      </td>
+    </tr>`;
+  });
+  html += `</table>`;
+  practiceResults.innerHTML = html;
+
+  // Tab click handler for Spanish→English
+  if (meanings.length > 1) {
+    document.querySelectorAll('.meaning-tab-es').forEach(btn => {
+      btn.onclick = () => {
+        let idx = parseInt(btn.getAttribute('data-meaning-idx'));
+        englishBox.value = `${pronouns[found.pronounIdx]} ${buildEnglishPhrase(found.verb, found.tense, found.pronounIdx, idx).replace(pronouns[found.pronounIdx] + ' ', '')}`;
+        // Re-render table for selected meaning
+        let html = tabHtml.replace('active', '') // Remove all actives
+          .replace(`meaning-tab-es${idx === 0 ? '' : ' active'}`, `meaning-tab-es active`);
+        html += `<h3>English equivalents for <b>${found.verb.spanish}</b> (${spanishPronouns[found.pronounIdx]})</h3>`;
+        html += `<table border="1" style="width:100%;text-align:center;">
+          <tr>
+            <th>Tense</th>
+            <th>English</th>
+            <th>Spanish</th>
+          </tr>`;
+        tenses.forEach(t => {
+          let eng = buildEnglishPhrase(found.verb, t, found.pronounIdx, idx);
+          let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][found.pronounIdx] : "(not available)";
+          html += `<tr>
+            <td>
+              ${t}
+              <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+            </td>
+            <td>${eng}</td>
+            <td>
+              ${sp}
+              <button type="button" class="speak-btn" data-text="${spanishPronouns[found.pronounIdx]} ${sp}" title="Hear pronunciation">🔊</button>
+            </td>
+          </tr>`;
+        });
+        html += `</table>`;
+        practiceResults.innerHTML = html;
+      };
+    });
+  }
 };
 
 // --- Practice Mode: Spanish → English ---
@@ -184,7 +457,7 @@ practiceFormEs.onsubmit = e => {
 
   // 3. If infinitive, show all tenses for all pronouns
   if (found.isInfinitive) {
-    englishBox.value = verb.english;
+    englishBox.value = found.verb.english;
     let html = `<h3>English equivalents for <b>${found.verb.spanish}</b> (all pronouns)</h3>`;
     html += `<table border="1" style="width:100%;text-align:center;">
       <tr>
@@ -382,324 +655,98 @@ function showTensePopup(tense, def, anchor) {
 }
 
 // --- Helper: Parse English phrase to verb/tense/pronoun ---
-function parseEnglishPhrase(phrase) {
+function parseEnglishPhrase(phrase, meaningIdx = 0) {
   phrase = phrase.trim().toLowerCase();
 
-  // --- Context-aware handling for ambiguous verbs ---
-
-  // Tener vs. Haber (to have)
-  if (/have\s+\w+ed|\bhave\s+\w+en\b/.test(phrase)) {
-    // Likely auxiliary "have" (haber)
-    for (let verb of verbs) {
-      if (verb.spanish === "haber") {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  } else if (/have\s+(a|an|the|my|your|his|her|our|their|[0-9]+|some|many|few|no|any|[a-z]+)\b/.test(phrase)) {
-    // Likely possession "have" (tener)
-    for (let verb of verbs) {
-      if (verb.spanish === "tener") {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  }
-
-  // Ser vs. Estar (to be)
-  if (/am|is|are|was|were|will be|would be/.test(phrase)) {
-    // Try to guess context: "happy", "in Madrid", "a doctor", etc.
-    if (/(in|at|on|here|there|sick|happy|sad|tired|ready|open|closed|alive|dead)/.test(phrase)) {
-      // Temporary state/location: estar
-      for (let verb of verbs) {
-        if (verb.spanish === "estar") {
-          for (let t of tenses) {
-            if (!verb.conjugations[t]) continue;
-            for (let i = 0; i < pronouns.length; ++i) {
-              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-            }
-          }
-        }
-      }
-    } else if (/(doctor|student|teacher|man|woman|from|tall|short|smart|rich|poor|mexican|spanish|young|old)/.test(phrase)) {
-      // Permanent/identity: ser
-      for (let verb of verbs) {
-        if (verb.spanish === "ser") {
-          for (let t of tenses) {
-            if (!verb.conjugations[t]) continue;
-            for (let i = 0; i < pronouns.length; ++i) {
-              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // Saber vs. Conocer (to know)
-  if (/know/.test(phrase)) {
-    if (/(how|that|if|when|where|why|what|the answer|the fact|the truth|the time)/.test(phrase)) {
-      // saber
-      for (let verb of verbs) {
-        if (verb.spanish === "saber") {
-          for (let t of tenses) {
-            if (!verb.conjugations[t]) continue;
-            for (let i = 0; i < pronouns.length; ++i) {
-              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-            }
-          }
-        }
-      }
-    } else if (/(person|people|place|city|country|him|her|them|you)/.test(phrase)) {
-      // conocer
-      for (let verb of verbs) {
-        if (verb.spanish === "conocer") {
-          for (let t of tenses) {
-            if (!verb.conjugations[t]) continue;
-            for (let i = 0; i < pronouns.length; ++i) {
-              const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-              if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // Poder (can, to be able to)
-  if (/can|could|be able to/.test(phrase)) {
-    for (let verb of verbs) {
-      if (verb.spanish === "poder") {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  }
-
-  // Querer (to want)
-  if (/want(s)? to/.test(phrase)) {
-    for (let verb of verbs) {
-      if (verb.spanish === "querer") {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  }
-
-  // Deber (should, ought to, must)
-  if (/should|ought to|must/.test(phrase)) {
-    for (let verb of verbs) {
-      if (verb.spanish === "deber") {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  }
-
-  // Ir (to go)
-  if (/go(es)?|went|going/.test(phrase)) {
-    for (let verb of verbs) {
-      if (verb.spanish === "ir") {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  }
-
-  // Reflexive verbs (basic detection)
-  if (/get (up|dressed|married|bored|tired|angry|sick|ready|lost|hurt|upset|divorced)/.test(phrase)) {
-    for (let verb of verbs) {
-      if (verb.english.includes("(reflexive)")) {
-        for (let t of tenses) {
-          if (!verb.conjugations[t]) continue;
-          for (let i = 0; i < pronouns.length; ++i) {
-            const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-            if (phrase === eng) return {verb, tense: t, pronounIdx: i};
-          }
-        }
-      }
-    }
-  }
-
-  // --- Original matching logic ---
-
-  // Try to match exact phrase first
+  // Collect all possible matches (for ambiguous verbs like "to have")
+  let candidates = [];
   for (let verb of verbs) {
-    for (let t of tenses) {
-      if (!verb.conjugations[t]) continue;
-      for (let i = 0; i < pronouns.length; ++i) {
-        const eng = buildEnglishPhrase(verb, t, i).toLowerCase();
-        if (phrase === eng) {
-          return {verb, tense: t, pronounIdx: i};
+    let meanings = Array.isArray(verb.english) ? verb.english : [verb.english];
+    for (let idx = 0; idx < meanings.length; ++idx) {
+      // Remove parenthetical notes for matching
+      let meaningRaw = meanings[idx].toLowerCase();
+      let meaningNoParen = meaningRaw.replace(/\s*\(.*?\)\s*/g, '').trim();
+      let base = meaningRaw.replace(/^to /, '').split(',')[0].trim();
+
+      // Try to match exact phrase for all tenses/pronouns
+      for (let t of tenses) {
+        if (!verb.conjugations[t]) continue;
+        for (let i = 0; i < pronouns.length; ++i) {
+          const eng = buildEnglishPhrase(verb, t, i, idx).toLowerCase();
+          if (phrase === eng) {
+            return { verb, tense: t, pronounIdx: i, meaningIdx: idx };
+          }
         }
+      }
+
+      // Try to match base infinitive, or phrase matches meaning without parens
+      if (
+        phrase === meaningRaw ||
+        phrase === meaningNoParen ||
+        meaningRaw.startsWith(phrase) ||
+        meaningNoParen.startsWith(phrase) ||
+        phrase === base
+      ) {
+        candidates.push({ verb, tense: null, pronounIdx: null, meaningIdx: idx });
       }
     }
   }
 
-  // Try to match common English tense patterns
-  for (let verb of verbs) {
-    let base = verb.english.replace(/^to /, '').split(',')[0].trim();
-    for (let i = 0; i < pronouns.length; ++i) {
-      const pronoun = pronouns[i].toLowerCase();
-
-      // Present Continuous: "You are speaking"
-      if (phrase === `${pronoun} are ${base}ing` || phrase === `${pronoun} is ${base}ing` || phrase === `${pronoun} am ${base}ing`) {
-        return {verb, tense: "Present", pronounIdx: i};
-      }
-      // Future: "We will eat"
-      if (phrase === `${pronoun} will ${base}`) {
-        return {verb, tense: "Future", pronounIdx: i};
-      }
-      // Conditional: "They would eat"
-      if (phrase === `${pronoun} would ${base}`) {
-        return {verb, tense: "Conditional", pronounIdx: i};
-      }
-      // Present Perfect: "You have eaten"
-      if (phrase === `${pronoun} have ${base}ed` || phrase === `${pronoun} has ${base}ed`) {
-        return {verb, tense: "Present Perfect", pronounIdx: i};
-      }
-      // Past Perfect: "We had eaten"
-      if (phrase === `${pronoun} had ${base}ed`) {
-        return {verb, tense: "Past Perfect", pronounIdx: i};
-      }
-      // Future Perfect: "They will have eaten"
-      if (phrase === `${pronoun} will have ${base}ed`) {
-        return {verb, tense: "Future Perfect", pronounIdx: i};
-      }
-      // Conditional Perfect: "You would have eaten"
-      if (phrase === `${pronoun} would have ${base}ed`) {
-        return {verb, tense: "Conditional Perfect", pronounIdx: i};
-      }
-      // Imperfect: "We used to eat"
-      if (phrase === `${pronoun} used to ${base}`) {
-        return {verb, tense: "Imperfect", pronounIdx: i};
-      }
-      // Simple Present: "You speak"
-      if (phrase === `${pronoun} ${base}`) {
-        return {verb, tense: "Present", pronounIdx: i};
-      }
-      // Simple Past: "You spoke"
-      // Try to match preterite form
-      const preterite = buildEnglishPhrase(verb, "Preterite", i).toLowerCase().replace(pronoun + " ", "");
-      if (phrase === `${pronoun} ${preterite}`) {
-        return {verb, tense: "Preterite", pronounIdx: i};
-      }
-    }
+  // If multiple candidates, return the first and attach all for tab UI
+  if (candidates.length > 0) {
+    let result = candidates[0];
+    result.allCandidates = candidates;
+    return result;
   }
 
   // Fallback: try to match verb and pronoun
   for (let verb of verbs) {
-    if (phrase.includes(verb.english.replace(/^to /, '').toLowerCase())) {
-      for (let i = 0; i < pronouns.length; ++i) {
-        if (phrase.includes(pronouns[i].toLowerCase())) {
-          return {verb, pronounIdx: i};
+    let meanings = Array.isArray(verb.english) ? verb.english : [verb.english];
+    for (let idx = 0; idx < meanings.length; ++idx) {
+      let base = meanings[idx].replace(/^to /, '').split(',')[0].trim().toLowerCase();
+      if (phrase.includes(base)) {
+        for (let i = 0; i < pronouns.length; ++i) {
+          if (phrase.includes(pronouns[i].toLowerCase())) {
+            return { verb, pronounIdx: i, meaningIdx: idx };
+          }
         }
+        return { verb, pronounIdx: 0, meaningIdx: idx };
       }
-      return {verb, pronounIdx: 0};
     }
   }
   return null;
 }
 
 // --- Helper: Build English phrase for a verb/tense/pronoun ---
-function buildEnglishPhrase(verb, tense, pronounIdx) {
+function buildEnglishPhrase(verb, tense, pronounIdx, meaningIdx = 0) {
   const pronoun = pronouns[pronounIdx];
-  let base = verb.english.replace(/^to /, '').split(',')[0].trim();
+  let meanings = Array.isArray(verb.english) ? verb.english : [verb.english];
+  let base = meanings[meaningIdx].replace(/^to /, '').split(',')[0].trim();
 
-  // Irregulars lookup
+  // Remove parenthetical notes for matching irregulars
+  let normalizedMeaning = meanings[meaningIdx].replace(/\s*\(.*?\)\s*/g, '').toLowerCase();
+
+  // Irregulars lookup (expand as needed)
   const irregulars = {
     "to go": { preterite: "went", pastPart: "gone" },
     "to eat": { preterite: "ate", pastPart: "eaten" },
     "to write": { preterite: "wrote", pastPart: "written" },
     "to see": { preterite: "saw", pastPart: "seen" },
-    "to do, to make": { preterite: "did", pastPart: "done" },
-    "to have": { preterite: "had", pastPart: "had" },
-    "to be (permanent)": { preterite: pronoun === "I" ? "was" : (pronoun === "He" ? "was" : "were"), pastPart: "been" },
-    "to be (temporary)": { preterite: pronoun === "I" ? "was" : (pronoun === "He" ? "was" : "were"), pastPart: "been" },
-    "to bring": { preterite: "brought", pastPart: "brought" },
-    "to read": { preterite: "read", pastPart: "read" },
+    "to do": { preterite: "did", pastPart: "done" },
+    "to make": { preterite: "made", pastPart: "made" },
     "to say": { preterite: "said", pastPart: "said" },
-    "to put": { preterite: "put", pastPart: "put" },
-    "to sleep": { preterite: "slept", pastPart: "slept" },
-    "to give": { preterite: "gave", pastPart: "given" },
-    "to know (facts, info)": { preterite: "knew", pastPart: "known" },
-    "to know (people, places)": { preterite: "met", pastPart: "known" },
-    "to take": { preterite: "took", pastPart: "taken" },
-    "to find": { preterite: "found", pastPart: "found" },
-    "to lose": { preterite: "lost", pastPart: "lost" },
-    "to come": { preterite: "came", pastPart: "come" },
-    "to run": { preterite: "ran", pastPart: "run" },
-    "to buy": { preterite: "bought", pastPart: "bought" },
-    "to leave": { preterite: "left", pastPart: "left" },
-    "to feel": { preterite: "felt", pastPart: "felt" },
-    "to pay": { preterite: "paid", pastPart: "paid" },
-    "to understand": { preterite: "understood", pastPart: "understood" },
-    "to return": { preterite: "returned", pastPart: "returned" },
-    "to play": { preterite: "played", pastPart: "played" },
-    "to ask": { preterite: "asked", pastPart: "asked" },
-    "to answer": { preterite: "answered", pastPart: "answered" },
-    "to help": { preterite: "helped", pastPart: "helped" },
-    "to walk": { preterite: "walked", pastPart: "walked" },
-    "to study": { preterite: "studied", pastPart: "studied" },
-    "to listen": { preterite: "listened", pastPart: "listened" },
-    "to teach": { preterite: "taught", pastPart: "taught" },
-    "to draw": { preterite: "drew", pastPart: "drawn" },
-    "to cook": { preterite: "cooked", pastPart: "cooked" },
-    "to swim": { preterite: "swam", pastPart: "swum" },
-    "to dance": { preterite: "danced", pastPart: "danced" },
-    "to travel": { preterite: "traveled", pastPart: "traveled" },
-    "to sell": { preterite: "sold", pastPart: "sold" },
-    "to wait": { preterite: "waited", pastPart: "waited" },
-    "to need": { preterite: "needed", pastPart: "needed" },
-    "to use": { preterite: "used", pastPart: "used" },
-    "to call": { preterite: "called", pastPart: "called" },
-    "to open": { preterite: "opened", pastPart: "opened" },
-    "to close": { preterite: "closed", pastPart: "closed" },
-    "to change": { preterite: "changed", pastPart: "changed" },
-    "to finish": { preterite: "finished", pastPart: "finished" },
-    "to begin": { preterite: "began", pastPart: "begun" },
-    // Add more as needed
+    "to have": { preterite: "had", pastPart: "had" },
+    "to be": { preterite: pronoun === "I" ? "was" : (pronoun === "He" ? "was" : "were"), pastPart: "been" },
+    // ...add more as needed
   };
 
-  // Get irregular forms if available
+  // Try to find irregular by normalized meaning (for multi-meaning verbs)
+  let irregularKey = normalizedMeaning;
   let preterite = base + (base.endsWith('e') ? 'd' : 'ed');
   let pastPart = preterite;
-  if (irregulars[verb.english]) {
-    preterite = irregulars[verb.english].preterite;
-    pastPart = irregulars[verb.english].pastPart;
+  if (irregulars[irregularKey]) {
+    preterite = irregulars[irregularKey].preterite;
+    pastPart = irregulars[irregularKey].pastPart;
   }
 
   // Present 3rd person singular
