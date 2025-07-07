@@ -1259,5 +1259,343 @@ export const verbs = [
     "Future": ["permitiré", "permitirás", "permitirá", "permitiremos", "permitiréis", "permitirán"],
     "Conditional": ["permitiría", "permitirías", "permitiría", "permitiríamos", "permitiríais", "permitirían"]
   }
-}
+},
+{
+  english: ["to communicate"],
+  spanish: "comunicar",
+  type: "regular",
+  memoryTip: "Used for communicating or conveying information.",
+  conjugations: {
+    "Present": ["comunico", "comunicas", "comunica", "comunicamos", "comunicáis", "comunican"],
+    "Preterite": ["comuniqué", "comunicaste", "comunicó", "comunicamos", "comunicasteis", "comunicaron"],
+    "Imperfect": ["comunicaba", "comunicabas", "comunicaba", "comunicábamos", "comunicabais", "comunicaban"],
+    "Future": ["comunicaré", "comunicarás", "comunicará", "comunicaremos", "comunicaréis", "comunicarán"],
+    "Conditional": ["comunicaría", "comunicarías", "comunicaría", "comunicaríamos", "comunicaríais", "comunicarían"]
+  }
+},
+{
+  english: ["to walk", "to go"],
+  spanish: "andar",
+  type: "irregular",
+  memoryTip: "Used for walking or going somewhere, often interchangeable with 'caminar' or 'ir'.",
+  conjugations: {
+    "Present": ["ando", "andas", "anda", "andamos", "andáis", "andan"],
+    "Preterite": ["anduve", "anduviste", "anduvo", "anduvimos", "anduvisteis", "anduvieron"],
+    "Imperfect": ["andaba", "andabas", "andaba", "andábamos", "andabais", "andaban"],
+    "Future": ["andaré", "andarás", "andará", "andaremos", "andaréis", "andarán"],
+    "Conditional": ["andaría", "andarías", "andaría", "andaríamos", "andaríais", "andarían"]
+  }
+},
+{
+  english: ["to cost"],
+  spanish: "costar",
+  type: "irregular",
+  memoryTip: "Used for expressing the price of something.",
+  conjugations: {
+    "Present": ["cuesto", "cuestas", "cuesta", "costamos", "costáis", "cuestan"],
+    "Preterite": ["costé", "costaste", "costó", "costamos", "costasteis", "costaron"],
+    "Imperfect": ["costaba", "costabas", "costaba", "costábamos", "costabais", "costaban"],
+    "Future": ["costaré", "costarás", "costará", "costaremos", "costaréis", "costarán"],
+    "Conditional": ["costaría", "costarías", "costaría", "costaríamos", "costaríais", "costarían"]
+  }
+},
+{
+  english: ["to fulfill", "to turn (age)"],
+  spanish: "cumplir",
+  type: "regular",
+  memoryTip: "Used for fulfilling tasks or turning a certain age.",
+  conjugations: {
+    "Present": ["cumplo", "cumples", "cumple", "cumplimos", "cumplís", "cumplen"],
+    "Preterite": ["cumplí", "cumpliste", "cumplió", "cumplimos", "cumplisteis", "cumplieron"],
+    "Imperfect": ["cumplía", "cumplías", "cumplía", "cumplíamos", "cumplíais", "cumplían"],
+    "Future": ["cumpliré", "cumplirás", "cumplirá", "cumpliremos", "cumpliréis", "cumplirán"],
+    "Conditional": ["cumpliría", "cumplirías", "cumpliría", "cumpliríamos", "cumpliríais", "cumplirían"]
+  }
+},
+{
+  english: ["to owe", "should", "must"],
+  spanish: "deber",
+  type: "regular",
+  memoryTip: "Used for obligations or debts.",
+  conjugations: {
+    "Present": ["debo", "debes", "debe", "debemos", "debéis", "deben"],
+    "Preterite": ["debí", "debiste", "debió", "debimos", "debisteis", "debieron"],
+    "Imperfect": ["debía", "debías", "debía", "debíamos", "debíais", "debían"],
+    "Future": ["deberé", "deberás", "deberá", "deberemos", "deberéis", "deberán"],
+    "Conditional": ["debería", "deberías", "debería", "deberíamos", "deberíais", "deberían"]
+  }
+},
+{
+  english: ["to rest"],
+  spanish: "descansar",
+  type: "regular",
+  memoryTip: "Used for taking a break or resting.",
+  conjugations: {
+    "Present": ["descanso", "descansas", "descansa", "descansamos", "descansáis", "descansan"],
+    "Preterite": ["descansé", "descansaste", "descansó", "descansamos", "descansasteis", "descansaron"],
+    "Imperfect": ["descansaba", "descansabas", "descansaba", "descansábamos", "descansabais", "descansaban"],
+    "Future": ["descansaré", "descansarás", "descansará", "descansaremos", "descansaréis", "descansarán"],
+    "Conditional": ["descansaría", "descansarías", "descansaría", "descansaríamos", "descansaríais", "descansarían"]
+  }
+},
+{
+  english: ["to discuss", "to argue"],
+  spanish: "discutir",
+  type: "regular",
+  memoryTip: "Used for discussing or arguing.",
+  conjugations: {
+    "Present": ["discuto", "discutes", "discute", "discutimos", "discutís", "discuten"],
+    "Preterite": ["discutí", "discutiste", "discutió", "discutimos", "discutisteis", "discutieron"],
+    "Imperfect": ["discutía", "discutías", "discutía", "discutíamos", "discutíais", "discutían"],
+    "Future": ["discutiré", "discutirás", "discutirá", "discutiremos", "discutiréis", "discutirán"],
+    "Conditional": ["discutiría", "discutirías", "discutiría", "discutiríamos", "discutiríais", "discutirían"]
+  }
+},
+{
+  english: ["to enter"],
+  spanish: "entrar",
+  type: "regular",
+  memoryTip: "Used for entering a place.",
+  conjugations: {
+    "Present": ["entro", "entras", "entra", "entramos", "entráis", "entran"],
+    "Preterite": ["entré", "entraste", "entró", "entramos", "entrasteis", "entraron"],
+    "Imperfect": ["entraba", "entrabas", "entraba", "entrábamos", "entrabais", "entraban"],
+    "Future": ["entraré", "entrarás", "entrará", "entraremos", "entraréis", "entrarán"],
+    "Conditional": ["entraría", "entrarías", "entraría", "entraríamos", "entraríais", "entrarían"]
+  }
+},
+{
+  english: ["to listen"],
+  spanish: "escuchar",
+  type: "regular",
+  memoryTip: "Used for listening to sounds or people.",
+  conjugations: {
+    "Present": ["escucho", "escuchas", "escucha", "escuchamos", "escucháis", "escuchan"],
+    "Preterite": ["escuché", "escuchaste", "escuchó", "escuchamos", "escuchasteis", "escucharon"],
+    "Imperfect": ["escuchaba", "escuchabas", "escuchaba", "escuchábamos", "escuchabais", "escuchaban"],
+    "Future": ["escucharé", "escucharás", "escuchará", "escucharemos", "escucharéis", "escucharán"],
+    "Conditional": ["escucharía", "escucharías", "escucharía", "escucharíamos", "escucharíais", "escucharían"]
+  }
+},
+{
+  english: ["to avoid"],
+  spanish: "evitar",
+  type: "regular",
+  memoryTip: "Used for avoiding something or someone.",
+  conjugations: {
+    "Present": ["evito", "evitas", "evita", "evitamos", "evitáis", "evitan"],
+    "Preterite": ["evité", "evitaste", "evitó", "evitamos", "evitasteis", "evitaron"],
+    "Imperfect": ["evitaba", "evitabas", "evitaba", "evitábamos", "evitabais", "evitaban"],
+    "Future": ["evitaré", "evitarás", "evitará", "evitaremos", "evitaréis", "evitarán"],
+    "Conditional": ["evitaría", "evitarías", "evitaría", "evitaríamos", "evitaríais", "evitarían"]
+  }
+},
+{
+  english: ["to exist"],
+  spanish: "existir",
+  type: "regular",
+  memoryTip: "Used for expressing existence.",
+  conjugations: {
+    "Present": ["existo", "existes", "existe", "existimos", "existís", "existen"],
+    "Preterite": ["existí", "exististe", "existió", "existimos", "exististeis", "existieron"],
+    "Imperfect": ["existía", "existías", "existía", "existíamos", "existíais", "existían"],
+    "Future": ["existiré", "existirás", "existirá", "existiremos", "existiréis", "existirán"],
+    "Conditional": ["existiría", "existirías", "existiría", "existiríamos", "existiríais", "existirían"]
+  }
+},
+{
+  english: ["to lack", "to miss"],
+  spanish: "faltar",
+  type: "regular",
+  memoryTip: "Used for lacking or missing something.",
+  conjugations: {
+    "Present": ["falto", "faltas", "falta", "faltamos", "faltáis", "faltan"],
+    "Preterite": ["falté", "faltaste", "faltó", "faltamos", "faltasteis", "faltaron"],
+    "Imperfect": ["faltaba", "faltabas", "faltaba", "faltábamos", "faltabais", "faltaban"],
+    "Future": ["faltaré", "faltarás", "faltará", "faltaremos", "faltaréis", "faltarán"],
+    "Conditional": ["faltaría", "faltarías", "faltaría", "faltaríamos", "faltaríais", "faltarían"]
+  }
+},
+{
+  english: ["to like", "to be pleasing"],
+  spanish: "gustar",
+  type: "irregular",
+  memoryTip: "Used for expressing likes (works like 'to be pleasing').",
+  conjugations: {
+    "Present": ["gusto", "gustas", "gusta", "gustamos", "gustáis", "gustan"],
+    "Preterite": ["gusté", "gustaste", "gustó", "gustamos", "gustasteis", "gustaron"],
+    "Imperfect": ["gustaba", "gustabas", "gustaba", "gustábamos", "gustabais", "gustaban"],
+    "Future": ["gustaré", "gustarás", "gustará", "gustaremos", "gustaréis", "gustarán"],
+    "Conditional": ["gustaría", "gustarías", "gustaría", "gustaríamos", "gustaríais", "gustarían"]
+  }
+},
+{
+  english: ["to try", "to attempt"],
+  spanish: "intentar",
+  type: "regular",
+  memoryTip: "Used for trying or attempting something.",
+  conjugations: {
+    "Present": ["intento", "intentas", "intenta", "intentamos", "intentáis", "intentan"],
+    "Preterite": ["intenté", "intentaste", "intentó", "intentamos", "intentasteis", "intentaron"],
+    "Imperfect": ["intentaba", "intentabas", "intentaba", "intentábamos", "intentabais", "intentaban"],
+    "Future": ["intentaré", "intentarás", "intentará", "intentaremos", "intentaréis", "intentarán"],
+    "Conditional": ["intentaría", "intentarías", "intentaría", "intentaríamos", "intentaríais", "intentarían"]
+  }
+},
+{
+  english: ["to achieve", "to manage to"],
+  spanish: "lograr",
+  type: "regular",
+  memoryTip: "Used for achieving or managing to do something.",
+  conjugations: {
+    "Present": ["logro", "logras", "logra", "logramos", "lográis", "logran"],
+    "Preterite": ["logré", "lograste", "logró", "logramos", "lograsteis", "lograron"],
+    "Imperfect": ["lograba", "lograbas", "lograba", "lográbamos", "lograbais", "lograban"],
+    "Future": ["lograré", "lograrás", "logrará", "lograremos", "lograréis", "lograrán"],
+    "Conditional": ["lograría", "lograrías", "lograría", "lograríamos", "lograríais", "lograrían"]
+  }
+},
+{
+  english: ["to look at", "to watch"],
+  spanish: "mirar",
+  type: "regular",
+  memoryTip: "Used for looking at or watching something.",
+  conjugations: {
+    "Present": ["miro", "miras", "mira", "miramos", "miráis", "miran"],
+    "Preterite": ["miré", "miraste", "miró", "miramos", "mirasteis", "miraron"],
+    "Imperfect": ["miraba", "mirabas", "miraba", "mirábamos", "mirabais", "miraban"],
+    "Future": ["miraré", "mirarás", "mirará", "miraremos", "miraréis", "mirarán"],
+    "Conditional": ["miraría", "mirarías", "miraría", "miraríamos", "miraríais", "mirarían"]
+  }
+},
+{
+  english: ["to die"],
+  spanish: "morir",
+  type: "irregular",
+  memoryTip: "Used for dying or passing away.",
+  conjugations: {
+    "Present": ["muero", "mueres", "muere", "morimos", "morís", "mueren"],
+    "Preterite": ["morí", "moriste", "murió", "morimos", "moristeis", "murieron"],
+    "Imperfect": ["moría", "morías", "moría", "moríamos", "moríais", "morían"],
+    "Future": ["moriré", "morirás", "morirá", "moriremos", "moriréis", "morirán"],
+    "Conditional": ["moriría", "morirías", "moriría", "moriríamos", "moriríais", "morirían"]
+  }
+},
+{
+  english: ["to be born"],
+  spanish: "nacer",
+  type: "irregular",
+  memoryTip: "Used for being born.",
+  conjugations: {
+    "Present": ["nazco", "naces", "nace", "nacemos", "nacéis", "nacen"],
+    "Preterite": ["nací", "naciste", "nació", "nacimos", "nacisteis", "nacieron"],
+    "Imperfect": ["nacía", "nacías", "nacía", "nacíamos", "nacíais", "nacían"],
+    "Future": ["naceré", "nacerás", "nacerá", "naceremos", "naceréis", "nacerán"],
+    "Conditional": ["nacería", "nacerías", "nacería", "naceríamos", "naceríais", "nacerían"]
+  }
+},
+{
+  english: ["to snow"],
+  spanish: "nevar",
+  type: "irregular",
+  memoryTip: "Used for snowing (impersonal verb, usually only 'nieva').",
+  conjugations: {
+    "Present": ["nievo", "nievas", "nieva", "nevamos", "neváis", "nievan"],
+    "Preterite": ["nevé", "nevaste", "nevó", "nevamos", "nevasteis", "nevaron"],
+    "Imperfect": ["nevaba", "nevabas", "nevaba", "nevábamos", "nevabais", "nevaban"],
+    "Future": ["nevaré", "nevarás", "nevará", "nevaremos", "nevaréis", "nevarán"],
+    "Conditional": ["nevaría", "nevarías", "nevaría", "nevaríamos", "nevaríais", "nevarían"]
+  }
+},
+{
+  english: ["to offer"],
+  spanish: "ofrecer",
+  type: "irregular",
+  memoryTip: "Used for offering something.",
+  conjugations: {
+    "Present": ["ofrezco", "ofreces", "ofrece", "ofrecemos", "ofrecéis", "ofrecen"],
+    "Preterite": ["ofrecí", "ofreciste", "ofreció", "ofrecimos", "ofrecisteis", "ofrecieron"],
+    "Imperfect": ["ofrecía", "ofrecías", "ofrecía", "ofrecíamos", "ofrecíais", "ofrecían"],
+    "Future": ["ofreceré", "ofrecerás", "ofrecerá", "ofreceremos", "ofreceréis", "ofrecerán"],
+    "Conditional": ["ofrecería", "ofrecerías", "ofrecería", "ofreceríamos", "ofreceríais", "ofrecerían"]
+  }
+},
+{
+  english: ["to forgive"],
+  spanish: "perdonar",
+  type: "regular",
+  memoryTip: "Used for forgiving someone.",
+  conjugations: {
+    "Present": ["perdono", "perdonas", "perdona", "perdonamos", "perdonáis", "perdonan"],
+    "Preterite": ["perdoné", "perdonaste", "perdonó", "perdonamos", "perdonasteis", "perdonaron"],
+    "Imperfect": ["perdonaba", "perdonabas", "perdonaba", "perdonábamos", "perdonabais", "perdonaban"],
+    "Future": ["perdonaré", "perdonarás", "perdonará", "perdonaremos", "perdonaréis", "perdonarán"],
+    "Conditional": ["perdonaría", "perdonarías", "perdonaría", "perdonaríamos", "perdonaríais", "perdonarían"]
+  }
+},
+{
+  english: ["to try", "to taste"],
+  spanish: "probar",
+  type: "irregular",
+  memoryTip: "Used for trying or tasting something.",
+  conjugations: {
+    "Present": ["pruebo", "pruebas", "prueba", "probamos", "probáis", "prueban"],
+    "Preterite": ["probé", "probaste", "probó", "probamos", "probasteis", "probaron"],
+    "Imperfect": ["probaba", "probabas", "probaba", "probábamos", "probabais", "probaban"],
+    "Future": ["probaré", "probarás", "probará", "probaremos", "probaréis", "probarán"],
+    "Conditional": ["probaría", "probarías", "probaría", "probaríamos", "probaríais", "probarían"]
+  }
+},
+{
+  english: ["to remove", "to take away"],
+  spanish: "quitar",
+  type: "regular",
+  memoryTip: "Used for removing or taking something away.",
+  conjugations: {
+    "Present": ["quito", "quitas", "quita", "quitamos", "quitáis", "quitan"],
+    "Preterite": ["quité", "quitaste", "quitó", "quitamos", "quitasteis", "quitaron"],
+    "Imperfect": ["quitaba", "quitabas", "quitaba", "quitábamos", "quitabais", "quitaban"],
+    "Future": ["quitaré", "quitarás", "quitará", "quitaremos", "quitaréis", "quitarán"],
+    "Conditional": ["quitaría", "quitarías", "quitaría", "quitaríamos", "quitaríais", "quitarían"]
+  }
+},
+{
+  english: ["to leave", "to go out"],
+  spanish: "salir",
+  type: "irregular",
+  memoryTip: "Used for leaving or going out.",
+  conjugations: {
+    "Present": ["salgo", "sales", "sale", "salimos", "salís", "salen"],
+    "Preterite": ["salí", "saliste", "salió", "salimos", "salisteis", "salieron"],
+    "Imperfect": ["salía", "salías", "salía", "salíamos", "salíais", "salían"],
+    "Future": ["saldré", "saldrás", "saldrá", "saldremos", "saldréis", "saldrán"],
+    "Conditional": ["saldría", "saldrías", "saldría", "saldríamos", "saldríais", "saldrían"]
+  }
+},
+{
+  english: ["to serve"],
+  spanish: "servir",
+  type: "irregular",
+  memoryTip: "Used for serving food or helping.",
+  conjugations: {
+    "Present": ["sirvo", "sirves", "sirve", "servimos", "servís", "sirven"],
+    "Preterite": ["serví", "serviste", "sirvió", "servimos", "servisteis", "sirvieron"],
+    "Imperfect": ["servía", "servías", "servía", "servíamos", "servíais", "servían"],
+    "Future": ["serviré", "servirás", "servirá", "serviremos", "serviréis", "servirán"],
+    "Conditional": ["serviría", "servirías", "serviría", "serviríamos", "serviríais", "servirían"]
+  }
+},
+{
+  english: ["to suffer"],
+  spanish: "sufrir",
+  type: "regular",
+  memoryTip: "Used for suffering or enduring pain.",
+  conjugations: {
+    "Present": ["sufro", "sufres", "sufre", "sufrimos", "sufrís", "sufren"],
+    "Preterite": ["sufrí", "sufriste", "sufrió", "sufrimos", "sufristeis", "sufrieron"],
+    "Imperfect": ["sufría", "sufrías", "sufría", "sufríamos", "sufríais", "sufrían"],
+    "Future": ["sufriré", "sufrirás", "sufrirá", "sufriremos", "sufriréis", "sufrirán"],
+    "Conditional": ["sufriría", "sufrirías", "sufriría", "sufriríamos", "sufriríais", "sufrirían"]
+  }
+},
 ];
