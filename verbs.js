@@ -598,7 +598,7 @@ export const verbs = [
   }
 },
 {
-  english: ["to play (a game)"],
+  english: ["to play"],
   spanish: "jugar",
   type: "irregular",
   memoryTip: "Used for playing games or sports.",
