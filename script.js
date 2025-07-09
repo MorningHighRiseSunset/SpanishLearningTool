@@ -115,20 +115,28 @@ practiceFormEn.onsubmit = function(e) {
 
   let verb = candidate.verb;
   meaningIdx = candidate.meaningIdx || 0;
-  let filteredTenses = tenses;
   const pronounIdx = (typeof candidate.pronounIdx === "number") ? candidate.pronounIdx : 0;
   const detectedTense = candidate.tense || "Present";
 
   // Special filtering for "to have (auxiliary)" and "to have (possession)"
   const englishMeaning = Array.isArray(verb.english) ? verb.english[meaningIdx] : verb.english;
+  let filteredTenses;
   if (englishMeaning === "to have (auxiliary)") {
+    // Only show perfect tenses that are available (or their mapped simple tense is available)
     filteredTenses = [
       "Present Perfect", "Past Perfect", "Future Perfect", "Conditional Perfect"
-    ];
+    ].filter(t =>
+      (t === "Present Perfect" && verb.conjugations["Present"]) ||
+      (t === "Past Perfect" && verb.conjugations["Imperfect"]) ||
+      (t === "Future Perfect" && verb.conjugations["Future"]) ||
+      (t === "Conditional Perfect" && verb.conjugations["Conditional"])
+    );
   } else if (englishMeaning === "to have (possession)") {
     filteredTenses = [
       "Present", "Preterite", "Imperfect", "Future", "Conditional"
-    ];
+    ].filter(t => verb.conjugations[t]);
+  } else {
+    filteredTenses = tenses.filter(t => verb.conjugations[t]);
   }
 
   // Tab UI for multiple meanings 
@@ -164,35 +172,35 @@ practiceFormEn.onsubmit = function(e) {
       <th>Spanish</th>
       <th>English</th>
     </tr>`;
-    filteredTenses.forEach(t => {
-      // For "to have (auxiliary)", map perfect tenses to simple tenses for haber
-      let conjugation;
-      if (englishMeaning === "to have (auxiliary)") {
-        if (t === "Present Perfect") conjugation = verb.conjugations["Present"] ? verb.conjugations["Present"][pronounIdx] : "(not available)";
-        else if (t === "Past Perfect") conjugation = verb.conjugations["Imperfect"] ? verb.conjugations["Imperfect"][pronounIdx] : "(not available)";
-        else if (t === "Future Perfect") conjugation = verb.conjugations["Future"] ? verb.conjugations["Future"][pronounIdx] : "(not available)";
-        else if (t === "Conditional Perfect") conjugation = verb.conjugations["Conditional"] ? verb.conjugations["Conditional"][pronounIdx] : "(not available)";
-        else conjugation = "(not available)";
-      } else {
-        conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
-      }
-      let english = buildEnglishPhrase(verb, t, pronounIdx, meaningIdx);
-      let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
-      html += `<tr${highlight}>
-        <td>
-          ${t}
-          <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
-        </td>
-        <td>
-          ${conjugation}
-          <button type="button" class="speak-btn" data-text="${spanishPronouns[pronounIdx]} ${conjugation}" title="Hear pronunciation">🔊</button>
-        </td>
-        <td>
-          ${english}
-          <button type="button" class="speak-btn-en" data-text="${english}" title="Hear English pronunciation">🔊</button>
-        </td>
-      </tr>`;
-    });
+  filteredTenses.forEach(t => {
+    // For "to have (auxiliary)", map perfect tenses to simple tenses for haber
+    let conjugation;
+    if (englishMeaning === "to have (auxiliary)") {
+      if (t === "Present Perfect") conjugation = verb.conjugations["Present"] ? verb.conjugations["Present"][pronounIdx] : "(not available)";
+      else if (t === "Past Perfect") conjugation = verb.conjugations["Imperfect"] ? verb.conjugations["Imperfect"][pronounIdx] : "(not available)";
+      else if (t === "Future Perfect") conjugation = verb.conjugations["Future"] ? verb.conjugations["Future"][pronounIdx] : "(not available)";
+      else if (t === "Conditional Perfect") conjugation = verb.conjugations["Conditional"] ? verb.conjugations["Conditional"][pronounIdx] : "(not available)";
+      else conjugation = "(not available)";
+    } else {
+      conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
+    }
+    let english = buildEnglishPhrase(verb, t, pronounIdx, meaningIdx);
+    let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
+    html += `<tr${highlight}>
+      <td>
+        ${t}
+        <button type="button" class="tense-info-btn" data-tense="${t}" title="What is ${t}?">ℹ️</button>
+      </td>
+      <td>
+        ${conjugation}
+        <button type="button" class="speak-btn" data-text="${spanishPronouns[pronounIdx]} ${conjugation}" title="Hear pronunciation">🔊</button>
+      </td>
+      <td>
+        ${english}
+        <button type="button" class="speak-btn-en" data-text="${english}" title="Hear English pronunciation">🔊</button>
+      </td>
+    </tr>`;
+  });
   html += `</table>`;
   practiceResults.innerHTML = html;
 
