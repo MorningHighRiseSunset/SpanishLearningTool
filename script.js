@@ -140,7 +140,7 @@ practiceFormEn.onsubmit = function(e) {
         if (Array.isArray(c.verb.english)) {
           const meaning = c.verb.english[c.meaningIdx];
           if (meaning === "to have (auxiliary)") label = "haber (auxiliary) / to have (auxiliary)";
-          else if (meaning === "to have (possession)") label = "tener (possession) / to have (possession)";
+          else if (meaning === "to have (possession)") label = "tener (shows possession) / to have (shows possession)";
           else label = `${c.verb.spanish} / ${meaning.replace(/^to /, '')}`;
         } else {
           label = `${c.verb.spanish} / ${c.verb.english.replace(/^to /, '')}`;

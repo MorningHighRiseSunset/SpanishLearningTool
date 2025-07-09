@@ -1547,6 +1547,19 @@ export const verbs = [
   }
 },
 {
+  english: ["to think"],
+  spanish: "pensar",
+  type: "irregular",
+  memoryTip: "Used for thinking or planning.",
+  conjugations: {
+    "Present": ["pienso", "piensas", "piensa", "pensamos", "pensáis", "piensan"],
+    "Preterite": ["pensé", "pensaste", "pensó", "pensamos", "pensasteis", "pensaron"],
+    "Imperfect": ["pensaba", "pensabas", "pensaba", "pensábamos", "pensabais", "pensaban"],
+    "Future": ["pensaré", "pensarás", "pensará", "pensaremos", "pensaréis", "pensarán"],
+    "Conditional": ["pensaría", "pensarías", "pensaría", "pensaríamos", "pensaríais", "pensarían"]
+  }
+},
+{
   english: ["to remove", "to take away"],
   spanish: "quitar",
   type: "regular",
