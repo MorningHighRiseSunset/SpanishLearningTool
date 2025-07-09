@@ -148,7 +148,7 @@ practiceFormEn.onsubmit = function(e) {
         if (Array.isArray(c.verb.english)) {
           const meaning = c.verb.english[c.meaningIdx];
           if (meaning === "to have (auxiliary)") label = "haber (auxiliary) / to have (auxiliary)";
-          else if (meaning === "to have (possession)") label = "tener (shows possession) / to have (shows possession)";
+          else if (meaning === "to have (possession)" || meaning === "to have (shows possession)") label = "tener (shows possession) / to have (shows possession)";
           else label = `${c.verb.spanish} / ${meaning.replace(/^to /, '')}`;
         } else {
           label = `${c.verb.spanish} / ${c.verb.english.replace(/^to /, '')}`;
@@ -601,10 +601,16 @@ function parseEnglishPhrase(phrase, meaningIdx = 0) {
 function buildEnglishPhrase(verb, tense, pronounIdx, meaningIdx = 0) {
   const pronoun = pronouns[pronounIdx];
   let meanings = Array.isArray(verb.english) ? verb.english : [verb.english];
-  let base = meanings[meaningIdx].replace(/^to /, '').split(',')[0].trim();
+  // --- Patch: always show "shows possession" in UI ---
+  let meaning = meanings[meaningIdx];
+  if (meaning === "to have (possession)") {
+    meaning = "to have (shows possession)";
+    meanings[meaningIdx] = meaning;
+  }
+  let base = meaning.replace(/^to /, '').split(',')[0].trim();
 
   // Remove parenthetical notes for matching irregulars
-  let normalizedMeaning = meanings[meaningIdx].replace(/\s*\(.*?\)\s*/g, '').toLowerCase();
+  let normalizedMeaning = meaning.replace(/\s*\(.*?\)\s*/g, '').toLowerCase();
 
   // Irregulars lookup (expand as needed)
   const irregulars = {
@@ -631,9 +637,9 @@ function buildEnglishPhrase(verb, tense, pronounIdx, meaningIdx = 0) {
 
   // Present 3rd person singular
   let present = base;
-  // Special case for "to have (possession)" present tense
+  // Special case for "to have (shows possession)" present tense
   if (
-    meanings[meaningIdx] === "to have (possession)" &&
+    meaning === "to have (shows possession)" &&
     tense === "Present"
   ) {
     if (["He", "She", "It"].includes(pronoun)) {
