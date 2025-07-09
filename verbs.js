@@ -2158,4 +2158,157 @@ export const verbs = [
     "Conditional Perfect": ["habría pescado", "habrías pescado", "habría pescado", "habríamos pescado", "habríais pescado", "habrían pescado"]
   }
 },
+{
+  english: ["to apologize"],
+  spanish: "disculparse",
+  type: "regular",
+  memoryTip: "Used for apologizing (reflexive).",
+  conjugations: {
+    "Present": ["me disculpo", "te disculpas", "se disculpa", "nos disculpamos", "os disculpáis", "se disculpan"],
+    "Preterite": ["me disculpé", "te disculpaste", "se disculpó", "nos disculpamos", "os disculpasteis", "se disculparon"],
+    "Imperfect": ["me disculpaba", "te disculpabas", "se disculpaba", "nos disculpábamos", "os disculpabais", "se disculpaban"],
+    "Future": ["me disculparé", "te disculparás", "se disculpará", "nos disculparemos", "os disculparéis", "se disculparán"],
+    "Conditional": ["me disculparía", "te disculparías", "se disculparía", "nos disculparíamos", "os disculparíais", "se disculparían"],
+    "Present Perfect": ["me he disculpado", "te has disculpado", "se ha disculpado", "nos hemos disculpado", "os habéis disculpado", "se han disculpado"],
+    "Past Perfect": ["me había disculpado", "te habías disculpado", "se había disculpado", "nos habíamos disculpado", "os habíais disculpado", "se habían disculpado"],
+    "Future Perfect": ["me habré disculpado", "te habrás disculpado", "se habrá disculpado", "nos habremos disculpado", "os habréis disculpado", "se habrán disculpado"],
+    "Conditional Perfect": ["me habría disculpado", "te habrías disculpado", "se habría disculpado", "nos habríamos disculpado", "os habríais disculpado", "se habrían disculpado"]
+  }
+},
+{
+  english: ["to translate"],
+  spanish: "traducir",
+  type: "irregular",
+  memoryTip: "Used for translating languages.",
+  conjugations: {
+    "Present": ["traduzco", "traduces", "traduce", "traducimos", "traducís", "traducen"],
+    "Preterite": ["traduje", "tradujiste", "tradujo", "tradujimos", "tradujisteis", "tradujeron"],
+    "Imperfect": ["traducía", "traducías", "traducía", "traducíamos", "traducíais", "traducían"],
+    "Future": ["traduciré", "traducirás", "traducirá", "traduciremos", "traduciréis", "traducirán"],
+    "Conditional": ["traduciría", "traducirías", "traduciría", "traduciríamos", "traduciríais", "traducirían"],
+    "Present Perfect": ["he traducido", "has traducido", "ha traducido", "hemos traducido", "habéis traducido", "han traducido"],
+    "Past Perfect": ["había traducido", "habías traducido", "había traducido", "habíamos traducido", "habíais traducido", "habían traducido"],
+    "Future Perfect": ["habré traducido", "habrás traducido", "habrá traducido", "habremos traducido", "habréis traducido", "habrán traducido"],
+    "Conditional Perfect": ["habría traducido", "habrías traducido", "habría traducido", "habríamos traducido", "habríais traducido", "habrían traducido"]
+  }
+},
+{
+  english: ["to design"],
+  spanish: "diseñar",
+  type: "regular",
+  memoryTip: "Used for designing things.",
+  conjugations: {
+    "Present": ["diseño", "diseñas", "diseña", "diseñamos", "diseñáis", "diseñan"],
+    "Preterite": ["diseñé", "diseñaste", "diseñó", "diseñamos", "diseñasteis", "diseñaron"],
+    "Imperfect": ["diseñaba", "diseñabas", "diseñaba", "diseñábamos", "diseñabais", "diseñaban"],
+    "Future": ["diseñaré", "diseñarás", "diseñará", "diseñaremos", "diseñaréis", "diseñarán"],
+    "Conditional": ["diseñaría", "diseñarías", "diseñaría", "diseñaríamos", "diseñaríais", "diseñarían"],
+    "Present Perfect": ["he diseñado", "has diseñado", "ha diseñado", "hemos diseñado", "habéis diseñado", "han diseñado"],
+    "Past Perfect": ["había diseñado", "habías diseñado", "había diseñado", "habíamos diseñado", "habíais diseñado", "habían diseñado"],
+    "Future Perfect": ["habré diseñado", "habrás diseñado", "habrá diseñado", "habremos diseñado", "habréis diseñado", "habrán diseñado"],
+    "Conditional Perfect": ["habría diseñado", "habrías diseñado", "habría diseñado", "habríamos diseñado", "habríais diseñado", "habrían diseñado"]
+  }
+},
+{
+  english: ["to sew"],
+  spanish: "coser",
+  type: "regular",
+  memoryTip: "Used for sewing.",
+  conjugations: {
+    "Present": ["coso", "coses", "cose", "cosemos", "coséis", "cosen"],
+    "Preterite": ["cosí", "cosiste", "cosió", "cosimos", "cosisteis", "cosieron"],
+    "Imperfect": ["cosía", "cosías", "cosía", "cosíamos", "cosíais", "cosían"],
+    "Future": ["coseré", "coserás", "coserá", "coseremos", "coseréis", "coserán"],
+    "Conditional": ["cosería", "coserías", "cosería", "coseríamos", "coseríais", "coserían"],
+    "Present Perfect": ["he cosido", "has cosido", "ha cosido", "hemos cosido", "habéis cosido", "han cosido"],
+    "Past Perfect": ["había cosido", "habías cosido", "había cosido", "habíamos cosido", "habíais cosido", "habían cosido"],
+    "Future Perfect": ["habré cosido", "habrás cosido", "habrá cosido", "habremos cosido", "habréis cosido", "habrán cosido"],
+    "Conditional Perfect": ["habría cosido", "habrías cosido", "habría cosido", "habríamos cosido", "habríais cosido", "habrían cosido"]
+  }
+},
+{
+  english: ["to iron"],
+  spanish: "planchar",
+  type: "regular",
+  memoryTip: "Used for ironing clothes.",
+  conjugations: {
+    "Present": ["plancho", "planchas", "plancha", "planchamos", "plancháis", "planchan"],
+    "Preterite": ["planché", "planchaste", "planchó", "planchamos", "planchasteis", "plancharon"],
+    "Imperfect": ["planchaba", "planchabas", "planchaba", "planchábamos", "planchabais", "planchaban"],
+    "Future": ["plancharé", "plancharás", "planchará", "plancharemos", "plancharéis", "plancharán"],
+    "Conditional": ["plancharía", "plancharías", "plancharía", "plancharíamos", "plancharíais", "plancharían"],
+    "Present Perfect": ["he planchado", "has planchado", "ha planchado", "hemos planchado", "habéis planchado", "han planchado"],
+    "Past Perfect": ["había planchado", "habías planchado", "había planchado", "habíamos planchado", "habíais planchado", "habían planchado"],
+    "Future Perfect": ["habré planchado", "habrás planchado", "habrá planchado", "habremos planchado", "habréis planchado", "habrán planchado"],
+    "Conditional Perfect": ["habría planchado", "habrías planchado", "habría planchado", "habríamos planchado", "habríais planchado", "habrían planchado"]
+  }
+},
+{
+  english: ["to comb"],
+  spanish: "peinar",
+  type: "regular",
+  memoryTip: "Used for combing hair.",
+  conjugations: {
+    "Present": ["peino", "peinas", "peina", "peinamos", "peináis", "peinan"],
+    "Preterite": ["peiné", "peinaste", "peinó", "peinamos", "peinasteis", "peinaron"],
+    "Imperfect": ["peinaba", "peinabas", "peinaba", "peinábamos", "peinabais", "peinaban"],
+    "Future": ["peinaré", "peinarás", "peinará", "peinaremos", "peinaréis", "peinarán"],
+    "Conditional": ["peinaría", "peinarías", "peinaría", "peinaríamos", "peinaríais", "peinarían"],
+    "Present Perfect": ["he peinado", "has peinado", "ha peinado", "hemos peinado", "habéis peinado", "han peinado"],
+    "Past Perfect": ["había peinado", "habías peinado", "había peinado", "habíamos peinado", "habíais peinado", "habían peinado"],
+    "Future Perfect": ["habré peinado", "habrás peinado", "habrá peinado", "habremos peinado", "habréis peinado", "habrán peinado"],
+    "Conditional Perfect": ["habría peinado", "habrías peinado", "habría peinado", "habríamos peinado", "habríais peinado", "habrían peinado"]
+  }
+},
+{
+  english: ["to regret"],
+  spanish: "arrepentirse",
+  type: "irregular",
+  memoryTip: "Used for expressing regret (reflexive).",
+  conjugations: {
+    "Present": ["me arrepiento", "te arrepientes", "se arrepiente", "nos arrepentimos", "os arrepentís", "se arrepienten"],
+    "Preterite": ["me arrepentí", "te arrepentiste", "se arrepintió", "nos arrepentimos", "os arrepentisteis", "se arrepintieron"],
+    "Imperfect": ["me arrepentía", "te arrepentías", "se arrepentía", "nos arrepentíamos", "os arrepentíais", "se arrepentían"],
+    "Future": ["me arrepentiré", "te arrepentirás", "se arrepentirá", "nos arrepentiremos", "os arrepentiréis", "se arrepentirán"],
+    "Conditional": ["me arrepentiría", "te arrepentirías", "se arrepentiría", "nos arrepentiríamos", "os arrepentiríais", "se arrepentirían"],
+    "Present Perfect": ["me he arrepentido", "te has arrepentido", "se ha arrepentido", "nos hemos arrepentido", "os habéis arrepentido", "se han arrepentido"],
+    "Past Perfect": ["me había arrepentido", "te habías arrepentido", "se había arrepentido", "nos habíamos arrepentido", "os habíais arrepentido", "se habían arrepentido"],
+    "Future Perfect": ["me habré arrepentido", "te habrás arrepentido", "se habrá arrepentido", "nos habremos arrepentido", "os habréis arrepentido", "se habrán arrepentido"],
+    "Conditional Perfect": ["me habría arrepentido", "te habrías arrepentido", "se habría arrepentido", "nos habríamos arrepentido", "os habríais arrepentido", "se habrían arrepentido"]
+  }
+},
+{
+  english: ["to sneeze"],
+  spanish: "estornudar",
+  type: "regular",
+  memoryTip: "Used for sneezing.",
+  conjugations: {
+    "Present": ["estornudo", "estornudas", "estornuda", "estornudamos", "estornudáis", "estornudan"],
+    "Preterite": ["estornudé", "estornudaste", "estornudó", "estornudamos", "estornudasteis", "estornudaron"],
+    "Imperfect": ["estornudaba", "estornudabas", "estornudaba", "estornudábamos", "estornudabais", "estornudaban"],
+    "Future": ["estornudaré", "estornudarás", "estornudará", "estornudaremos", "estornudaréis", "estornudarán"],
+    "Conditional": ["estornudaría", "estornudarías", "estornudaría", "estornudaríamos", "estornudaríais", "estornudarían"],
+    "Present Perfect": ["he estornudado", "has estornudado", "ha estornudado", "hemos estornudado", "habéis estornudado", "han estornudado"],
+    "Past Perfect": ["había estornudado", "habías estornudado", "había estornudado", "habíamos estornudado", "habíais estornudado", "habían estornudado"],
+    "Future Perfect": ["habré estornudado", "habrás estornudado", "habrá estornudado", "habremos estornudado", "habréis estornudado", "habrán estornudado"],
+    "Conditional Perfect": ["habría estornudado", "habrías estornudado", "habría estornudado", "habríamos estornudado", "habríais estornudado", "habrían estornudado"]
+  }
+},
+{
+  english: ["to cough"],
+  spanish: "toser",
+  type: "regular",
+  memoryTip: "Used for coughing.",
+  conjugations: {
+    "Present": ["toso", "toses", "tose", "tosemos", "toséis", "tosen"],
+    "Preterite": ["tosí", "tosiste", "tosió", "tosimos", "tosisteis", "tosieron"],
+    "Imperfect": ["tosía", "tosías", "tosía", "tosíamos", "tosíais", "tosían"],
+    "Future": ["toseré", "toserás", "toserá", "toseremos", "toseréis", "toserán"],
+    "Conditional": ["tosería", "toserías", "tosería", "toseríamos", "toseríais", "toserían"],
+    "Present Perfect": ["he tosido", "has tosido", "ha tosido", "hemos tosido", "habéis tosido", "han tosido"],
+    "Past Perfect": ["había tosido", "habías tosido", "había tosido", "habíamos tosido", "habíais tosido", "habían tosido"],
+    "Future Perfect": ["habré tosido", "habrás tosido", "habrá tosido", "habremos tosido", "habréis tosido", "habrán tosido"],
+    "Conditional Perfect": ["habría tosido", "habrías tosido", "habría tosido", "habríamos tosido", "habríais tosido", "habrían tosido"]
+  }
+},
 ];
