@@ -2311,4 +2311,21 @@ export const verbs = [
     "Conditional Perfect": ["habría tosido", "habrías tosido", "habría tosido", "habríamos tosido", "habríais tosido", "habrían tosido"]
   }
 },
+{
+  "english": ["to amuse"],
+  "spanish": "divertir",
+  "type": "irregular",
+  "memoryTip": "Think of 'diversion'—something fun or entertaining.",
+  "conjugations": {
+    "Present": ["divierto", "diviertes", "divierte", "divertimos", "divertís", "divierten"],
+    "Preterite": ["divertí", "divertiste", "divirtió", "divertimos", "divertisteis", "divirtieron"],
+    "Imperfect": ["divertía", "divertías", "divertía", "divertíamos", "divertíais", "divertían"],
+    "Future": ["divertiré", "divertirás", "divertirá", "divertiremos", "divertiréis", "divertirán"],
+    "Conditional": ["divertiría", "divertirías", "divertiría", "divertiríamos", "divertiríais", "divertirían"],
+    "Present Perfect": ["he divertido", "has divertido", "ha divertido", "hemos divertido", "habéis divertido", "han divertido"],
+    "Past Perfect": ["había divertido", "habías divertido", "había divertido", "habíamos divertido", "habíais divertido", "habían divertido"],
+    "Future Perfect": ["habré divertido", "habrás divertido", "habrá divertido", "habremos divertido", "habréis divertido", "habrán divertido"],
+    "Conditional Perfect": ["habría divertido", "habrías divertido", "habría divertido", "habríamos divertido", "habríais divertido", "habrían divertido"]
+  }
+}
 ];
