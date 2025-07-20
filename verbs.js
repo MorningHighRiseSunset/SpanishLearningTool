@@ -2327,5 +2327,141 @@ export const verbs = [
     "Future Perfect": ["habré divertido", "habrás divertido", "habrá divertido", "habremos divertido", "habréis divertido", "habrán divertido"],
     "Conditional Perfect": ["habría divertido", "habrías divertido", "habría divertido", "habríamos divertido", "habríais divertido", "habrían divertido"]
   }
-}
+},
+{
+  "english": ["to wake up"],
+  "spanish": "despertar",
+  "type": "irregular (e→ie)",
+  "memoryTip": "Think of 'despertar' like waking from a 'despair' nap.",
+  "conjugations": {
+    "Present": ["despierto", "despiertas", "despierta", "despertamos", "despertáis", "despiertan"],
+    "Preterite": ["desperté", "despertaste", "despertó", "despertamos", "despertasteis", "despertaron"],
+    "Imperfect": ["despertaba", "despertabas", "despertaba", "despertábamos", "despertabais", "despertaban"],
+    "Future": ["despertaré", "despertarás", "despertará", "despertaremos", "despertaréis", "despertarán"],
+    "Conditional": ["despertaría", "despertarías", "despertaría", "despertaríamos", "despertaríais", "despertarían"],
+    "Present Perfect": ["he despertado", "has despertado", "ha despertado", "hemos despertado", "habéis despertado", "han despertado"],
+    "Past Perfect": ["había despertado", "habías despertado", "había despertado", "habíamos despertado", "habíais despertado", "habían despertado"],
+    "Future Perfect": ["habré despertado", "habrás despertado", "habrá despertado", "habremos despertado", "habréis despertado", "habrán despertado"],
+    "Conditional Perfect": ["habría despertado", "habrías despertado", "habría despertado", "habríamos despertado", "habríais despertado", "habrían despertado"]
+  }
+},
+{
+  "english": ["to deceive", "to trick"],
+  "spanish": "engañar",
+  "type": "regular",
+  "memoryTip": "Think of someone pulling a 'gaña' (trick) on you.",
+  "conjugations": {
+    "Present": ["engaño", "engañas", "engaña", "engañamos", "engañáis", "engañan"],
+    "Preterite": ["engañé", "engañaste", "engañó", "engañamos", "engañasteis", "engañaron"],
+    "Imperfect": ["engañaba", "engañabas", "engañaba", "engañábamos", "engañabais", "engañaban"],
+    "Future": ["engañaré", "engañarás", "engañará", "engañaremos", "engañaréis", "engañarán"],
+    "Conditional": ["engañaría", "engañarías", "engañaría", "engañaríamos", "engañaríais", "engañarían"],
+    "Present Perfect": ["he engañado", "has engañado", "ha engañado", "hemos engañado", "habéis engañado", "han engañado"],
+    "Past Perfect": ["había engañado", "habías engañado", "había engañado", "habíamos engañado", "habíais engañado", "habían engañado"],
+    "Future Perfect": ["habré engañado", "habrás engañado", "habrá engañado", "habremos engañado", "habréis engañado", "habrán engañado"],
+    "Conditional Perfect": ["habría engañado", "habrías engañado", "habría engañado", "habríamos engañado", "habríais engañado", "habrían engañado"]
+  }
+},
+{
+  "english": ["to bend", "to subdue"],
+  "spanish": "doblegar",
+  "type": "regular (g→gu before e)",
+  "memoryTip": "Think of 'double' someone over to make them submit.",
+  "conjugations": {
+    "Present": ["doblego", "doblegas", "doblega", "doblegamos", "doblegáis", "doblegan"],
+    "Preterite": ["doblegué", "doblegaste", "doblegó", "doblegamos", "doblegasteis", "doblegaron"],
+    "Imperfect": ["doblegaba", "doblegabas", "doblegaba", "doblegábamos", "doblegabais", "doblegaban"],
+    "Future": ["doblegaré", "doblegarás", "doblegará", "doblegaremos", "doblegaréis", "doblegarán"],
+    "Conditional": ["doblegaría", "doblegarías", "doblegaría", "doblegaríamos", "doblegaríais", "doblegarían"],
+    "Present Perfect": ["he doblegado", "has doblegado", "ha doblegado", "hemos doblegado", "habéis doblegado", "han doblegado"],
+    "Past Perfect": ["había doblegado", "habías doblegado", "había doblegado", "habíamos doblegado", "habíais doblegado", "habían doblegado"],
+    "Future Perfect": ["habré doblegado", "habrás doblegado", "habrá doblegado", "habremos doblegado", "habréis doblegado", "habrán doblegado"],
+    "Conditional Perfect": ["habría doblegado", "habrías doblegado", "habría doblegado", "habríamos doblegado", "habríais doblegado", "habrían doblegado"]
+  }
+},
+{
+  "english": ["to satiate", "to quench"],
+  "spanish": "saciar",
+  "type": "regular",
+  "memoryTip": "Think of 'satisfy'—both start with 'sa'.",
+  "conjugations": {
+    "Present": ["sacio", "sacias", "sacia", "saciamos", "saciáis", "sacian"],
+    "Preterite": ["sacié", "saciaste", "sació", "saciamos", "saciasteis", "saciaron"],
+    "Imperfect": ["saciaba", "saciabas", "saciaba", "saciábamos", "saciabais", "saciaban"],
+    "Future": ["saciaré", "saciarás", "saciará", "aciaremos", "saciaréis", "saciarán"],
+    "Conditional": ["saciaría", "saciarías", "saciaría", "saciaríamos", "saciaríais", "saciarían"],
+    "Present Perfect": ["he saciado", "has saciado", "ha saciado", "hemos saciado", "habéis saciado", "han saciado"],
+    "Past Perfect": ["había saciado", "habías saciado", "había saciado", "habíamos saciado", "habíais saciado", "habían saciado"],
+    "Future Perfect": ["habré saciado", "habrás saciado", "habrá saciado", "habremos saciado", "habréis saciado", "habrán saciado"],
+    "Conditional Perfect": ["habría saciado", "habrías saciado", "habría saciado", "habríamos saciado", "habríais saciado", "habrían saciado"]
+  }
+},
+{
+  "english": ["to approve", "to pass"],
+  "spanish": "aprobar",
+  "type": "irregular (o→ue)",
+  "memoryTip": "Think 'approve' and 'aprobar' both start with 'ap'.",
+  "conjugations": {
+    "Present": ["apruebo", "apruebas", "aprueba", "aprobamos", "aprobáis", "aprueban"],
+    "Preterite": ["aprobré", "aprobaste", "aprobó", "aprobamos", "aprobasteis", "aprobaron"],
+    "Imperfect": ["aprobaba", "aprobabas", "aprobaba", "aprobábamos", "aprobabais", "aprobaban"],
+    "Future": ["aprobaré", "aprobarás", "aprobará", "aprobaremos", "aprobaréis", "aprobarán"],
+    "Conditional": ["aprobaría", "aprobarías", "aprobaría", "aprobaríamos", "aprobaríais", "aprobarían"],
+    "Present Perfect": ["he aprobado", "has aprobado", "ha aprobado", "hemos aprobado", "habéis aprobado", "han aprobado"],
+    "Past Perfect": ["había aprobado", "habías aprobado", "había aprobado", "habíamos aprobado", "habíais aprobado", "habían aprobado"],
+    "Future Perfect": ["habré aprobado", "habrás aprobado", "habrá aprobado", "habremos aprobado", "habréis aprobado", "habrán aprobado"],
+    "Conditional Perfect": ["habría aprobado", "habrías aprobado", "habría aprobado", "habríamos aprobado", "habríais aprobado", "habrían aprobado"]
+  }
+},
+{
+  "english": ["to conquer"],
+  "spanish": "conquistar",
+  "type": "regular",
+  "memoryTip": "Looks like 'conquer'—they both start the same.",
+  "conjugations": {
+    "Present": ["conquisto", "conquistas", "conquista", "conquistamos", "conquistáis", "conquistan"],
+    "Preterite": ["conquisté", "conquistaste", "conquistó", "conquistamos", "conquistasteis", "conquistaron"],
+    "Imperfect": ["conquistaba", "conquistabas", "conquistaba", "conquistábamos", "conquistabais", "conquistaban"],
+    "Future": ["conquistaré", "conquistarás", "conquistará", "conquistaremos", "conquistaréis", "conquistarán"],
+    "Conditional": ["conquistaría", "conquistarías", "conquistaría", "conquistaríamos", "conquistaríais", "conquistarían"],
+    "Present Perfect": ["he conquistado", "has conquistado", "ha conquistado", "hemos conquistado", "habéis conquistado", "han conquistado"],
+    "Past Perfect": ["había conquistado", "habías conquistado", "había conquistado", "habíamos conquistado", "habíais conquistado", "habían conquistado"],
+    "Future Perfect": ["habré conquistado", "habrás conquistado", "habrá conquistado", "habremos conquistado", "habréis conquistado", "habrán conquistado"],
+    "Conditional Perfect": ["habría conquistado", "habrías conquistado", "habría conquistado", "habríamos conquistado", "habríais conquistado", "habrían conquistado"]
+  }
+},
+{
+  "english": ["I conquer"],
+  "spanish": "yo conquisto",
+  "type": "phrase",
+  "memoryTip": "Used in present tense of 'conquistar'.",
+  "conjugations": {
+    "Present": ["yo conquisto"],
+    "Preterite": ["yo conquisté"],
+    "Imperfect": ["yo conquistaba"],
+    "Future": ["yo conquistaré"],
+    "Conditional": ["yo conquistaría"],
+    "Present Perfect": ["yo he conquistado"],
+    "Past Perfect": ["yo había conquistado"],
+    "Future Perfect": ["yo habré conquistado"],
+    "Conditional Perfect": ["yo habría conquistado"]
+  }
+},
+{
+  "english": ["to enclose", "to lock up"],
+  "spanish": "encerrar",
+  "type": "irregular (e→ie)",
+  "memoryTip": "En + cerrar (to close) = to close something in.",
+  "conjugations": {
+    "Present": ["encierro", "encierras", "encierra", "encerramos", "encerráis", "encierran"],
+    "Preterite": ["encerré", "encerraste", "encerró", "encerramos", "encerrasteis", "encerraron"],
+    "Imperfect": ["encerraba", "encerrabas", "encerraba", "encerrábamos", "encerrabais", "encerraban"],
+    "Future": ["encerraré", "encerrarás", "encerrará", "encerraremos", "encerraréis", "encerrarán"],
+    "Conditional": ["encerraría", "encerrarías", "encerraría", "encerraríamos", "encerraríais", "encerrarían"],
+    "Present Perfect": ["he encerrado", "has encerrado", "ha encerrado", "hemos encerrado", "habéis encerrado", "han encerrado"],
+    "Past Perfect": ["había encerrado", "habías encerrado", "había encerrado", "habíamos encerrado", "habíais encerrado", "habían encerrado"],
+    "Future Perfect": ["habré encerrado", "habrás encerrado", "habrá encerrado", "habremos encerrado", "habréis encerrado", "habrán encerrado"],
+    "Conditional Perfect": ["habría encerrado", "habrías encerrado", "habría encerrado", "habríamos encerrado", "habríais encerrado", "habrían encerrado"]
+  }
+},
 ];
