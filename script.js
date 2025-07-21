@@ -1,5 +1,18 @@
 import { verbs } from './verbs.js';
 
+const englishNotePrompts = [
+  "Translate: What's your favorite food?",
+  "Translate: I like apples!",
+  "Translate: Where do you live?",
+  "Translate: My name is Ana.",
+  "Translate: I am learning Spanish.",
+  "Translate: Do you have any pets?",
+  "Translate: It's raining today.",
+  "Translate: I want to travel to Spain.",
+  "Translate: How old are you?",
+  "Translate: I don't understand."
+];
+
 const pronouns = ["I", "You", "He", "We", "You all", "They"];
 const spanishPronouns = ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ellas/Ustedes"];
 const tenses = [
@@ -986,3 +999,9 @@ document.addEventListener('click', function(e) {
     speakSpanish(e.target.getAttribute('data-text'));
   }
 });
+
+function showRandomNotesPrompt() {
+  const prompt = englishNotePrompts[Math.floor(Math.random() * englishNotePrompts.length)];
+  document.getElementById('notesPrompt').textContent = prompt;
+}
+showRandomNotesPrompt();

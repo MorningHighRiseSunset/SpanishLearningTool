@@ -81,7 +81,20 @@ button {
 }
 input[type="text"]:focus, textarea:focus {
   border-color: #a78bfa;
-  background: #e0e7ff;
+  /* Remove the background override for textarea, keep for input */
+  /* background: #e0e7ff; */
+}
+
+.notebook-area:focus {
+  /* Always keep the notebook lines, even when focused */
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #fff 0px,
+      #fff 27px,
+      #bae6fd 28px,
+      #fff 29px
+    );
 }
 
 /* --- PRACTICE/QUIZ FORMS --- */
