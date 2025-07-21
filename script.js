@@ -218,6 +218,15 @@ practiceFormEn.onsubmit = function(e) {
   }
 };
 
+// --- Accent-insensitive normalization helper ---
+function normalizeSpanish(str) {
+  return str
+    .normalize("NFD") // decompose accents
+    .replace(/[\u0300-\u036f]/g, "") // remove accents
+    .replace(/ñ/g, "n") // treat ñ as n for matching
+    .replace(/Ñ/g, "N");
+}
+
 // --- Practice Mode: Spanish → English ---
 practiceFormEs.onsubmit = function(e) {
   e.preventDefault();
@@ -225,13 +234,19 @@ practiceFormEs.onsubmit = function(e) {
   if (!input) return;
 
   let found = null;
-  // 1. Try to match full conjugated forms (existing logic)
+  // 1. Try to match full conjugated forms (now accent-insensitive)
   for (let verb of verbs) {
     for (let t of tenses) {
       if (!verb.conjugations[t]) continue;
       for (let i = 0; i < spanishPronouns.length; ++i) {
         const sp = verb.conjugations[t][i];
-        if (sp && (`${spanishPronouns[i]} ${sp}`.toLowerCase() === input || sp.toLowerCase() === input)) {
+        if (
+          sp &&
+          (
+            normalizeSpanish(`${spanishPronouns[i]} ${sp}`.toLowerCase()) === normalizeSpanish(input) ||
+            normalizeSpanish(sp.toLowerCase()) === normalizeSpanish(input)
+          )
+        ) {
           found = {verb, tense: t, pronounIdx: i};
           break;
         }
@@ -241,10 +256,10 @@ practiceFormEs.onsubmit = function(e) {
     if (found) break;
   }
 
-  // 2. If not found, try to match infinitive (e.g., "aprender")
+  // 2. If not found, try to match infinitive (e.g., "aprender"), accent-insensitive
   if (!found) {
     for (let verb of verbs) {
-      if (verb.spanish.toLowerCase() === input) {
+      if (normalizeSpanish(verb.spanish.toLowerCase()) === normalizeSpanish(input)) {
         found = {verb, tense: null, pronounIdx: null, isInfinitive: true};
         break;
       }
