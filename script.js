@@ -13,6 +13,19 @@ const englishNotePrompts = [
   "Translate: I don't understand."
 ];
 
+const englishToSpanishPrompts = {
+  "Translate: What's your favorite food?": "¿Cuál es tu comida favorita?",
+  "Translate: I like apples!": "¡Me gustan las manzanas!",
+  "Translate: Where do you live?": "¿Dónde vives?",
+  "Translate: My name is Ana.": "Me llamo Ana.",
+  "Translate: I am learning Spanish.": "Estoy aprendiendo español.",
+  "Translate: Do you have any pets?": "¿Tienes mascotas?",
+  "Translate: It's raining today.": "Hoy está lloviendo.",
+  "Translate: I want to travel to Spain.": "Quiero viajar a España.",
+  "Translate: How old are you?": "¿Cuántos años tienes?",
+  "Translate: I don't understand.": "No entiendo."
+};
+
 const pronouns = ["I", "You", "He", "We", "You all", "They"];
 const spanishPronouns = ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ellas/Ustedes"];
 const tenses = [
@@ -758,7 +771,7 @@ const irregulars = {
   }
 }
 
-document.getElementById('checkSpanishBtn').onclick = function() {
+document.getElementById('checkSpanishBtn').onclick = function () {
   const notes = document.getElementById('notesArea').value.trim();
   const feedbackBox = document.getElementById('notesFeedback');
   if (!notes) {
@@ -767,6 +780,26 @@ document.getElementById('checkSpanishBtn').onclick = function() {
     feedbackBox.style.color = "#ef4444";
     feedbackBox.style.borderLeft = "4px solid #ef4444";
     return;
+  }
+
+  // --- PATCH: Check if user is answering the current prompt ---
+  const currentPrompt = document.getElementById('notesPrompt').textContent;
+  const expectedSpanish = englishToSpanishPrompts[currentPrompt];
+  let translationScore = 0;
+  let translationFeedback = "";
+
+  if (expectedSpanish) {
+    // Normalize for accents/case
+    const normalize = s =>
+      s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[¡!¿?.,]/g, '').trim();
+
+    if (normalize(notes) === normalize(expectedSpanish)) {
+      translationScore = 2;
+      translationFeedback = `<div style="color:green;font-weight:bold;">✅ Perfect translation for the prompt!</div>`;
+    } else if (normalize(notes).includes(normalize(expectedSpanish.split(' ')[0]))) {
+      translationScore = 1;
+      translationFeedback = `<div style="color:#2563eb;">Good try! Your answer is close to the expected translation.</div>`;
+    }
   }
 
   const commonSpanishWords = [
@@ -824,10 +857,10 @@ document.getElementById('checkSpanishBtn').onclick = function() {
   if (notes.toLowerCase().includes("tu eres") && !notes.includes("tú eres")) {
     suggestions.push("Did you mean 'tú eres'? Don't forget the accent on 'tú' for 'you'.");
   }
-  if (notes.toLowerCase().includes("si ") && !notes.includes("sí")) {
+  if (/\bsi\b/i.test(notes) && !notes.includes("sí")) {
     suggestions.push("Did you mean 'sí' (yes) with an accent?");
   }
-  if (notes.toLowerCase().includes("el ") && !notes.includes("él")) {
+  if (/\bel\b/i.test(notes) && !notes.includes("él")) {
     suggestions.push("Did you mean 'él' (he) with an accent?");
   }
 
@@ -841,11 +874,11 @@ document.getElementById('checkSpanishBtn').onclick = function() {
 
   // Encourage advanced grammar
   if (notes.includes("hubiera") || notes.includes("hubiese")) {
-    feedback += "👏 You're using the past subjunctive! Advanced!";
+    feedback += "👏 You're using the past subjunctive! Advanced!<br>";
     score += 1;
   }
   if (notes.match(/\b(me|te|se|nos|os)\s+[a-z]+/i)) {
-    feedback += " Reflexive verbs detected, nice!";
+    feedback += " Reflexive verbs detected, nice!<br>";
     score += 1;
   }
 
@@ -858,20 +891,22 @@ document.getElementById('checkSpanishBtn').onclick = function() {
 
   // Feedback based on score
   if (spanishScore > 2) {
-    feedback += "👍 That looks like a good Spanish sentence!";
+    feedback += "👍 That looks like a good Spanish sentence!<br>";
     score += 2;
   } else if (spanishScore > 0) {
-    feedback += "It looks like you're trying Spanish. Keep practicing!";
+    feedback += "It looks like you're trying Spanish. Keep practicing!<br>";
     score += 1;
   } else {
-    feedback += "This doesn't look like Spanish. Try writing a Spanish sentence!";
+    feedback += "This doesn't look like Spanish. Try writing a Spanish sentence!<br>";
   }
 
   // Clamp score and show stars
   let maxScore = 7;
-  let starScore = Math.max(1, Math.min(5, Math.round((score / maxScore) * 5)));
+  let starScore = Math.max(1, Math.min(5, Math.round(((score + translationScore) / maxScore) * 5)));
   let stars = "★".repeat(starScore) + "☆".repeat(5 - starScore);
-  feedback = `<div style="font-size:1.3em;color:#f59e42;margin-bottom:4px;">${stars}</div>` + feedback;
+  feedback = `<div style="font-size:1.3em;color:#f59e42;margin-bottom:4px;">${stars}</div>` +
+             (translationFeedback ? translationFeedback + "<br>" : "") +
+             feedback;
 
   // Add suggestions if any
   if (suggestions.length > 0) {
@@ -890,6 +925,7 @@ document.getElementById('checkSpanishBtn').onclick = function() {
   feedbackBox.innerHTML = feedback;
   feedbackBox.style.animation = "fadeIn 0.7s";
 };
+
 
 // --- Check English Button Logic ---
 document.getElementById('checkEnglishBtn').onclick = function() {
