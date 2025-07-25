@@ -2464,4 +2464,38 @@ export const verbs = [
     "Conditional Perfect": ["habría encerrado", "habrías encerrado", "habría encerrado", "habríamos encerrado", "habríais encerrado", "habrían encerrado"]
   }
 },
+{
+  "english": ["to guess right", "to get right", "to hit the mark"],
+  "spanish": "acertar",
+  "type": "irregular (e→ie)",
+  "memoryTip": "Acertar sounds like 'a certain' — a certain answer is the right one.",
+  "conjugations": {
+    "Present": ["acierto", "aciertas", "acierta", "acertamos", "acertáis", "aciertan"],
+    "Preterite": ["acerté", "acertaste", "acertó", "acertamos", "acertasteis", "acertaron"],
+    "Imperfect": ["acertaba", "acertabas", "acertaba", "acertábamos", "acertabais", "acertaban"],
+    "Future": ["acertaré", "acertarás", "acertará", "acertaremos", "acertaréis", "acertarán"],
+    "Conditional": ["acertaría", "acertarías", "acertaría", "acertaríamos", "acertaríais", "acertarían"],
+    "Present Perfect": ["he acertado", "has acertado", "ha acertado", "hemos acertado", "habéis acertado", "han acertado"],
+    "Past Perfect": ["había acertado", "habías acertado", "había acertado", "habíamos acertado", "habíais acertado", "habían acertado"],
+    "Future Perfect": ["habré acertado", "habrás acertado", "habrá acertado", "habremos acertado", "habréis acertado", "habrán acertado"],
+    "Conditional Perfect": ["habría acertado", "habrías acertado", "habría acertado", "habríamos acertado", "habríais acertado", "habrían acertado"]
+  }
+},
+{
+  "english": ["to dismember"],
+  "spanish": "desmembrar",
+  "type": "regular",
+  "memoryTip": "Des- (undo) + membrar (from *miembro*, 'limb') = to take limbs apart.",
+  "conjugations": {
+    "Present": ["desmembro", "desmembras", "desmembra", "desmembramos", "desmembráis", "desmembran"],
+    "Preterite": ["desmembré", "desmembraste", "desmembró", "desmembramos", "desmembrasteis", "desmembraron"],
+    "Imperfect": ["desmembraba", "desmembrabas", "desmembraba", "desmembrábamos", "desmembrabais", "desmembraban"],
+    "Future": ["desmembraré", "desmembrarás", "desmembrará", "desmembraremos", "desmembraréis", "desmembrarán"],
+    "Conditional": ["desmembraría", "desmembrarías", "desmembraría", "desmembraríamos", "desmembraríais", "desmembrarían"],
+    "Present Perfect": ["he desmembrado", "has desmembrado", "ha desmembrado", "hemos desmembrado", "habéis desmembrado", "han desmembrado"],
+    "Past Perfect": ["había desmembrado", "habías desmembrado", "había desmembrado", "habíamos desmembrado", "habíais desmembrado", "habían desmembrado"],
+    "Future Perfect": ["habré desmembrado", "habrás desmembrado", "habrá desmembrado", "habremos desmembrado", "habréis desmembrado", "habrán desmembrado"],
+    "Conditional Perfect": ["habría desmembrado", "habrías desmembrado", "habría desmembrado", "habríamos desmembrado", "habríais desmembrado", "habrían desmembrado"]
+  }
+}
 ];
