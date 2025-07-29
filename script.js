@@ -210,6 +210,7 @@ practiceFormEn.onsubmit = function(e) {
     } else {
       conjugation = verb.conjugations[t] ? verb.conjugations[t][pronounIdx] : "(not available)";
     }
+    if (conjugation === "(not available)") return; // <-- Only render if available
     let english = buildEnglishPhrase(verb, t, pronounIdx, meaningIdx);
     let highlight = (detectedTense && t === detectedTense) ? ' style="background:#e0e7ff;font-weight:bold;"' : '';
     html += `<tr${highlight}>
@@ -324,6 +325,7 @@ practiceFormEs.onsubmit = function(e) {
     for (let i = 0; i < spanishPronouns.length; ++i) {
       for (let t of tenses) {
         let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][i] : "(not available)";
+        if (sp === "(not available)") continue; // <-- Only render if available
         let eng = buildEnglishPhrase(found.verb, t, i, meaningIdx);
         html += `<tr>
           <td>${spanishPronouns[i]}</td>
@@ -368,6 +370,7 @@ practiceFormEs.onsubmit = function(e) {
           for (let i = 0; i < spanishPronouns.length; ++i) {
             for (let t of tenses) {
               let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][i] : "(not available)";
+              if (sp === "(not available)") continue; // <-- Only render if available
               let eng = buildEnglishPhrase(found.verb, t, i, idx);
               html += `<tr>
                 <td>${spanishPronouns[i]}</td>
@@ -420,6 +423,7 @@ practiceFormEs.onsubmit = function(e) {
   tenses.forEach(t => {
     let eng = buildEnglishPhrase(found.verb, t, found.pronounIdx, meaningIdx);
     let sp = found.verb.conjugations[t] ? found.verb.conjugations[t][found.pronounIdx] : "(not available)";
+    if (sp === "(not available)") return; // <-- Only render if available
     html += `<tr>
       <td>
         ${t}
@@ -484,6 +488,7 @@ quizForm.onsubmit = e => {
       </tr>`;
     tenses.forEach(t => {
       const sp = quizState.verb.conjugations[t] ? quizState.verb.conjugations[t][quizState.pronounIdx] : "(not available)";
+      if (sp === "(not available)") return; // <-- Only render if available
       const en = buildEnglishPhrase(quizState.verb, t, quizState.pronounIdx);
       html += `<tr>
         <td>
@@ -515,6 +520,7 @@ quizForm.onsubmit = e => {
         </tr>`;
       tenses.forEach(t => {
         const sp = quizState.verb.conjugations[t] ? quizState.verb.conjugations[t][quizState.pronounIdx] : "(not available)";
+        if (sp === "(not available)") return; // <-- Only render if available
         const en = buildEnglishPhrase(quizState.verb, t, quizState.pronounIdx);
         html += `<tr>
           <td>
@@ -1082,3 +1088,156 @@ function showRandomNotesPrompt() {
   document.getElementById('notesPrompt').textContent = prompt;
 }
 showRandomNotesPrompt();
+
+// --- Translation Check Logic (English prompt to Spanish) ---
+document.getElementById('checkTranslationBtn').onclick = function() {
+  const userInput = document.getElementById('translationAttemptInput').value.trim();
+  const feedbackDiv = document.getElementById('translationCheckFeedback');
+  const currentPrompt = document.getElementById('notesPrompt').textContent;
+  const correct = englishToSpanishPrompts[currentPrompt];
+
+  if (!userInput) {
+    feedbackDiv.innerHTML = '<span style="color:#ef4444;">Please enter your Spanish translation above.</span>';
+    return;
+  }
+  if (!correct) {
+    feedbackDiv.innerHTML = '<span style="color:#ef4444;">No correct answer found for this prompt.</span>';
+    return;
+  }
+
+  // Normalize for comparison (remove accents, punctuation, lowercase)
+  const normalize = s =>
+    s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[¡!¿?.,]/g, '').trim();
+  const normUser = normalize(userInput);
+  const normCorrect = normalize(correct);
+
+  // Calculate accuracy (Levenshtein distance based)
+  function levenshtein(a, b) {
+    const matrix = Array(a.length + 1).fill(null).map(() => Array(b.length + 1).fill(null));
+    for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+    for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= a.length; i++) {
+      for (let j = 1; j <= b.length; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1, // deletion
+          matrix[i][j - 1] + 1, // insertion
+          matrix[i - 1][j - 1] + cost // substitution
+        );
+      }
+    }
+    return matrix[a.length][b.length];
+  }
+  const maxLen = Math.max(normUser.length, normCorrect.length);
+  const lev = levenshtein(normUser, normCorrect);
+  const accuracy = maxLen === 0 ? 100 : Math.max(0, Math.round(100 * (1 - lev / maxLen)));
+
+  // Educational difference analysis
+  let explanation = '';
+  if (accuracy < 100) {
+    // Tokenize by words
+    const userWords = normUser.split(/\s+/);
+    const correctWords = normCorrect.split(/\s+/);
+    // Find missing and extra words
+    const missing = correctWords.filter(w => !userWords.includes(w));
+    const extra = userWords.filter(w => !correctWords.includes(w));
+    // Word order check
+    let wordOrderIssue = false;
+    if (userWords.length === correctWords.length && accuracy > 50) {
+      for (let i = 0; i < userWords.length; ++i) {
+        if (userWords[i] !== correctWords[i]) {
+          wordOrderIssue = true;
+          break;
+        }
+      }
+    }
+    if (missing.length && extra.length) {
+      explanation = `Some words are missing (${missing.join(", ")}) and some are extra (${extra.join(", ")}).`;
+    } else if (missing.length) {
+      explanation = `You're missing: <b>${missing.join(", ")}</b>.`;
+    } else if (extra.length) {
+      explanation = `You included extra word(s): <b>${extra.join(", ")}</b>.`;
+    } else if (wordOrderIssue) {
+      explanation = `The word order is different. In Spanish, the time expression (like 'hoy') often comes first.`;
+    }
+    // Teaching tip for common word order (e.g., time expressions at the start)
+    if (!explanation && accuracy < 100) {
+      if (normCorrect.startsWith('hoy') && !normUser.startsWith('hoy')) {
+        explanation = `Tip: In Spanish, time expressions like 'hoy' (today) often come at the beginning of the sentence.`;
+      }
+    }
+    if (explanation) {
+      explanation = `<div style='color:#b91c1c;margin-bottom:6px;'><b>Teaching tip:</b> ${explanation}</div>`;
+    }
+  }
+
+  // Tips based on common issues
+  let tips = [];
+  if (!userInput.match(/^[A-ZÁÉÍÓÚÑ¿¡]/)) tips.push("Start with a capital letter or inverted punctuation (¿/¡).");
+  if (!userInput.match(/[.!?]$/)) tips.push("End your sentence with a period, exclamation, or question mark.");
+  if (userInput.includes("yo es")) tips.push("Remember: 'yo soy' or 'yo estoy', not 'yo es'.");
+  if (userInput.includes("tu eres") && !userInput.includes("tú eres")) tips.push("Did you mean 'tú eres'? Don't forget the accent on 'tú' for 'you'.");
+  if (/\bsi\b/i.test(userInput) && !userInput.includes("sí")) tips.push("Did you mean 'sí' (yes) with an accent?");
+  if (/\bel\b/i.test(userInput) && !userInput.includes("él")) tips.push("Did you mean 'él' (he) with an accent?");
+  if (userInput.length < 10) tips.push("Try writing a longer sentence for more practice.");
+  if (userInput.includes("? ") && !userInput.includes("¿")) tips.push("Spanish questions should start with '¿'.");
+  if (userInput.includes("! ") && !userInput.includes("¡")) tips.push("Spanish exclamations should start with '¡'.");
+
+  let feedback = `<div style='margin-bottom:6px;'><b>Your attempt:</b> <span style='color:#2563eb;'>${userInput}</span></div>`;
+  feedback += `<div style='margin-bottom:6px;'><b>Correct answer:</b> <span style='color:#059669;'>${correct}</span></div>`;
+  feedback += `<div style='margin-bottom:6px;'><b>Accuracy:</b> <span style='color:#f59e42;font-weight:bold;'>${accuracy}%</span></div>`;
+  if (explanation) feedback += explanation;
+  if (tips.length > 0) {
+    feedback += `<div style='margin-top:8px;'><b>Tips to remember:</b><ul style='margin:0 0 0 18px;'>`;
+    for (let t of tips) feedback += `<li>${t}</li>`;
+    feedback += `</ul></div>`;
+  } else if (accuracy === 100) {
+    feedback += `<div style='color:green;margin-top:8px;'>Excellent! Your translation is perfect.</div>`;
+  } else if (accuracy > 80) {
+    feedback += `<div style='color:#2563eb;margin-top:8px;'>Very close! Just a few small differences.</div>`;
+  }
+  feedbackDiv.innerHTML = feedback;
+};
+
+// --- Add more translation prompts ---
+englishNotePrompts.push(
+  "Translate: What time is it?",
+  "Translate: I am going to the store.",
+  "Translate: She is my friend.",
+  "Translate: We are studying Spanish.",
+  "Translate: Can you help me?",
+  "Translate: I don't know the answer.",
+  "Translate: Where is the bathroom?",
+  "Translate: I am tired.",
+  "Translate: I need water.",
+  "Translate: How much does it cost?",
+  "Translate: I like to read books.",
+  "Translate: He is very funny.",
+  "Translate: I want to eat something.",
+  "Translate: The weather is nice today.",
+  "Translate: I have a question."
+);
+Object.assign(englishToSpanishPrompts, {
+  "Translate: What time is it?": "¿Qué hora es?",
+  "Translate: I am going to the store.": "Voy a la tienda.",
+  "Translate: She is my friend.": "Ella es mi amiga.",
+  "Translate: We are studying Spanish.": "Estamos estudiando español.",
+  "Translate: Can you help me?": "¿Puedes ayudarme?",
+  "Translate: I don't know the answer.": "No sé la respuesta.",
+  "Translate: Where is the bathroom?": "¿Dónde está el baño?",
+  "Translate: I am tired.": "Estoy cansado.",
+  "Translate: I need water.": "Necesito agua.",
+  "Translate: How much does it cost?": "¿Cuánto cuesta?",
+  "Translate: I like to read books.": "Me gusta leer libros.",
+  "Translate: He is very funny.": "Él es muy gracioso.",
+  "Translate: I want to eat something.": "Quiero comer algo.",
+  "Translate: The weather is nice today.": "Hace buen tiempo hoy.",
+  "Translate: I have a question.": "Tengo una pregunta."
+});
+
+// --- Next Challenge button logic ---
+document.getElementById('nextTranslationBtn').onclick = function() {
+  showRandomNotesPrompt();
+  document.getElementById('translationAttemptInput').value = '';
+  document.getElementById('translationCheckFeedback').innerHTML = '';
+};

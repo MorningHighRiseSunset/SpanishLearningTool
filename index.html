@@ -73,13 +73,23 @@
   <!-- Notes Sidebar -->
   <div id="notesBox" class="notebook-notes">
     <h3 style="margin-top:0;">📝 Notes</h3>
-  <textarea id="notesArea" class="notebook-area" placeholder="Write your Spanish notes here..."></textarea>
-  <div id="notesPrompt" style="margin:8px 0 0 0;font-size:1.1em;color:#2563eb;"></div>
+    <h4 class="section-heading">Your Notes</h4>
+    <textarea id="notesArea" class="notebook-area" placeholder="Write your Spanish notes here..."></textarea>
     <div id="notesFeedback" class="notes-feedback"></div>
     <div class="notes-btn-row">
       <button id="printNotesBtn" class="notes-btn notes-btn-print">Print Notes</button>
       <button id="checkSpanishBtn" class="notes-btn notes-btn-spanish">Check Spanish</button>
       <button id="checkEnglishBtn" class="notes-btn notes-btn-english">Check English</button>
+    </div>
+    <h4 class="section-heading">Translation Challenge</h4>
+    <div id="notesPrompt" style="margin:8px 0 0 0;font-size:1.1em;color:#2563eb;"></div>
+    <div id="translationCheckBox">
+      <div class="translation-row">
+        <input type="text" id="translationAttemptInput" placeholder="Type your Spanish translation here...">
+        <button id="checkTranslationBtn" class="notes-btn notes-btn-spanish">Check Translation</button>
+        <button id="nextTranslationBtn" class="notes-btn notes-btn-spanish">Next Challenge</button>
+      </div>
+      <div id="translationCheckFeedback" style="margin-top:8px;"></div>
     </div>
   </div>
 

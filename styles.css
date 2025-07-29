@@ -468,3 +468,105 @@ body.dark-mode .notebook-area {
   background: #818cf8;
   color: #fff;
 }
+
+.translation-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 10px 0 10px 0;
+}
+.translation-row input[type="text"] {
+  width: 100%;
+  font-size: 1.08rem;
+  padding: 14px 16px;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  background: #f0f9ff;
+  color: #312e81;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+.translation-row button {
+  width: 180px;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 12px 18px;
+  white-space: normal;
+  margin: 0;
+  display: block;
+  text-align: left;
+}
+.notes-btn,
+.notes-btn-spanish,
+.notes-btn-print,
+.notes-btn-english {
+  width: 180px;
+  min-width: 0;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 12px 18px;
+  white-space: normal;
+  margin: 0 0 8px 0;
+  display: block;
+  text-align: left;
+}
+.notes-btn:last-child,
+.notes-btn-spanish:last-child,
+.notes-btn-print:last-child,
+.notes-btn-english:last-child {
+  margin-bottom: 0;
+}
+.notes-btn-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.notes-btn-row button {
+  width: 180px;
+  min-width: 0;
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+.notes-btn-row button:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 700px) {
+  .translation-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .translation-row input[type="text"] {
+    width: 100%;
+  }
+  .translation-row button {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+  }
+  .notes-btn,
+  .notes-btn-spanish,
+  .notes-btn-print,
+  .notes-btn-english,
+  .notes-btn-row button {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 8px 0;
+    text-align: left;
+  }
+  .notes-btn:last-child,
+  .notes-btn-spanish:last-child,
+  .notes-btn-print:last-child,
+  .notes-btn-english:last-child,
+  .notes-btn-row button:last-child {
+    margin-bottom: 0;
+  }
+}
+.section-heading {
+  font-size: 1.08em;
+  color: #818cf8;
+  margin: 18px 0 8px 0;
+  font-weight: 600;
+}
