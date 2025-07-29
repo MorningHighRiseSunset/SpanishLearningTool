@@ -31,8 +31,6 @@ const spanishPronouns = ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", 
 const tenses = [
   "Present", "Preterite", "Imperfect", "Future", "Conditional",
   "Present Perfect", "Past Perfect", "Future Perfect", "Conditional Perfect",
-  "Present Continuous", "Past Continuous", "Future Continuous",
-  "Present Perfect Continuous", "Past Perfect Continuous", "Future Perfect Continuous",
   "Imperative"
 ];
 
@@ -46,12 +44,6 @@ const tenseDefinitions = {
   "Past Perfect": "Describes actions that had happened before another past action.",
   "Future Perfect": "Describes actions that will have happened by a certain point in the future.",
   "Conditional Perfect": "Describes actions that would have happened under certain conditions.",
-  "Present Continuous": "Describes actions happening right now (I am eating).",
-  "Past Continuous": "Describes actions that were happening at a specific time in the past (I was eating).",
-  "Future Continuous": "Describes actions that will be happening at a specific time in the future (I will be eating).",
-  "Present Perfect Continuous": "Describes actions that started in the past and continue to the present (I have been eating).",
-  "Past Perfect Continuous": "Describes actions that had been happening before another past action (I had been eating).",
-  "Future Perfect Continuous": "Describes actions that will have been happening up to a point in the future (I will have been eating).",
   "Imperative": "Used to give commands or requests (Eat! Run!)"
 };
 
@@ -797,51 +789,12 @@ const irregulars = {
     else present = base + "s";
   }
 
-  // For continuous tenses, use "be" + present participle
-  function presentParticiple(base) {
-    // Special cases for phrasal/multi-word verbs
-    if (base === 'wake up') return 'waking up';
-    if (base === 'take off') return 'taking off';
-    if (base === 'sit down') return 'sitting down';
-    if (base === 'stand up') return 'standing up';
-    if (base === 'come back') return 'coming back';
-    if (base === 'put to sleep') return 'putting to sleep';
-    if (base === 'fall asleep') return 'falling asleep';
-    if (base === 'get up') return 'getting up';
-    // General rule for phrasal verbs: present participle of first word + rest
-    if (base.includes(' ')) {
-      const [verb, ...rest] = base.split(' ');
-      let part = verb;
-      if (verb.endsWith('ie')) part = verb.slice(0, -2) + 'ying';
-      else if (verb.endsWith('e') && verb !== 'be') part = verb.slice(0, -1) + 'ing';
-      else if (/([aeiou][^aeiouwxy])$/.test(verb)) part = verb + verb.slice(-1) + 'ing';
-      else part = verb + 'ing';
-      return part + ' ' + rest.join(' ');
-    }
-    // Original rules for single-word verbs
-    if (base.endsWith('ie')) return base.slice(0, -2) + 'ying';
-    if (base.endsWith('e') && base !== 'be') return base.slice(0, -1) + 'ing';
-    if (/([aeiou][^aeiouwxy])$/.test(base)) return base + base.slice(-1) + 'ing';
-    return base + 'ing';
-  }
   // For imperative, just the base (no pronoun)
   if (tense === "Imperative") {
     return base.charAt(0).toUpperCase() + base.slice(1) + "!";
   }
   // Continuous tenses
   switch (tense) {
-    case "Present Continuous":
-      return `${pronoun} ${["He", "She", "It"].includes(pronoun) ? "is" : (pronoun === "I" ? "am" : "are")} ${presentParticiple(base)}`;
-    case "Past Continuous":
-      return `${pronoun} ${["I", "He", "She", "It"].includes(pronoun) ? "was" : "were"} ${presentParticiple(base)}`;
-    case "Future Continuous":
-      return `${pronoun} will be ${presentParticiple(base)}`;
-    case "Present Perfect Continuous":
-      return `${pronoun} ${["He", "She", "It"].includes(pronoun) ? "has" : "have"} been ${presentParticiple(base)}`;
-    case "Past Perfect Continuous":
-      return `${pronoun} had been ${presentParticiple(base)}`;
-    case "Future Perfect Continuous":
-      return `${pronoun} will have been ${presentParticiple(base)}`;
     case "Present":
       return `${pronoun} ${present}`;
     case "Preterite":
