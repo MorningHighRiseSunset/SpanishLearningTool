@@ -30,8 +30,7 @@ const pronouns = ["I", "You", "He", "We", "You all", "They"];
 const spanishPronouns = ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ellas/Ustedes"];
 const tenses = [
   "Present", "Preterite", "Imperfect", "Future", "Conditional",
-  "Present Perfect", "Past Perfect", "Future Perfect", "Conditional Perfect",
-  "Imperative"
+  "Present Perfect", "Past Perfect", "Future Perfect", "Conditional Perfect"
 ];
 
 const tenseDefinitions = {
@@ -43,8 +42,7 @@ const tenseDefinitions = {
   "Present Perfect": "Describes actions that have happened recently or have relevance to the present.",
   "Past Perfect": "Describes actions that had happened before another past action.",
   "Future Perfect": "Describes actions that will have happened by a certain point in the future.",
-  "Conditional Perfect": "Describes actions that would have happened under certain conditions.",
-  "Imperative": "Used to give commands or requests (Eat! Run!)"
+  "Conditional Perfect": "Describes actions that would have happened under certain conditions."
 };
 
 const modeSelect = document.getElementById('modeSelect');
@@ -789,10 +787,6 @@ const irregulars = {
     else present = base + "s";
   }
 
-  // For imperative, just the base (no pronoun)
-  if (tense === "Imperative") {
-    return base.charAt(0).toUpperCase() + base.slice(1) + "!";
-  }
   // Continuous tenses
   switch (tense) {
     case "Present":
