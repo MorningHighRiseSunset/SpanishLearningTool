@@ -673,10 +673,10 @@ const irregulars = {
   "to bring": { preterite: "brought", pastPart: "brought" },
   "to buy": { preterite: "bought", pastPart: "bought" },
   "to choose": { preterite: "chose", pastPart: "chosen" },
-  "to come": { preterite: "came", pastPart: "come" },
   "to drink": { preterite: "drank", pastPart: "drunk" },
   "to drive": { preterite: "drove", pastPart: "driven" },
   "to fall": { preterite: "fell", pastPart: "fallen" },
+  "to fall asleep": { preterite: "fell asleep", pastPart: "fallen asleep" },
   "to feel": { preterite: "felt", pastPart: "felt" },
   "to find": { preterite: "found", pastPart: "found" },
   "to fly": { preterite: "flew", pastPart: "flown" },
@@ -714,13 +714,45 @@ const irregulars = {
   "to understand": { preterite: "understood", pastPart: "understood" },
   "to wear": { preterite: "wore", pastPart: "worn" },
   "to win": { preterite: "won", pastPart: "won" },
-  "to write": { preterite: "wrote", pastPart: "written" }
+  "to write": { preterite: "wrote", pastPart: "written" },
+  // Regular verbs with spelling changes
+  "to stab": { preterite: "stabbed", pastPart: "stabbed" },
+  "to plan": { preterite: "planned", pastPart: "planned" },
+  "to stop": { preterite: "stopped", pastPart: "stopped" },
+  "to admit": { preterite: "admitted", pastPart: "admitted" },
+  "to prefer": { preterite: "preferred", pastPart: "preferred" },
+  "to travel": { preterite: "traveled", pastPart: "traveled" },
+  "to control": { preterite: "controlled", pastPart: "controlled" },
+  "to refer": { preterite: "referred", pastPart: "referred" },
+  "to occur": { preterite: "occurred", pastPart: "occurred" },
+  "to permit": { preterite: "permitted", pastPart: "permitted" },
+  "to regret": { preterite: "regretted", pastPart: "regretted" },
+  "to commit": { preterite: "committed", pastPart: "committed" },
+  "to submit": { preterite: "submitted", pastPart: "submitted" },
+  "to equip": { preterite: "equipped", pastPart: "equipped" },
+  "to omit": { preterite: "omitted", pastPart: "omitted" },
+  "to worship": { preterite: "worshipped", pastPart: "worshipped" },
+  "to format": { preterite: "formatted", pastPart: "formatted" },
+  "to target": { preterite: "targeted", pastPart: "targeted" },
   // Add more as needed
 };
 
   // Try to find irregular by normalized meaning (for multi-meaning verbs)
   let irregularKey = normalizedMeaning;
-  let preterite = base + (base.endsWith('e') ? 'd' : 'ed');
+  // Also check for multi-word verbs (e.g., "fall asleep")
+  if (!irregulars[irregularKey] && meaning.toLowerCase().startsWith("to ")) {
+    let multiWordKey = meaning.toLowerCase();
+    if (irregulars[multiWordKey]) irregularKey = multiWordKey;
+  }
+  // Improved regular verb past tense logic: double consonant if CVC and ends with single consonant (not w, x, y)
+  function regularPast(base) {
+    if (/([aeiou][^aeiouwxy])$/.test(base)) {
+      return base + base.slice(-1) + "ed";
+    }
+    if (base.endsWith("e")) return base + "d";
+    return base + "ed";
+  }
+  let preterite = regularPast(base);
   let pastPart = preterite;
   if (irregulars[irregularKey]) {
     preterite = irregulars[irregularKey].preterite;
