@@ -3230,5 +3230,276 @@ export const verbs = [
       "Conditional Perfect": ["habría venido", "habrías venido", "habría venido", "habríamos venido", "habríais venido", "habrían venido"]
     }
   },
-
+  {
+    english: ["to chop", "to sting", "to bite (insect)", "to peck"],
+    spanish: "picar",
+    type: "regular",
+    memoryTip: "Used for chopping, stinging, or pecking.",
+    conjugations: {
+      "Present": ["pico", "picas", "pica", "picamos", "picáis", "pican"],
+      "Preterite": ["piqué", "picaste", "picó", "picamos", "picasteis", "picaron"],
+      "Imperfect": ["picaba", "picabas", "picaba", "picábamos", "picabais", "picaban"],
+      "Future": ["picaré", "picarás", "picará", "picaremos", "picaréis", "picarán"],
+      "Conditional": ["picaría", "picarías", "picaría", "picaríamos", "picaríais", "picarían"],
+      "Present Perfect": ["he picado", "has picado", "ha picado", "hemos picado", "habéis picado", "han picado"],
+      "Past Perfect": ["había picado", "habías picado", "había picado", "habíamos picado", "habíais picado", "habían picado"],
+      "Future Perfect": ["habré picado", "habrás picado", "habrá picado", "habremos picado", "habréis picado", "habrán picado"],
+      "Conditional Perfect": ["habría picado", "habrías picado", "habría picado", "habríamos picado", "habríais picado", "habrían picado"]
+    }
+  },
+  {
+    english: ["to cover"],
+    spanish: "cubrir",
+    type: "regular",
+    memoryTip: "Used for covering something.",
+    conjugations: {
+      "Present": ["cubro", "cubres", "cubre", "cubrimos", "cubrís", "cubren"],
+      "Preterite": ["cubrí", "cubriste", "cubrió", "cubrimos", "cubristeis", "cubrieron"],
+      "Imperfect": ["cubría", "cubrías", "cubría", "cubríamos", "cubríais", "cubrían"],
+      "Future": ["cubriré", "cubrirás", "cubrirá", "cubriremos", "cubriréis", "cubrirán"],
+      "Conditional": ["cubriría", "cubrirías", "cubriría", "cubriríamos", "cubriríais", "cubrirían"],
+      "Present Perfect": ["he cubierto", "has cubierto", "ha cubierto", "hemos cubierto", "habéis cubierto", "han cubierto"],
+      "Past Perfect": ["había cubierto", "habías cubierto", "había cubierto", "habíamos cubierto", "habíais cubierto", "habían cubierto"],
+      "Future Perfect": ["habré cubierto", "habrás cubierto", "habrá cubierto", "habremos cubierto", "habréis cubierto", "habrán cubierto"],
+      "Conditional Perfect": ["habría cubierto", "habrías cubierto", "habría cubierto", "habríamos cubierto", "habríais cubierto", "habrían cubierto"]
+    }
+  },
+  {
+    english: ["to cover", "to put a lid on"],
+    spanish: "tapar",
+    type: "regular",
+    memoryTip: "Used for covering or putting a lid on something.",
+    conjugations: {
+      "Present": ["tapo", "tapas", "tapa", "tapamos", "tapáis", "tapan"],
+      "Preterite": ["tapé", "tapaste", "tapó", "tapamos", "tapasteis", "taparon"],
+      "Imperfect": ["tapaba", "tapabas", "tapaba", "tapábamos", "tapabais", "tapaban"],
+      "Future": ["taparé", "taparás", "tapará", "taparemos", "taparéis", "taparán"],
+      "Conditional": ["taparía", "taparías", "taparía", "taparíamos", "taparíais", "taparían"],
+      "Present Perfect": ["he tapado", "has tapado", "ha tapado", "hemos tapado", "habéis tapado", "han tapado"],
+      "Past Perfect": ["había tapado", "habías tapado", "había tapado", "habíamos tapado", "habíais tapado", "habían tapado"],
+      "Future Perfect": ["habré tapado", "habrás tapado", "habrá tapado", "habremos tapado", "habréis tapado", "habrán tapado"],
+      "Conditional Perfect": ["habría tapado", "habrías tapado", "habría tapado", "habríamos tapado", "habríais tapado", "habrían tapado"]
+    }
+  },
+  {
+    english: ["to cover up", "to conceal"],
+    spanish: "encubrir",
+    type: "regular",
+    memoryTip: "Used for covering up or concealing something.",
+    conjugations: {
+      "Present": ["encubro", "encubres", "encubre", "encubrimos", "encubrís", "encubren"],
+      "Preterite": ["encubrí", "encubriste", "encubrió", "encubrimos", "encubristeis", "encubrieron"],
+      "Imperfect": ["encubría", "encubrías", "encubría", "encubríamos", "encubríais", "encubrían"],
+      "Future": ["encubriré", "encubrirás", "encubrirá", "encubriremos", "encubriréis", "encubrirán"],
+      "Conditional": ["encubriría", "encubrirías", "encubriría", "encubriríamos", "encubriríais", "encubrirían"],
+      "Present Perfect": ["he encubierto", "has encubierto", "ha encubierto", "hemos encubierto", "habéis encubierto", "han encubierto"],
+      "Past Perfect": ["había encubierto", "habías encubierto", "había encubierto", "habíamos encubierto", "habíais encubierto", "habían encubierto"],
+      "Future Perfect": ["habré encubierto", "habrás encubierto", "habrá encubierto", "habremos encubierto", "habréis encubierto", "habrán encubierto"],
+      "Conditional Perfect": ["habría encubierto", "habrías encubierto", "habría encubierto", "habríamos encubierto", "habríais encubierto", "habrían encubierto"]
+    }
+  },
+  {
+    english: ["to hide", "to conceal"],
+    spanish: "ocultar",
+    type: "regular",
+    memoryTip: "Used for hiding or concealing something.",
+    conjugations: {
+      "Present": ["oculto", "ocultas", "oculta", "ocultamos", "ocultáis", "ocultan"],
+      "Preterite": ["oculté", "ocultaste", "ocultó", "ocultamos", "ocultasteis", "ocultaron"],
+      "Imperfect": ["ocultaba", "ocultabas", "ocultaba", "ocultábamos", "ocultabais", "ocultaban"],
+      "Future": ["ocultaré", "ocultarás", "ocultará", "ocultaremos", "ocultaréis", "ocultarán"],
+      "Conditional": ["ocultaría", "ocultarías", "ocultaría", "ocultaríamos", "ocultaríais", "ocultarían"],
+      "Present Perfect": ["he ocultado", "has ocultado", "ha ocultado", "hemos ocultado", "habéis ocultado", "han ocultado"],
+      "Past Perfect": ["había ocultado", "habías ocultado", "había ocultado", "habíamos ocultado", "habíais ocultado", "habían ocultado"],
+      "Future Perfect": ["habré ocultado", "habrás ocultado", "habrá ocultado", "habremos ocultado", "habréis ocultado", "habrán ocultado"],
+      "Conditional Perfect": ["habría ocultado", "habrías ocultado", "habría ocultado", "habríamos ocultado", "habríais ocultado", "habrían ocultado"]
+    }
+  },
+  {
+    english: ["to disguise", "to hide"],
+    spanish: "disimular",
+    type: "regular",
+    memoryTip: "Used for disguising or hiding emotions or facts.",
+    conjugations: {
+      "Present": ["disimulo", "disimulas", "disimula", "disimulamos", "disimuláis", "disimulan"],
+      "Preterite": ["disimulé", "disimulaste", "disimuló", "disimulamos", "disimulasteis", "disimularon"],
+      "Imperfect": ["disimulaba", "disimulabas", "disimulaba", "disimulábamos", "disimulabais", "disimulaban"],
+      "Future": ["disimularé", "disimularás", "disimulará", "disimularemos", "disimularéis", "disimularán"],
+      "Conditional": ["disimularía", "disimularías", "disimularía", "disimularíamos", "disimularíais", "disimularían"],
+      "Present Perfect": ["he disimulado", "has disimulado", "ha disimulado", "hemos disimulado", "habéis disimulado", "han disimulado"],
+      "Past Perfect": ["había disimulado", "habías disimulado", "había disimulado", "habíamos disimulado", "habíais disimulado", "habían disimulado"],
+      "Future Perfect": ["habré disimulado", "habrás disimulado", "habrá disimulado", "habremos disimulado", "habréis disimulado", "habrán disimulado"],
+      "Conditional Perfect": ["habría disimulado", "habrías disimulado", "habría disimulado", "habríamos disimulado", "habríais disimulado", "habrían disimulado"]
+    }
+  },
+  {
+    english: ["to plug in"],
+    spanish: "enchufar",
+    type: "regular",
+    memoryTip: "Used for plugging in electrical devices.",
+    conjugations: {
+      "Present": ["enchufo", "enchufas", "enchufa", "enchufamos", "enchufáis", "enchufan"],
+      "Preterite": ["enchufé", "enchufaste", "enchufó", "enchufamos", "enchufasteis", "enchufaron"],
+      "Imperfect": ["enchufaba", "enchufabas", "enchufaba", "enchufábamos", "enchufabais", "enchufaban"],
+      "Future": ["enchufaré", "enchufarás", "enchufará", "enchufaremos", "enchufaréis", "enchufarán"],
+      "Conditional": ["enchufaría", "enchufarías", "enchufaría", "enchufaríamos", "enchufaríais", "enchufarían"],
+      "Present Perfect": ["he enchufado", "has enchufado", "ha enchufado", "hemos enchufado", "habéis enchufado", "han enchufado"],
+      "Past Perfect": ["había enchufado", "habías enchufado", "había enchufado", "habíamos enchufado", "habíais enchufado", "habían enchufado"],
+      "Future Perfect": ["habré enchufado", "habrás enchufado", "habrá enchufado", "habremos enchufado", "habréis enchufado", "habrán enchufado"],
+      "Conditional Perfect": ["habría enchufado", "habrías enchufado", "habría enchufado", "habríamos enchufado", "habríais enchufado", "habrían enchufado"]
+    }
+  },
+  {
+    english: ["to plug", "to stop up"],
+    spanish: "taponar",
+    type: "regular",
+    memoryTip: "Used for plugging or stopping up holes.",
+    conjugations: {
+      "Present": ["tapono", "taponas", "tapona", "taponamos", "taponáis", "taponan"],
+      "Preterite": ["taponé", "taponaste", "taponó", "taponamos", "taponasteis", "taponaron"],
+      "Imperfect": ["taponaba", "taponabas", "taponaba", "taponábamos", "taponabais", "taponaban"],
+      "Future": ["taponaré", "taponarás", "taponará", "taponaremos", "taponaréis", "taponarán"],
+      "Conditional": ["taponaría", "taponarías", "taponaría", "taponaríamos", "taponaríais", "taponarían"],
+      "Present Perfect": ["he taponado", "has taponado", "ha taponado", "hemos taponado", "habéis taponado", "han taponado"],
+      "Past Perfect": ["había taponado", "habías taponado", "había taponado", "habíamos taponado", "habíais taponado", "habían taponado"],
+      "Future Perfect": ["habré taponado", "habrás taponado", "habrá taponado", "habremos taponado", "habréis taponado", "habrán taponado"],
+      "Conditional Perfect": ["habría taponado", "habrías taponado", "habría taponado", "habríamos taponado", "habríais taponado", "habrían taponado"]
+    }
+  },
+  {
+    english: ["to stick", "to glue"],
+    spanish: "pegar",
+    type: "regular",
+    memoryTip: "Used for sticking or gluing things.",
+    conjugations: {
+      "Present": ["pego", "pegas", "pega", "pegamos", "pegáis", "pegan"],
+      "Preterite": ["pegué", "pegaste", "pegó", "pegamos", "pegasteis", "pegaron"],
+      "Imperfect": ["pegaba", "pegabas", "pegaba", "pegábamos", "pegabais", "pegaban"],
+      "Future": ["pegaré", "pegarás", "pegará", "pegaremos", "pegaréis", "pegarán"],
+      "Conditional": ["pegaría", "pegarías", "pegaría", "pegaríamos", "pegaríais", "pegarían"],
+      "Present Perfect": ["he pegado", "has pegado", "ha pegado", "hemos pegado", "habéis pegado", "han pegado"],
+      "Past Perfect": ["había pegado", "habías pegado", "había pegado", "habíamos pegado", "habíais pegado", "habían pegado"],
+      "Future Perfect": ["habré pegado", "habrás pegado", "habrá pegado", "habremos pegado", "habréis pegado", "habrán pegado"],
+      "Conditional Perfect": ["habría pegado", "habrías pegado", "habría pegado", "habríamos pegado", "habríais pegado", "habrían pegado"]
+    }
+  },
+  {
+    english: ["to fill (a tooth)", "to paste"],
+    spanish: "empastar",
+    type: "regular",
+    memoryTip: "Used for filling teeth or pasting.",
+    conjugations: {
+      "Present": ["empasto", "empastas", "empasta", "empastamos", "empastáis", "empastan"],
+      "Preterite": ["empasté", "empastaste", "empastó", "empastamos", "empastasteis", "empastaron"],
+      "Imperfect": ["empastaba", "empastabas", "empastaba", "empastábamos", "empastabais", "empastaban"],
+      "Future": ["empastaré", "empastarás", "empastará", "empastaremos", "empastaréis", "empastarán"],
+      "Conditional": ["empastaría", "empastarías", "empastaría", "empastaríamos", "empastaríais", "empastarían"],
+      "Present Perfect": ["he empastado", "has empastado", "ha empastado", "hemos empastado", "habéis empastado", "han empastado"],
+      "Past Perfect": ["había empastado", "habías empastado", "había empastado", "habíamos empastado", "habíais empastado", "habían empastado"],
+      "Future Perfect": ["habré empastado", "habrás empastado", "habrá empastado", "habremos empastado", "habréis empastado", "habrán empastado"],
+      "Conditional Perfect": ["habría empastado", "habrías empastado", "habría empastado", "habríamos empastado", "habríais empastado", "habrían empastado"]
+    }
+  },
+  {
+    english: ["to block", "to clog", "to jam"],
+    spanish: "atascar",
+    type: "regular",
+    memoryTip: "Used for blocking, clogging, or jamming.",
+    conjugations: {
+      "Present": ["atasco", "atascas", "atasca", "atascamos", "atascáis", "atascan"],
+      "Preterite": ["atasqué", "atascaste", "atascó", "atascamos", "atascasteis", "atascaron"],
+      "Imperfect": ["atascaba", "atascabas", "atascaba", "atascábamos", "atascabais", "atascaban"],
+      "Future": ["atascaré", "atascarás", "atascará", "atascaremos", "atascaréis", "atascarán"],
+      "Conditional": ["atascaría", "atascarías", "atascaría", "atascaríamos", "atascaríais", "atascarían"],
+      "Present Perfect": ["he atascado", "has atascado", "ha atascado", "hemos atascado", "habéis atascado", "han atascado"],
+      "Past Perfect": ["había atascado", "habías atascado", "había atascado", "habíamos atascado", "habíais atascado", "habían atascado"],
+      "Future Perfect": ["habré atascado", "habrás atascado", "habrá atascado", "habremos atascado", "habréis atascado", "habrán atascado"],
+      "Conditional Perfect": ["habría atascado", "habrías atascado", "habría atascado", "habríamos atascado", "habríais atascado", "habrían atascado"]
+    }
+  },
+  {
+    english: ["to close"],
+    spanish: "cerrar",
+    type: "regular",
+    memoryTip: "Used for closing things.",
+    conjugations: {
+      "Present": ["cierro", "cierras", "cierra", "cerramos", "cerráis", "cierran"],
+      "Preterite": ["cerré", "cerraste", "cerró", "cerramos", "cerrasteis", "cerraron"],
+      "Imperfect": ["cerraba", "cerrabas", "cerraba", "cerrábamos", "cerrabais", "cerraban"],
+      "Future": ["cerraré", "cerrarás", "cerrará", "cerraremos", "cerraréis", "cerrarán"],
+      "Conditional": ["cerraría", "cerrarías", "cerraría", "cerraríamos", "cerraríais", "cerrarían"],
+      "Present Perfect": ["he cerrado", "has cerrado", "ha cerrado", "hemos cerrado", "habéis cerrado", "han cerrado"],
+      "Past Perfect": ["había cerrado", "habías cerrado", "había cerrado", "habíamos cerrado", "habíais cerrado", "habían cerrado"],
+      "Future Perfect": ["habré cerrado", "habrás cerrado", "habrá cerrado", "habremos cerrado", "habréis cerrado", "habrán cerrado"],
+      "Conditional Perfect": ["habría cerrado", "habrías cerrado", "habría cerrado", "habríamos cerrado", "habríais cerrado", "habrían cerrado"]
+    }
+  },
+  {
+    english: ["to close oneself", "to shut oneself"],
+    spanish: "cerrarse",
+    type: "reflexive",
+    memoryTip: "Used for closing or shutting oneself.",
+    conjugations: {
+      "Present": ["me cierro", "te cierras", "se cierra", "nos cerramos", "os cerráis", "se cierran"],
+      "Preterite": ["me cerré", "te cerraste", "se cerró", "nos cerramos", "os cerrasteis", "se cerraron"],
+      "Imperfect": ["me cerraba", "te cerrabas", "se cerraba", "nos cerrábamos", "os cerrabais", "se cerraban"],
+      "Future": ["me cerraré", "te cerrarás", "se cerrará", "nos cerraremos", "os cerraréis", "se cerrarán"],
+      "Conditional": ["me cerraría", "te cerrarías", "se cerraría", "nos cerraríamos", "os cerraríais", "se cerrarían"],
+      "Present Perfect": ["me he cerrado", "te has cerrado", "se ha cerrado", "nos hemos cerrado", "os habéis cerrado", "se han cerrado"],
+      "Past Perfect": ["me había cerrado", "te habías cerrado", "se había cerrado", "nos habíamos cerrado", "os habíais cerrado", "se habían cerrado"],
+      "Future Perfect": ["me habré cerrado", "te habrás cerrado", "se habrá cerrado", "nos habremos cerrado", "os habréis cerrado", "se habrán cerrado"],
+      "Conditional Perfect": ["me habría cerrado", "te habrías cerrado", "se habría cerrado", "nos habríamos cerrado", "os habríais cerrado", "se habrían cerrado"]
+    }
+  },
+  {
+    english: ["to finish", "to end"],
+    spanish: "finalizar",
+    type: "regular",
+    memoryTip: "Used for finishing or ending something.",
+    conjugations: {
+      "Present": ["finalizo", "finalizas", "finaliza", "finalizamos", "finalizáis", "finalizan"],
+      "Preterite": ["finalicé", "finalizaste", "finalizó", "finalizamos", "finalizasteis", "finalizaron"],
+      "Imperfect": ["finalizaba", "finalizabas", "finalizaba", "finalizábamos", "finalizabais", "finalizaban"],
+      "Future": ["finalizaré", "finalizarás", "finalizará", "finalizaremos", "finalizaréis", "finalizarán"],
+      "Conditional": ["finalizaría", "finalizarías", "finalizaría", "finalizaríamos", "finalizaríais", "finalizarían"],
+      "Present Perfect": ["he finalizado", "has finalizado", "ha finalizado", "hemos finalizado", "habéis finalizado", "han finalizado"],
+      "Past Perfect": ["había finalizado", "habías finalizado", "había finalizado", "habíamos finalizado", "habíais finalizado", "habían finalizado"],
+      "Future Perfect": ["habré finalizado", "habrás finalizado", "habrá finalizado", "habremos finalizado", "habréis finalizado", "habrán finalizado"],
+      "Conditional Perfect": ["habría finalizado", "habrías finalizado", "habría finalizado", "habríamos finalizado", "habríais finalizado", "habrían finalizado"]
+    }
+  },
+  {
+    english: ["to conclude", "to finish"],
+    spanish: "concluir",
+    type: "regular",
+    memoryTip: "Used for concluding or finishing something.",
+    conjugations: {
+      "Present": ["concluyo", "concluyes", "concluye", "concluimos", "concluís", "concluyen"],
+      "Preterite": ["concluí", "concluiste", "concluyó", "concluimos", "concluisteis", "concluyeron"],
+      "Imperfect": ["concluía", "concluías", "concluía", "concluíamos", "concluíais", "concluían"],
+      "Future": ["concluiré", "concluirás", "concluirá", "concluiremos", "concluiréis", "concluirán"],
+      "Conditional": ["concluiría", "concluirías", "concluiría", "concluiríamos", "concluiríais", "concluirían"],
+      "Present Perfect": ["he concluido", "has concluido", "ha concluido", "hemos concluido", "habéis concluido", "han concluido"],
+      "Past Perfect": ["había concluido", "habías concluido", "había concluido", "habíamos concluido", "habíais concluido", "habían concluido"],
+      "Future Perfect": ["habré concluido", "habrás concluido", "habrá concluido", "habremos concluido", "habréis concluido", "habrán concluido"],
+      "Conditional Perfect": ["habría concluido", "habrías concluido", "habría concluido", "habríamos concluido", "habríais concluido", "habrían concluido"]
+    }
+  },
+  {
+    english: ["to bring closer", "to approach"],
+    spanish: "acercar",
+    type: "regular",
+    memoryTip: "Used for bringing something closer or approaching.",
+    conjugations: {
+      "Present": ["acerco", "acercas", "acerca", "acercamos", "acercáis", "acercan"],
+      "Preterite": ["acerqué", "acercaste", "acercó", "acercamos", "acercasteis", "acercaron"],
+      "Imperfect": ["acercaba", "acercabas", "acercaba", "acercábamos", "acercabais", "acercaban"],
+      "Future": ["acercaré", "acercarás", "acercará", "acercaremos", "acercaréis", "acercarán"],
+      "Conditional": ["acercaría", "acercarías", "acercaría", "acercaríamos", "acercaríais", "acercarían"],
+      "Present Perfect": ["he acercado", "has acercado", "ha acercado", "hemos acercado", "habéis acercado", "han acercado"],
+      "Past Perfect": ["había acercado", "habías acercado", "había acercado", "habíamos acercado", "habíais acercado", "habían acercado"],
+      "Future Perfect": ["habré acercado", "habrás acercado", "habrá acercado", "habremos acercado", "habréis acercado", "habrán acercado"],
+      "Conditional Perfect": ["habría acercado", "habrías acercado", "habría acercado", "habríamos acercado", "habríais acercado", "habrían acercado"]
+    }
+  },
 ];
