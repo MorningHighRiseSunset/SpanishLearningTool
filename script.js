@@ -10,7 +10,39 @@ const englishNotePrompts = [
   "Translate: It's raining today.",
   "Translate: I want to travel to Spain.",
   "Translate: How old are you?",
-  "Translate: I don't understand."
+  "Translate: I don't understand.",
+  // --- Added prompts ---
+  "Translate: What time is it?",
+  "Translate: I am going to the store.",
+  "Translate: She is my friend.",
+  "Translate: We are studying Spanish.",
+  "Translate: Can you help me?",
+  "Translate: I don't know the answer.",
+  "Translate: Where is the bathroom?",
+  "Translate: I am tired.",
+  "Translate: I need water.",
+  "Translate: How much does it cost?",
+  "Translate: I like to read books.",
+  "Translate: He is very funny.",
+  "Translate: I want to eat something.",
+  "Translate: The weather is nice today.",
+  "Translate: I have a question.",
+  // --- Newest prompts ---
+  "Translate: I am learning new words.",
+  "Translate: What is your name?",
+  "Translate: I have two brothers.",
+  "Translate: Where are you from?",
+  "Translate: I like to play soccer.",
+  "Translate: The book is on the table.",
+  "Translate: I am going to bed.",
+  "Translate: She is a teacher.",
+  "Translate: We are friends.",
+  "Translate: I don't speak much Spanish.",
+  "Translate: Can you repeat that, please?",
+  "Translate: I am hungry.",
+  "Translate: The cat is black.",
+  "Translate: I live in a big city.",
+  "Translate: What do you want to do today?"
 ];
 
 const englishToSpanishPrompts = {
@@ -23,7 +55,39 @@ const englishToSpanishPrompts = {
   "Translate: It's raining today.": "Hoy está lloviendo.",
   "Translate: I want to travel to Spain.": "Quiero viajar a España.",
   "Translate: How old are you?": "¿Cuántos años tienes?",
-  "Translate: I don't understand.": "No entiendo."
+  "Translate: I don't understand.": "No entiendo.",
+  // --- Added translations ---
+  "Translate: What time is it?": "¿Qué hora es?",
+  "Translate: I am going to the store.": "Voy a la tienda.",
+  "Translate: She is my friend.": "Ella es mi amiga.",
+  "Translate: We are studying Spanish.": "Estamos estudiando español.",
+  "Translate: Can you help me?": "¿Puedes ayudarme?",
+  "Translate: I don't know the answer.": "No sé la respuesta.",
+  "Translate: Where is the bathroom?": "¿Dónde está el baño?",
+  "Translate: I am tired.": "Estoy cansado.",
+  "Translate: I need water.": "Necesito agua.",
+  "Translate: How much does it cost?": "¿Cuánto cuesta?",
+  "Translate: I like to read books.": "Me gusta leer libros.",
+  "Translate: He is very funny.": "Él es muy gracioso.",
+  "Translate: I want to eat something.": "Quiero comer algo.",
+  "Translate: The weather is nice today.": "Hace buen tiempo hoy.",
+  "Translate: I have a question.": "Tengo una pregunta.",
+  // --- Newest translations ---
+  "Translate: I am learning new words.": "Estoy aprendiendo palabras nuevas.",
+  "Translate: What is your name?": "¿Cómo te llamas?",
+  "Translate: I have two brothers.": "Tengo dos hermanos.",
+  "Translate: Where are you from?": "¿De dónde eres?",
+  "Translate: I like to play soccer.": "Me gusta jugar al fútbol.",
+  "Translate: The book is on the table.": "El libro está sobre la mesa.",
+  "Translate: I am going to bed.": "Me voy a la cama.",
+  "Translate: She is a teacher.": "Ella es profesora.",
+  "Translate: We are friends.": "Somos amigos.",
+  "Translate: I don't speak much Spanish.": "No hablo mucho español.",
+  "Translate: Can you repeat that, please?": "¿Puedes repetir eso, por favor?",
+  "Translate: I am hungry.": "Tengo hambre.",
+  "Translate: The cat is black.": "El gato es negro.",
+  "Translate: I live in a big city.": "Vivo en una ciudad grande.",
+  "Translate: What do you want to do today?": "¿Qué quieres hacer hoy?"
 };
 
 const pronouns = ["I", "You", "He", "We", "You all", "They"];
@@ -1132,45 +1196,6 @@ document.getElementById('checkTranslationBtn').onclick = function() {
   const lev = levenshtein(normUser, normCorrect);
   const accuracy = maxLen === 0 ? 100 : Math.max(0, Math.round(100 * (1 - lev / maxLen)));
 
-  // Educational difference analysis
-  let explanation = '';
-  if (accuracy < 100) {
-    // Tokenize by words
-    const userWords = normUser.split(/\s+/);
-    const correctWords = normCorrect.split(/\s+/);
-    // Find missing and extra words
-    const missing = correctWords.filter(w => !userWords.includes(w));
-    const extra = userWords.filter(w => !correctWords.includes(w));
-    // Word order check
-    let wordOrderIssue = false;
-    if (userWords.length === correctWords.length && accuracy > 50) {
-      for (let i = 0; i < userWords.length; ++i) {
-        if (userWords[i] !== correctWords[i]) {
-          wordOrderIssue = true;
-          break;
-        }
-      }
-    }
-    if (missing.length && extra.length) {
-      explanation = `Some words are missing (${missing.join(", ")}) and some are extra (${extra.join(", ")}).`;
-    } else if (missing.length) {
-      explanation = `You're missing: <b>${missing.join(", ")}</b>.`;
-    } else if (extra.length) {
-      explanation = `You included extra word(s): <b>${extra.join(", ")}</b>.`;
-    } else if (wordOrderIssue) {
-      explanation = `The word order is different. In Spanish, the time expression (like 'hoy') often comes first.`;
-    }
-    // Teaching tip for common word order (e.g., time expressions at the start)
-    if (!explanation && accuracy < 100) {
-      if (normCorrect.startsWith('hoy') && !normUser.startsWith('hoy')) {
-        explanation = `Tip: In Spanish, time expressions like 'hoy' (today) often come at the beginning of the sentence.`;
-      }
-    }
-    if (explanation) {
-      explanation = `<div style='color:#b91c1c;margin-bottom:6px;'><b>Teaching tip:</b> ${explanation}</div>`;
-    }
-  }
-
   // Tips based on common issues
   let tips = [];
   if (!userInput.match(/^[A-ZÁÉÍÓÚÑ¿¡]/)) tips.push("Start with a capital letter or inverted punctuation (¿/¡).");
@@ -1186,7 +1211,6 @@ document.getElementById('checkTranslationBtn').onclick = function() {
   let feedback = `<div style='margin-bottom:6px;'><b>Your attempt:</b> <span style='color:#2563eb;'>${userInput}</span></div>`;
   feedback += `<div style='margin-bottom:6px;'><b>Correct answer:</b> <span style='color:#059669;'>${correct}</span></div>`;
   feedback += `<div style='margin-bottom:6px;'><b>Accuracy:</b> <span style='color:#f59e42;font-weight:bold;'>${accuracy}%</span></div>`;
-  if (explanation) feedback += explanation;
   if (tips.length > 0) {
     feedback += `<div style='margin-top:8px;'><b>Tips to remember:</b><ul style='margin:0 0 0 18px;'>`;
     for (let t of tips) feedback += `<li>${t}</li>`;
@@ -1197,47 +1221,4 @@ document.getElementById('checkTranslationBtn').onclick = function() {
     feedback += `<div style='color:#2563eb;margin-top:8px;'>Very close! Just a few small differences.</div>`;
   }
   feedbackDiv.innerHTML = feedback;
-};
-
-// --- Add more translation prompts ---
-englishNotePrompts.push(
-  "Translate: What time is it?",
-  "Translate: I am going to the store.",
-  "Translate: She is my friend.",
-  "Translate: We are studying Spanish.",
-  "Translate: Can you help me?",
-  "Translate: I don't know the answer.",
-  "Translate: Where is the bathroom?",
-  "Translate: I am tired.",
-  "Translate: I need water.",
-  "Translate: How much does it cost?",
-  "Translate: I like to read books.",
-  "Translate: He is very funny.",
-  "Translate: I want to eat something.",
-  "Translate: The weather is nice today.",
-  "Translate: I have a question."
-);
-Object.assign(englishToSpanishPrompts, {
-  "Translate: What time is it?": "¿Qué hora es?",
-  "Translate: I am going to the store.": "Voy a la tienda.",
-  "Translate: She is my friend.": "Ella es mi amiga.",
-  "Translate: We are studying Spanish.": "Estamos estudiando español.",
-  "Translate: Can you help me?": "¿Puedes ayudarme?",
-  "Translate: I don't know the answer.": "No sé la respuesta.",
-  "Translate: Where is the bathroom?": "¿Dónde está el baño?",
-  "Translate: I am tired.": "Estoy cansado.",
-  "Translate: I need water.": "Necesito agua.",
-  "Translate: How much does it cost?": "¿Cuánto cuesta?",
-  "Translate: I like to read books.": "Me gusta leer libros.",
-  "Translate: He is very funny.": "Él es muy gracioso.",
-  "Translate: I want to eat something.": "Quiero comer algo.",
-  "Translate: The weather is nice today.": "Hace buen tiempo hoy.",
-  "Translate: I have a question.": "Tengo una pregunta."
-});
-
-// --- Next Challenge button logic ---
-document.getElementById('nextTranslationBtn').onclick = function() {
-  showRandomNotesPrompt();
-  document.getElementById('translationAttemptInput').value = '';
-  document.getElementById('translationCheckFeedback').innerHTML = '';
 };

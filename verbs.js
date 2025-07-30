@@ -3502,4 +3502,106 @@ export const verbs = [
       "Conditional Perfect": ["habría acercado", "habrías acercado", "habría acercado", "habríamos acercado", "habríais acercado", "habrían acercado"]
     }
   },
+  {
+    english: ["to hinder", "to obstruct", "to get in the way"],
+    spanish: "estorbar",
+    type: "regular",
+    memoryTip: "Used for hindering, obstructing, or getting in the way of something.",
+    conjugations: {
+      "Present": ["estorbo", "estorbas", "estorba", "estorbamos", "estorbáis", "estorban"],
+      "Preterite": ["estorbé", "estorbaste", "estorbó", "estorbamos", "estorbasteis", "estorbaron"],
+      "Imperfect": ["estorbaba", "estorbabas", "estorbaba", "estorbábamos", "estorbabais", "estorban"],
+      "Future": ["estorbaré", "estorbarás", "estorbará", "estorbaremos", "estorbaréis", "estorbarán"],
+      "Conditional": ["estorbaría", "estorbarías", "estorbaría", "estorbaríamos", "estorbaríais", "estorbarían"],
+      "Present Perfect": ["he estorbado", "has estorbado", "ha estorbado", "hemos estorbado", "habéis estorbado", "han estorbado"],
+      "Past Perfect": ["había estorbado", "habías estorbado", "había estorbado", "habíamos estorbado", "habíais estorbado", "habían estorbado"],
+      "Future Perfect": ["habré estorbado", "habrás estorbado", "habrá estorbado", "habremos estorbado", "habréis estorbado", "habrán estorbado"],
+      "Conditional Perfect": ["habría estorbado", "habrías estorbado", "habría estorbado", "habríamos estorbado", "habríais estorbado", "habrían estorbado"]
+    }
+  },
+  {
+    english: ["to try", "to test", "to prove"],
+    spanish: "probar",
+    type: "regular",
+    memoryTip: "Used for trying, testing, or proving something.",
+    conjugations: {
+      "Present": ["pruebo", "pruebas", "prueba", "probamos", "probáis", "prueban"],
+      "Preterite": ["probé", "probaste", "probó", "probamos", "probasteis", "probaron"],
+      "Imperfect": ["probaba", "probabas", "probaba", "probábamos", "probabais", "probaban"],
+      "Future": ["probaré", "probarás", "probará", "probaremos", "probaréis", "probarán"],
+      "Conditional": ["probaría", "probarías", "probaría", "probaríamos", "probaríais", "probarían"],
+      "Present Perfect": ["he probado", "has probado", "ha probado", "hemos probado", "habéis probado", "han probado"],
+      "Past Perfect": ["había probado", "habías probado", "había probado", "habíamos probado", "habíais probado", "habían probado"],
+      "Future Perfect": ["habré probado", "habrás probado", "habrá probado", "habremos probado", "habréis probado", "habrán probado"],
+      "Conditional Perfect": ["habría probado", "habrías probado", "habría probado", "habríamos probado", "habríais probado", "habrían probado"]
+    }
+  },
+  {
+    english: ["to place", "to put", "to position"],
+    spanish: "colocar",
+    type: "regular",
+    memoryTip: "Used for placing, putting, or positioning something.",
+    conjugations: {
+      "Present": ["coloco", "colocas", "coloca", "colocamos", "colocáis", "colocan"],
+      "Preterite": ["coloqué", "colocaste", "colocó", "colocamos", "colocasteis", "colocaron"],
+      "Imperfect": ["colocaba", "colocabas", "colocaba", "colocábamos", "colocabais", "colocaban"],
+      "Future": ["colocaré", "colocarás", "colocará", "colocaremos", "colocaréis", "colocarán"],
+      "Conditional": ["colocaría", "colocarías", "colocaría", "colocaríamos", "colocaríais", "colocarían"],
+      "Present Perfect": ["he colocado", "has colocado", "ha colocado", "hemos colocado", "habéis colocado", "han colocado"],
+      "Past Perfect": ["había colocado", "habías colocado", "había colocado", "habíamos colocado", "habíais colocado", "habían colocado"],
+      "Future Perfect": ["habré colocado", "habrás colocado", "habrá colocado", "habremos colocado", "habréis colocado", "habrán colocado"],
+      "Conditional Perfect": ["habría colocado", "habrías colocado", "habría colocado", "habríamos colocado", "habríais colocado", "habrían colocado"]
+    }
+  },
+  {
+    english: ["to trip", "to stumble"],
+    spanish: "tropezar",
+    type: "regular",
+    memoryTip: "Used for tripping or stumbling over something.",
+    conjugations: {
+      "Present": ["tropiezo", "tropiezas", "tropieza", "tropeamos", "tropeáis", "tropiezan"],
+      "Preterite": ["tropecé", "tropeaste", "tropeó", "tropeamos", "tropeasteis", "tropearon"],
+      "Imperfect": ["tropeaba", "tropeabas", "tropeaba", "tropeábamos", "tropeabais", "tropeaban"],
+      "Future": ["tropezaré", "tropezarás", "tropezará", "tropearemos", "tropezaréis", "tropezarán"],
+      "Conditional": ["tropezaría", "tropezarías", "tropezaría", "tropezaríamos", "tropezaríais", "tropezarían"],
+      "Present Perfect": ["he tropezado", "has tropezado", "ha tropezado", "hemos tropezado", "habéis tropezado", "han tropezado"],
+      "Past Perfect": ["había tropezado", "habías tropezado", "había tropezado", "habíamos tropezado", "habíais tropezado", "habían tropezado"],
+      "Future Perfect": ["habré tropezado", "habrás tropezado", "habrá tropezado", "habremos tropezado", "habréis tropezado", "habrán tropezado"],
+      "Conditional Perfect": ["habría tropezado", "habrías tropezado", "habría tropezado", "habríamos tropezado", "habríais tropezado", "habrían tropezado"]
+    }
+  },
+  {
+    english: ["to reach", "to achieve", "to attain"],
+    spanish: "alcanzar",
+    type: "regular",
+    memoryTip: "Used for reaching, achieving, or attaining something.",
+    conjugations: {
+      "Present": ["alcanzo", "alcanzas", "alcanza", "alcanzamos", "alcanzáis", "alcanzan"],
+      "Preterite": ["alcancé", "alcanzaste", "alcanzó", "alcanzamos", "alcanzasteis", "alcanzaron"],
+      "Imperfect": ["alcanzaba", "alcanzabas", "alcanzaba", "alcanzábamos", "alcanzabais", "alcanzaban"],
+      "Future": ["alcanzaré", "alcanzarás", "alcanzará", "alcanzaremos", "alcanzaréis", "alcanzarán"],
+      "Conditional": ["alcanzaría", "alcanzarías", "alcanzaría", "alcanzaríamos", "alcanzaríais", "alcanzarían"],
+      "Present Perfect": ["he alcanzado", "has alcanzado", "ha alcanzado", "hemos alcanzado", "habéis alcanzado", "han alcanzado"],
+      "Past Perfect": ["había alcanzado", "habías alcanzado", "había alcanzado", "habíamos alcanzado", "habíais alcanzado", "habían alcanzado"],
+      "Future Perfect": ["habré alcanzado", "habrás alcanzado", "habrá alcanzado", "habremos alcanzado", "habréis alcanzado", "habrán alcanzado"],
+      "Conditional Perfect": ["habría alcanzado", "habrías alcanzado", "habría alcanzado", "habríamos alcanzado", "habríais alcanzado", "habrían alcanzado"]
+    }
+  },
+  {
+    english: ["to straighten", "to straighten up"],
+    spanish: "enderezar",
+    type: "regular",
+    memoryTip: "Used for straightening or straightening up something.",
+    conjugations: {
+      "Present": ["enderezo", "enderezas", "endereza", "enderezamos", "enderezáis", "enderezan"],
+      "Preterite": ["enderecé", "enderezaste", "enderezó", "enderezamos", "enderezasteis", "enderezaron"],
+      "Imperfect": ["enderezaba", "enderezabas", "enderezaba", "enderezábamos", "enderezabais", "enderezaban"],
+      "Future": ["enderezaré", "enderezarás", "enderezará", "enderezaremos", "enderezaréis", "enderezarán"],
+      "Conditional": ["enderezaría", "enderezarías", "enderezaría", "enderezaríamos", "enderezaríais", "enderezarían"],
+      "Present Perfect": ["he enderezado", "has enderezado", "ha enderezado", "hemos enderezado", "habéis enderezado", "han enderezado"],
+      "Past Perfect": ["había enderezado", "habías enderezado", "había enderezado", "habíamos enderezado", "habíais enderezado", "habían enderezado"],
+      "Future Perfect": ["habré enderezado", "habrás enderezado", "habrá enderezado", "habremos enderezado", "habréis enderezado", "habrán enderezado"],
+      "Conditional Perfect": ["habría enderezado", "habrías enderezado", "habría enderezado", "habríamos enderezado", "habríais enderezado", "habrían enderezado"]
+    }
+  },
 ];
