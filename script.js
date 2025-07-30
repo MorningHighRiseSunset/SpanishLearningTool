@@ -812,6 +812,23 @@ const irregulars = {
   "to worship": { preterite: "worshipped", pastPart: "worshipped" },
   "to format": { preterite: "formatted", pastPart: "formatted" },
   "to target": { preterite: "targeted", pastPart: "targeted" },
+  // New verbs added
+  "to hinder": { preterite: "hindered", pastPart: "hindered" },
+  "to obstruct": { preterite: "obstructed", pastPart: "obstructed" },
+  "to get in the way": { preterite: "got in the way", pastPart: "gotten in the way" },
+  "to try": { preterite: "tried", pastPart: "tried" },
+  "to test": { preterite: "tested", pastPart: "tested" },
+  "to prove": { preterite: "proved", pastPart: "proven" },
+  "to place": { preterite: "placed", pastPart: "placed" },
+  "to put": { preterite: "put", pastPart: "put" },
+  "to position": { preterite: "positioned", pastPart: "positioned" },
+  "to trip": { preterite: "tripped", pastPart: "tripped" },
+  "to stumble": { preterite: "stumbled", pastPart: "stumbled" },
+  "to reach": { preterite: "reached", pastPart: "reached" },
+  "to achieve": { preterite: "achieved", pastPart: "achieved" },
+  "to attain": { preterite: "attained", pastPart: "attained" },
+  "to straighten": { preterite: "straightened", pastPart: "straightened" },
+  "to straighten up": { preterite: "straightened up", pastPart: "straightened up" },
   // Add more as needed
 };
 
