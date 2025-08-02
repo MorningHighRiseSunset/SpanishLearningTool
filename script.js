@@ -904,6 +904,8 @@ const irregulars = {
   "to target": { preterite: "targeted", pastPart: "targeted" },
   "to lead": { preterite: "led", pastPart: "led" },
   "to take a risk": { preterite: "took a risk", pastPart: "taken a risk" },
+  "to roam": { preterite: "roamed", pastPart: "roamed" },
+  "to stroll": { preterite: "strolled", pastPart: "strolled" },
   // Add more as needed
 };
 

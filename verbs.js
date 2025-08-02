@@ -3638,4 +3638,21 @@ export const verbs = [
       "Conditional Perfect": ["me habría arriesgado", "te habrías arriesgado", "se habría arriesgado", "nos habríamos arriesgado", "os habríais arriesgado", "se habrían arriesgado"]
     }
   },
+  {
+    english: ["to wander", "to roam", "to stroll"],
+    spanish: "vagar",
+    type: "regular",
+    memoryTip: "Used for wandering, roaming, or strolling around without a specific destination.",
+    conjugations: {
+      "Present": ["vago", "vagas", "vaga", "vagamos", "vagáis", "vagan"],
+      "Preterite": ["vagué", "vagaste", "vagó", "vagamos", "vagasteis", "vagaron"],
+      "Imperfect": ["vagaba", "vagabas", "vagaba", "vagábamos", "vagabais", "vagaban"],
+      "Future": ["vagaré", "vagarás", "vagará", "vagaremos", "vagaréis", "vagarán"],
+      "Conditional": ["vagaría", "vagarías", "vagaría", "vagaríamos", "vagaríais", "vagarían"],
+      "Present Perfect": ["he vagado", "has vagado", "ha vagado", "hemos vagado", "habéis vagado", "han vagado"],
+      "Past Perfect": ["había vagado", "habías vagado", "había vagado", "habíamos vagado", "habíais vagado", "habían vagado"],
+      "Future Perfect": ["habré vagado", "habrás vagado", "habrá vagado", "habremos vagado", "habréis vagado", "habrán vagado"],
+      "Conditional Perfect": ["habría vagado", "habrías vagado", "habría vagado", "habríamos vagado", "habríais vagado", "habrían vagado"]
+    }
+  },
 ];
