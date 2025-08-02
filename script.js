@@ -902,6 +902,8 @@ const irregulars = {
   "to worship": { preterite: "worshipped", pastPart: "worshipped" },
   "to format": { preterite: "formatted", pastPart: "formatted" },
   "to target": { preterite: "targeted", pastPart: "targeted" },
+  "to lead": { preterite: "led", pastPart: "led" },
+  "to take a risk": { preterite: "took a risk", pastPart: "taken a risk" },
   // Add more as needed
 };
 

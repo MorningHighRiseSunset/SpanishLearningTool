@@ -3604,4 +3604,38 @@ export const verbs = [
       "Conditional Perfect": ["habría enderezado", "habrías enderezado", "habría enderezado", "habríamos enderezado", "habríais enderezado", "habrían enderezado"]
     }
   },
+  {
+    english: ["to direct", "to lead", "to guide"],
+    spanish: "dirigir",
+    type: "regular",
+    memoryTip: "Used for directing, leading, or guiding people or activities.",
+    conjugations: {
+      "Present": ["dirijo", "diriges", "dirige", "dirigimos", "dirigís", "dirigen"],
+      "Preterite": ["dirigí", "dirigiste", "dirigió", "dirigimos", "dirigisteis", "dirigieron"],
+      "Imperfect": ["dirigía", "dirigías", "dirigía", "dirigíamos", "dirigíais", "dirigían"],
+      "Future": ["dirigiré", "dirigirás", "dirigirá", "dirigiremos", "dirigiréis", "dirigirán"],
+      "Conditional": ["dirigiría", "dirigirías", "dirigiría", "dirigiríamos", "dirigiríais", "dirigirían"],
+      "Present Perfect": ["he dirigido", "has dirigido", "ha dirigido", "hemos dirigido", "habéis dirigido", "han dirigido"],
+      "Past Perfect": ["había dirigido", "habías dirigido", "había dirigido", "habíamos dirigido", "habíais dirigido", "habían dirigido"],
+      "Future Perfect": ["habré dirigido", "habrás dirigido", "habrá dirigido", "habremos dirigido", "habréis dirigido", "habrán dirigido"],
+      "Conditional Perfect": ["habría dirigido", "habrías dirigido", "habría dirigido", "habríamos dirigido", "habríais dirigido", "habrían dirigido"]
+    }
+  },
+  {
+    english: ["to risk oneself", "to take a risk"],
+    spanish: "arriesgarse",
+    type: "regular",
+    memoryTip: "Used for taking risks or putting oneself in danger. Note: This is a reflexive verb.",
+    conjugations: {
+      "Present": ["me arriesgo", "te arriesgas", "se arriesga", "nos arriesgamos", "os arriesgáis", "se arriesgan"],
+      "Preterite": ["me arriesgué", "te arriesgaste", "se arriesgó", "nos arriesgamos", "os arriesgasteis", "se arriesgaron"],
+      "Imperfect": ["me arriesgaba", "te arriesgabas", "se arriesgaba", "nos arriesgábamos", "os arriesgabais", "se arriesgaban"],
+      "Future": ["me arriesgaré", "te arriesgarás", "se arriesgará", "nos arriesgaremos", "os arriesgaréis", "se arriesgarán"],
+      "Conditional": ["me arriesgaría", "te arriesgarías", "se arriesgaría", "nos arriesgaríamos", "os arriesgaríais", "se arriesgarían"],
+      "Present Perfect": ["me he arriesgado", "te has arriesgado", "se ha arriesgado", "nos hemos arriesgado", "os habéis arriesgado", "se han arriesgado"],
+      "Past Perfect": ["me había arriesgado", "te habías arriesgado", "se había arriesgado", "nos habíamos arriesgado", "os habíais arriesgado", "se habían arriesgado"],
+      "Future Perfect": ["me habré arriesgado", "te habrás arriesgado", "se habrá arriesgado", "nos habremos arriesgado", "os habréis arriesgado", "se habrán arriesgado"],
+      "Conditional Perfect": ["me habría arriesgado", "te habrías arriesgado", "se habría arriesgado", "nos habríamos arriesgado", "os habríais arriesgado", "se habrían arriesgado"]
+    }
+  },
 ];
