@@ -949,27 +949,70 @@ const irregulars = {
     else present = base + "s";
   }
 
+  // Handle reflexive verbs in English
+  const reflexivePronouns = {
+    "I": "myself",
+    "You": "yourself", 
+    "He": "himself",
+    "We": "ourselves",
+    "You all": "yourselves",
+    "They": "themselves"
+  };
+
+  // Check if this is a reflexive verb
+  const isReflexive = verb.spanish && verb.spanish.endsWith("se");
+  
   // Continuous tenses
   switch (tense) {
     case "Present":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} risk ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} ${present}`;
     case "Preterite":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} risked ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} ${preterite}`;
     case "Imperfect":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} used to risk ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} used to ${base}`;
     case "Future":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} will risk ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} will ${base}`;
     case "Conditional":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} would risk ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} would ${base}`;
     case "Present Perfect":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} ${["He"].includes(pronoun) ? "has" : "have"} risked ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} ${["He"].includes(pronoun) ? "has" : "have"} ${pastPart}`;
     case "Past Perfect":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} had risked ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} had ${pastPart}`;
     case "Future Perfect":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} will have risked ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} will have ${pastPart}`;
     case "Conditional Perfect":
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} would have risked ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} would have ${pastPart}`;
     default:
+      if (isReflexive && base.includes("risk oneself")) {
+        return `${pronoun} risk ${reflexivePronouns[pronoun]}`;
+      }
       return `${pronoun} ${base}`;
   }
 }
