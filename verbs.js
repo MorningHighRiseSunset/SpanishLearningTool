@@ -3655,4 +3655,140 @@ export const verbs = [
       "Conditional Perfect": ["habría vagado", "habrías vagado", "habría vagado", "habríamos vagado", "habríais vagado", "habrían vagado"]
     }
   },
+  {
+    english: ["to find", "to discover"],
+    spanish: "hallar",
+    type: "regular",
+    memoryTip: "Used for finding or discovering something.",
+    conjugations: {
+      "Present": ["hallo", "hallas", "halla", "hallamos", "halláis", "hallan"],
+      "Preterite": ["hallé", "hallaste", "halló", "hallamos", "hallasteis", "hallaron"],
+      "Imperfect": ["hallaba", "hallabas", "hallaba", "hallábamos", "hallabais", "hallaban"],
+      "Future": ["hallaré", "hallarás", "hallará", "hallaremos", "hallaréis", "hallarán"],
+      "Conditional": ["hallaría", "hallarías", "hallaría", "hallaríamos", "hallaríais", "hallarían"],
+      "Present Perfect": ["he hallado", "has hallado", "ha hallado", "hemos hallado", "habéis hallado", "han hallado"],
+      "Past Perfect": ["había hallado", "habías hallado", "había hallado", "habíamos hallado", "habíais hallado", "habían hallado"],
+      "Future Perfect": ["habré hallado", "habrás hallado", "habrá hallado", "habremos hallado", "habréis hallado", "habrán hallado"],
+      "Conditional Perfect": ["habría hallado", "habrías hallado", "habría hallado", "habríamos hallado", "habríais hallado", "habrían hallado"]
+    }
+  },
+  {
+    english: ["to fail", "to fall short"],
+    spanish: "fallar",
+    type: "regular",
+    memoryTip: "Used for failing or falling short of expectations.",
+    conjugations: {
+      "Present": ["fallo", "fallas", "falla", "fallamos", "falláis", "fallan"],
+      "Preterite": ["fallé", "fallaste", "falló", "fallamos", "fallasteis", "fallaron"],
+      "Imperfect": ["fallaba", "fallabas", "fallaba", "fallábamos", "fallabais", "fallaban"],
+      "Future": ["fallaré", "fallarás", "fallará", "fallaremos", "fallaréis", "fallarán"],
+      "Conditional": ["fallaría", "fallarías", "fallaría", "fallaríamos", "fallaríais", "fallarían"],
+      "Present Perfect": ["he fallado", "has fallado", "ha fallado", "hemos fallado", "habéis fallado", "han fallado"],
+      "Past Perfect": ["había fallado", "habías fallado", "había fallado", "habíamos fallado", "habíais fallado", "habían fallado"],
+      "Future Perfect": ["habré fallado", "habrás fallado", "habrá fallado", "habremos fallado", "habréis fallado", "habrán fallado"],
+      "Conditional Perfect": ["habría fallado", "habrías fallado", "habría fallado", "habríamos fallado", "habríais fallado", "habrían fallado"]
+    }
+  },
+  {
+    english: ["to falter", "to hesitate"],
+    spanish: "faltar",
+    type: "regular",
+    memoryTip: "Used for faltering, hesitating, or lacking something.",
+    conjugations: {
+      "Present": ["falto", "faltas", "falta", "faltamos", "faltáis", "faltan"],
+      "Preterite": ["falté", "faltaste", "faltó", "faltamos", "faltasteis", "faltaron"],
+      "Imperfect": ["faltaba", "faltabas", "faltaba", "faltábamos", "faltabais", "faltaban"],
+      "Future": ["faltaré", "faltarás", "faltará", "faltaremos", "faltaréis", "faltarán"],
+      "Conditional": ["faltaría", "faltarías", "faltaría", "faltaríamos", "faltaríais", "faltarían"],
+      "Present Perfect": ["he faltado", "has faltado", "ha faltado", "hemos faltado", "habéis faltado", "han faltado"],
+      "Past Perfect": ["había faltado", "habías faltado", "había faltado", "habíamos faltado", "habíais faltado", "habían faltado"],
+      "Future Perfect": ["habré faltado", "habrás faltado", "habrá faltado", "habremos faltado", "habréis faltado", "habrán faltado"],
+      "Conditional Perfect": ["habría faltado", "habrías faltado", "habría faltado", "habríamos faltado", "habríais faltado", "habrían faltado"]
+    }
+  },
+  {
+    english: ["to prioritize"],
+    spanish: "priorizar",
+    type: "regular",
+    memoryTip: "Used for prioritizing or giving priority to something.",
+    conjugations: {
+      "Present": ["priorizo", "priorizas", "prioriza", "priorizamos", "priorizáis", "priorizan"],
+      "Preterite": ["prioricé", "priorizaste", "priorizó", "priorizamos", "priorizasteis", "priorizaron"],
+      "Imperfect": ["priorizaba", "priorizabas", "priorizaba", "priorizábamos", "priorizabais", "priorizaban"],
+      "Future": ["priorizaré", "priorizarás", "priorizará", "priorizaremos", "priorizaréis", "priorizarán"],
+      "Conditional": ["priorizaría", "priorizarías", "priorizaría", "priorizaríamos", "priorizaríais", "priorizarían"],
+      "Present Perfect": ["he priorizado", "has priorizado", "ha priorizado", "hemos priorizado", "habéis priorizado", "han priorizado"],
+      "Past Perfect": ["había priorizado", "habías priorizado", "había priorizado", "habíamos priorizado", "habíais priorizado", "habían priorizado"],
+      "Future Perfect": ["habré priorizado", "habrás priorizado", "habrá priorizado", "habremos priorizado", "habréis priorizado", "habrán priorizado"],
+      "Conditional Perfect": ["habría priorizado", "habrías priorizado", "habría priorizado", "habríamos priorizado", "habríais priorizado", "habrían priorizado"]
+    }
+  },
+  {
+    english: ["to run over", "to hit"],
+    spanish: "atropellar",
+    type: "regular",
+    memoryTip: "Used for running over or hitting someone/something with a vehicle.",
+    conjugations: {
+      "Present": ["atropello", "atropellas", "atropella", "atropellamos", "atropelláis", "atropellan"],
+      "Preterite": ["atropellé", "atropellaste", "atropelló", "atropellamos", "atropellasteis", "atropellaron"],
+      "Imperfect": ["atropellaba", "atropellabas", "atropellaba", "atropellábamos", "atropellabais", "atropellaban"],
+      "Future": ["atropellaré", "atropellarás", "atropellará", "atropellaremos", "atropellaréis", "atropellarán"],
+      "Conditional": ["atropellaría", "atropellarías", "atropellaría", "atropellaríamos", "atropellaríais", "atropellarían"],
+      "Present Perfect": ["he atropellado", "has atropellado", "ha atropellado", "hemos atropellado", "habéis atropellado", "han atropellado"],
+      "Past Perfect": ["había atropellado", "habías atropellado", "había atropellado", "habíamos atropellado", "habíais atropellado", "habían atropellado"],
+      "Future Perfect": ["habré atropellado", "habrás atropellado", "habrá atropellado", "habremos atropellado", "habréis atropellado", "habrán atropellado"],
+      "Conditional Perfect": ["habría atropellado", "habrías atropellado", "habría atropellado", "habríamos atropellado", "habríais atropellado", "habrían atropellado"]
+    }
+  },
+  {
+    english: ["to embark", "to board"],
+    spanish: "embarcar",
+    type: "regular",
+    memoryTip: "Used for embarking or boarding a ship, plane, or vehicle.",
+    conjugations: {
+      "Present": ["embarco", "embarcas", "embarca", "embarcamos", "embarcáis", "embarcan"],
+      "Preterite": ["embarqué", "embarcaste", "embarcó", "embarcamos", "embarcasteis", "embarcaron"],
+      "Imperfect": ["embarcaba", "embarcabas", "embarcaba", "embarcábamos", "embarcabais", "embarcaban"],
+      "Future": ["embarcaré", "embarcarás", "embarcará", "embarcaremos", "embarcaréis", "embarcarán"],
+      "Conditional": ["embarcaría", "embarcarías", "embarcaría", "embarcaríamos", "embarcaríais", "embarcarían"],
+      "Present Perfect": ["he embarcado", "has embarcado", "ha embarcado", "hemos embarcado", "habéis embarcado", "han embarcado"],
+      "Past Perfect": ["había embarcado", "habías embarcado", "había embarcado", "habíamos embarcado", "habíais embarcado", "habían embarcado"],
+      "Future Perfect": ["habré embarcado", "habrás embarcado", "habrá embarcado", "habremos embarcado", "habréis embarcado", "habrán embarcado"],
+      "Conditional Perfect": ["habría embarcado", "habrías embarcado", "habría embarcado", "habríamos embarcado", "habríais embarcado", "habrían embarcado"]
+    }
+  },
+  {
+    english: ["to influence", "to affect"],
+    spanish: "influir",
+    type: "regular",
+    memoryTip: "Used for influencing or affecting someone or something.",
+    conjugations: {
+      "Present": ["influyo", "influyes", "influye", "influimos", "influís", "influyen"],
+      "Preterite": ["influí", "influiste", "influyó", "influimos", "influisteis", "influyeron"],
+      "Imperfect": ["influía", "influías", "influía", "influíamos", "influíais", "influían"],
+      "Future": ["influiré", "influirás", "influirá", "influiremos", "influiréis", "influirán"],
+      "Conditional": ["influiría", "influirías", "influiría", "influiríamos", "influiríais", "influirían"],
+      "Present Perfect": ["he influido", "has influido", "ha influido", "hemos influido", "habéis influido", "han influido"],
+      "Past Perfect": ["había influido", "habías influido", "había influido", "habíamos influido", "habíais influido", "habían influido"],
+      "Future Perfect": ["habré influido", "habrás influido", "habrá influido", "habremos influido", "habréis influido", "habrán influido"],
+      "Conditional Perfect": ["habría influido", "habrías influido", "habría influido", "habríamos influido", "habríais influido", "habrían influido"]
+    }
+  },
+  {
+    english: ["to demand", "to require"],
+    spanish: "exigir",
+    type: "regular",
+    memoryTip: "Used for demanding or requiring something from someone.",
+    conjugations: {
+      "Present": ["exijo", "exiges", "exige", "exigimos", "exigís", "exigen"],
+      "Preterite": ["exigí", "exigiste", "exigió", "exigimos", "exigisteis", "exigieron"],
+      "Imperfect": ["exigía", "exigías", "exigía", "exigíamos", "exigíais", "exigían"],
+      "Future": ["exigiré", "exigirás", "exigirá", "exigiremos", "exigiréis", "exigirán"],
+      "Conditional": ["exigiría", "exigirías", "exigiría", "exigiríamos", "exigiríais", "exigirían"],
+      "Present Perfect": ["he exigido", "has exigido", "ha exigido", "hemos exigido", "habéis exigido", "han exigido"],
+      "Past Perfect": ["había exigido", "habías exigido", "había exigido", "habíamos exigido", "habíais exigido", "habían exigido"],
+      "Future Perfect": ["habré exigido", "habrás exigido", "habrá exigido", "habremos exigido", "habréis exigido", "habrán exigido"],
+      "Conditional Perfect": ["habría exigido", "habrías exigido", "habría exigido", "habríamos exigido", "habríais exigido", "habrían exigido"]
+    }
+  },
 ];

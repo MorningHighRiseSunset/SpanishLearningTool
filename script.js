@@ -906,6 +906,21 @@ const irregulars = {
   "to take a risk": { preterite: "took a risk", pastPart: "taken a risk" },
   "to roam": { preterite: "roamed", pastPart: "roamed" },
   "to stroll": { preterite: "strolled", pastPart: "strolled" },
+  "to find": { preterite: "found", pastPart: "found" },
+  "to discover": { preterite: "discovered", pastPart: "discovered" },
+  "to fail": { preterite: "failed", pastPart: "failed" },
+  "to fall short": { preterite: "fell short", pastPart: "fallen short" },
+  "to falter": { preterite: "faltered", pastPart: "faltered" },
+  "to hesitate": { preterite: "hesitated", pastPart: "hesitated" },
+  "to prioritize": { preterite: "prioritized", pastPart: "prioritized" },
+  "to run over": { preterite: "ran over", pastPart: "run over" },
+  "to hit": { preterite: "hit", pastPart: "hit" },
+  "to embark": { preterite: "embarked", pastPart: "embarked" },
+  "to board": { preterite: "boarded", pastPart: "boarded" },
+  "to influence": { preterite: "influenced", pastPart: "influenced" },
+  "to affect": { preterite: "affected", pastPart: "affected" },
+  "to demand": { preterite: "demanded", pastPart: "demanded" },
+  "to require": { preterite: "required", pastPart: "required" },
   // Add more as needed
 };
 
