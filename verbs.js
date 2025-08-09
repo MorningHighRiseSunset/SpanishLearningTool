@@ -4114,4 +4114,22 @@ export const verbs = [
       "Conditional Perfect": ["habría colgado", "habrías colgado", "habría colgado", "habríamos colgado", "habríais colgado", "habrían colgado"]
     }
   }
+  ,
+  {
+    english: ["to tear", "to rip"],
+    spanish: "rasgar",
+    type: "regular",
+    memoryTip: "Used for tearing or ripping something (like paper or fabric).",
+    conjugations: {
+      "Present": ["rasgo", "rasgas", "rasga", "rasgamos", "rasgáis", "rasgan"],
+      "Preterite": ["rasgué", "rasgaste", "rasgó", "rasgamos", "rasgasteis", "rasgaron"],
+      "Imperfect": ["rasgaba", "rasgabas", "rasgaba", "rasgábamos", "rasgabais", "rasgaban"],
+      "Future": ["rasgaré", "rasgarás", "rasgará", "rasgaremos", "rasgaréis", "rasgarán"],
+      "Conditional": ["rasgaría", "rasgarías", "rasgaría", "rasgaríamos", "rasgaríais", "rasgarían"],
+      "Present Perfect": ["he rasgado", "has rasgado", "ha rasgado", "hemos rasgado", "habéis rasgado", "han rasgado"],
+      "Past Perfect": ["había rasgado", "habías rasgado", "había rasgado", "habíamos rasgado", "habíais rasgado", "habían rasgado"],
+      "Future Perfect": ["habré rasgado", "habrás rasgado", "habrá rasgado", "habremos rasgado", "habréis rasgado", "habrán rasgado"],
+      "Conditional Perfect": ["habría rasgado", "habrías rasgado", "habría rasgado", "habríamos rasgado", "habríais rasgado", "habrían rasgado"]
+    }
+  }
 ];

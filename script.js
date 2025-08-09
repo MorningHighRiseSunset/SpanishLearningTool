@@ -783,6 +783,7 @@ const irregulars = {
   "to write": { preterite: "wrote", pastPart: "written" },
   "to lead": { preterite: "led", pastPart: "led" },
   "to lend": { preterite: "lent", pastPart: "lent" },
+  "to tear": { preterite: "tore", pastPart: "torn" },
   
   // Multi-word verbs
   "to take off": { preterite: "took off", pastPart: "taken off" },
