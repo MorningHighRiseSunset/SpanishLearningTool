@@ -374,6 +374,23 @@ export const verbs = [
   }
   },
   {
+    english: ["to release", "to let go", "to drop"],
+    spanish: "soltar",
+    type: "irregular",
+    memoryTip: "Stem-changing in the present (o → ue): suelto in some forms; means to let go or release.",
+    conjugations: {
+      "Present": ["suelto", "sueltas", "suelta", "soltamos", "soltáis", "suelten"],
+      "Preterite": ["solté", "soltaste", "soltó", "soltamos", "soltasteis", "soltaron"],
+      "Imperfect": ["soltaba", "soltabas", "soltaba", "soltábamos", "soltabais", "soltaban"],
+      "Future": ["soltaré", "soltarás", "soltará", "soltaremos", "soltaréis", "soltarán"],
+      "Conditional": ["soltaría", "soltarías", "soltaría", "soltaríamos", "soltaríais", "soltarían"],
+      "Present Perfect": ["he soltado", "has soltado", "ha soltado", "hemos soltado", "habéis soltado", "han soltado"],
+      "Past Perfect": ["había soltado", "habías soltado", "había soltado", "habíamos soltado", "habíais soltado", "habían soltado"],
+      "Future Perfect": ["habré soltado", "habrás soltado", "habrá soltado", "habremos soltado", "habréis soltado", "habrán soltado"],
+      "Conditional Perfect": ["habría soltado", "habrías soltado", "habría soltado", "habríamos soltado", "habríais soltado", "habrían soltado"]
+    }
+  },
+  {
     english: ["to follow", "to continue"],
     spanish: "seguir",
     type: "irregular",
